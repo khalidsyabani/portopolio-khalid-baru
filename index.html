@@ -1,107 +1,608 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#070914">
-  <meta name="description" content="Khalid — personal portfolio, design, and digital craft.">
-  <title>Khalid — Futuristic Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Khalid Asy Sya'bani — Digital Portfolio</title>
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #080b11;
+      --bg-card: rgba(15, 23, 42, 0.65);
+      --border-card: rgba(56, 189, 248, 0.15);
+      --primary-blue: #00d2ff;
+      --secondary-blue: #0066ff;
+      --accent-glow: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-heading: 'Syne', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Space Grotesk', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Ambient Lights */
+    .ambient-light {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.35;
+    }
+    .light-1 {
+      top: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, var(--secondary-blue), transparent);
+    }
+    .light-2 {
+      bottom: 10%;
+      right: -10%;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, var(--primary-blue), transparent);
+    }
+
+    /* Header Nav */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8, 11, 17, 0.8);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -0.5px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .logo span {
+      color: var(--primary-blue);
+    }
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      color: var(--primary-blue);
+    }
+    .btn-nav-talk {
+      padding: 8px 20px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-nav-talk:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+    }
+
+    /* Sections */
+    section {
+      padding: 120px 8% 80px;
+    }
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 60px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid rgba(0, 210, 255, 0.2);
+      color: var(--primary-blue);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      margin-bottom: 25px;
+    }
+    .hero-tag .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary-blue);
+      box-shadow: 0 0 10px var(--primary-blue);
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+    .hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #fff 30%, var(--primary-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 540px;
+      margin-bottom: 35px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .btn-primary {
+      padding: 14px 32px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -5px rgba(0, 102, 255, 0.4);
+      transition: all 0.3s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px -5px rgba(0, 210, 255, 0.6);
+    }
+
+    /* Profile Card */
+    .profile-card-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .profile-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 24px;
+      padding: 16px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      transition: transform 0.4s ease;
+    }
+    .profile-card:hover {
+      transform: translateY(-8px);
+    }
+    .img-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+    }
+    .img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      padding: 12px 16px;
+      background: rgba(8, 11, 17, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .img-badge h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .img-badge p {
+      font-size: 0.8rem;
+      color: var(--primary-blue);
+    }
+
+    /* Marquee Banner */
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      background: rgba(0, 210, 255, 0.03);
+      border-top: 1px solid rgba(0, 210, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 210, 255, 0.1);
+      padding: 16px 0;
+      white-space: nowrap;
+    }
+    .marquee-content {
+      display: inline-flex;
+      gap: 40px;
+      animation: marquee 25s linear infinite;
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    .marquee-item span {
+      color: var(--primary-blue);
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Section Headers */
+    .section-title-wrapper {
+      margin-bottom: 50px;
+    }
+    .section-num {
+      font-family: var(--font-mono);
+      color: var(--primary-blue);
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+    }
+
+    /* About Grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .card-info {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s;
+    }
+    .card-info:hover {
+      border-color: rgba(0, 210, 255, 0.4);
+      transform: translateY(-5px);
+    }
+    .card-info i {
+      font-size: 2rem;
+      color: var(--primary-blue);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .card-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .card-info p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Special Surga Card */
+    .card-surga {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.15), rgba(0, 210, 255, 0.05));
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover {
+      border-color: var(--primary-blue);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(0, 210, 255, 0.15);
+    }
+    .contact-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(0, 210, 255, 0.1);
+      border: 1px solid rgba(0, 210, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--primary-blue);
+    }
+    .contact-label p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .contact-label h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .contact-action {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-contact-action {
+      flex: 1;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-contact-action:hover {
+      background: var(--primary-blue);
+      color: #000;
+    }
+
+    footer {
+      padding: 40px 8%;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      .hero-desc {
+        margin: 0 auto 35px;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      nav {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="grain"></div>
-  <header class="header wrap">
-    <a class="wordmark" href="#top">khalid<span>®</span></a>
-    <button class="menu-button" aria-expanded="false" aria-label="Buka menu"><i></i><i></i></button>
-    <nav class="nav">
-      <a href="#about">Tentang</a><a href="#work">Karya pilihan</a><a href="#skills">Keahlian</a>
+
+  <!-- Ambient Lights -->
+  <div class="ambient-light light-1"></div>
+  <div class="ambient-light light-2"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo">khalid<span>®</span></a>
+    <nav>
+      <a href="#about">Tentang</a>
+      <a href="#hobi">Hobi & Impian</a>
+      <a href="#contact">Kontak</a>
     </nav>
-    <a class="contact-top" href="#contact">Let's talk <span>↗</span></a>
+    <a href="#contact" class="btn-nav-talk">Let's talk ↗</a>
   </header>
 
-  <main id="top">
-    <section class="hero wrap">
-      <div class="hero-topline"><span>PORTFOLIO DIGITAL / FUTURE MODE</span><span>INDONESIA · 2026</span></div>
-      <div class="hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span class="tiny-star">✳</span> PELAJAR RPL / DIGITAL CREATIVE</p>
-          <h1>Membuat ide<br>terasa <em>nyata.</em></h1>
-          <p class="hero-intro">Saya Khalid — seorang pelajar, pembuat, dan penjelajah hal-hal digital. Tertarik pada pertemuan antara teknologi, visual, dan cerita yang bermakna.</p>
-          <div class="hero-buttons"><a class="button dark" href="#work">Lihat karya <span>↗</span></a><a class="quiet-link" href="#about">Sedikit tentang saya <span>↓</span></a></div>
-          <div class="hero-footnote"><span>01 / 04</span><span class="short-line"></span><span>BUILDING WHAT'S NEXT</span></div>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        PORTFOLIO DIGITAL / FUTURE MODE
+      </div>
+      <h1 class="hero-title">
+        Muhammad Khalid<br>
+        <em>Asy Sya'bani.</em>
+      </h1>
+      <p class="hero-desc">
+        Pelajar, pembuat, dan penjelajah hal-hal digital. Berdedikasi menuntut ilmu dan bertumbuh dalam kebaikan.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Hubungi Saya ↗</a>
+        <a href="#about" class="btn-secondary">Tentang Saya ↓</a>
+      </div>
+    </div>
+
+    <!-- Profile Card (Full Photo Aspect) -->
+    <div class="profile-card-wrapper">
+      <div class="profile-card">
+        <div class="img-frame">
+          <img src="foto1.jpg" alt="Muhammad Khalid Asy Sya'bani" onerror="this.src='foto1.png'; this.onerror=null;">
         </div>
-        <div class="hero-art reveal">
-          <div class="profile-hover-card" id="profileHoverCard" tabindex="0" aria-label="Foto profil Khalid. Arahkan kursor atau fokuskan untuk melihat efek.">
-            <div class="profile-photo">
-              <img src="saya1.jpg" alt="Foto Muhammad Khalid Asy sya'bani" onerror="this.style.display='none';">
-              <div class="profile-photo-shade"></div>
-              <div class="profile-card-top"><span>PERSONAL PORTFOLIO</span><span>2026</span></div>
-              <div class="profile-card-content">
-                <span class="profile-user-icon">♙</span>
-                <p class="profile-kicker">PELAJAR RPL · DIGITAL CREATIVE</p>
-                <h2>HALO, SAYA<br><em>KHALID.</em></h2>
-                <p class="profile-hint">Arahkan kursor ke foto untuk efek</p>
-              </div>
-              <div class="profile-card-bottom"><span>DESIGN / CODE / IDEAS</span><span>↗</span></div>
-            </div>
+        <div class="img-badge">
+          <h4>Muhammad Khalid Asy Sya'bani</h4>
+          <p>Temanggung, 1 November 2009</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee Banner -->
+  <div class="marquee">
+    <div class="marquee-content">
+      <div class="marquee-item"><span>✳</span> PENUNTUT ILMU</div>
+      <div class="marquee-item"><span>✳</span> TEMANGGUNG 2009</div>
+      <div class="marquee-item"><span>✳</span> DIGITALLY CREATIVE</div>
+      <div class="marquee-item"><span>✳</span> SURGA TANPA HISAB</div>
+      <div class="marquee-item"><span>✳</span> PENUNTUT ILMU</div>
+      <div class="marquee-item"><span>✳</span> TEMANGGUNG 2009</div>
+      <div class="marquee-item"><span>✳</span> DIGITALLY CREATIVE</div>
+      <div class="marquee-item"><span>✳</span> SURGA TANPA HISAB</div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-title-wrapper">
+      <span class="section-num">01 / TENTANG SAYA</span>
+      <h2 class="section-title">Profil & Kelahiran</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="card-info">
+        <i class="fa-solid fa-location-dot"></i>
+        <h3>Kota Kelahiran</h3>
+        <p>Lahir dan tumbuh di <strong>Temanggung</strong>, membawa kehangatan dan semangat bertumbuh dari daerah terpercaya.</p>
+      </div>
+
+      <div class="card-info">
+        <i class="fa-solid fa-calendar-days"></i>
+        <h3>Tanggal Lahir</h3>
+        <p><strong>1 November 2009</strong>. Memasuki usia penuh rasa ingin tahu dan eksplorasi ilmu bermanfaat.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hobi & Cita-Cita -->
+  <section id="hobi">
+    <div class="section-title-wrapper">
+      <span class="section-num">02 / FOKUS & TUJUAN</span>
+      <h2 class="section-title">Hobi & Cita-Cita Utama</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="card-info">
+        <i class="fa-solid fa-book-open"></i>
+        <h3>Hobi: Menuntut Ilmu</h3>
+        <p>Selalu haus akan ilmu agama, teknologi, dan wawasan bermanfaat yang mampu memberikan berkah bagi sesama.</p>
+      </div>
+
+      <div class="card-info card-surga">
+        <i class="fa-solid fa-star-and-crescent" style="color: #00d2ff;"></i>
+        <h3>Cita-Cita Tertinggi</h3>
+        <p style="font-size: 1.1rem; color: #fff; font-weight: 600; margin-top: 10px;">
+          "Masuk Surga Tanpa Hisab wa La 'Adzab"
+        </p>
+        <p style="margin-top: 8px;">Membuat setiap langkah hidup dan karya digital diniatkan sebagai ibadah serta tabungan akhirat.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="section-title-wrapper">
+      <span class="section-num">03 / MARI BERHUBUNGAN</span>
+      <h2 class="section-title">Kontak Interaktif</h2>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Instagram -->
+      <div class="contact-card">
+        <div class="contact-header">
+          <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
+          <div class="contact-label">
+            <p>Instagram</p>
+            <h4>@gkhalied.syaa</h4>
           </div>
-          <div class="art-caption">VISUAL STUDY NO. 01 <span>—</span> PERSONAL IDENTITY</div>
+        </div>
+        <div class="contact-action">
+          <a href="https://instagram.com/gkhalied.syaa" target="_blank" class="btn-contact-action">Kunjungi ↗</a>
         </div>
       </div>
-      <div class="hero-bottom"><span>SCROLL TO EXPLORE</span><span class="down-arrow">↓</span><span class="hero-bottom-right">DESIGNED WITH INTENTION.</span></div>
-    </section>
 
-    <div class="ticker"><div class="ticker-inner"><span>THOUGHTFUL DESIGN</span><b>✳</b><span>USEFUL TECHNOLOGY</span><b>✳</b><span>ALWAYS IN PROGRESS</span><b>✳</b><span>THOUGHTFUL DESIGN</span><b>✳</b></div></div>
-
-    <section class="about wrap section" id="about">
-      <div class="section-label reveal"><span>01</span><span class="label-line"></span><span>TENTANG SAYA</span></div>
-      <div class="about-content">
-        <h2 class="reveal">Saya suka hal yang<br>terlihat sederhana,<br><em>tapi terasa berbeda.</em></h2>
-        <div class="about-text reveal"><p class="big-copy">Bagi saya, desain bukan sekadar tampilan. Kode bukan sekadar baris perintah. Keduanya adalah cara untuk membuat sesuatu yang berguna dan punya karakter.</p><p>Saat ini saya belajar Rekayasa Perangkat Lunak, mengembangkan kemampuan web, dan mengeksplorasi visual design. Saya menikmati proses mencoba, membuat kesalahan, lalu menemukan cara yang lebih baik.</p><a class="line-link" href="#contact">Kenalan lebih dekat <span>↗</span></a></div>
-      </div>
-      <div class="principles reveal"><div><span>01</span><strong>Stay curious.</strong><small>Selalu punya ruang untuk belajar.</small></div><div><span>02</span><strong>Keep it clear.</strong><small>Utamakan fungsi dan kejelasan.</small></div><div><span>03</span><strong>Make it matter.</strong><small>Buat sesuatu dengan tujuan.</small></div></div>
-    </section>
-
-    <section class="work-section" id="work">
-      <div class="wrap section work">
-        <div class="section-label reveal"><span>02</span><span class="label-line"></span><span>KARYA PILIHAN</span></div>
-        <div class="work-heading reveal"><h2>Eksperimen kecil.<br><em>Potensi besar.</em></h2><p>Ruang untuk mengeksplorasi ide, mengasah keterampilan, dan mengubah inspirasi menjadi sesuatu yang nyata.</p></div>
-        <div class="work-grid">
-          <article class="work-card reveal">
-            <div class="work-visual web-visual"><div class="mini-window"><div class="window-head"><span></span><span></span><span></span><small>digital-space / home</small></div><div class="window-body"><div class="window-copy"><small>HELLO, WORLD.</small><b>Make it<br><em>simple.</em></b><i></i><i></i></div><div class="window-graphic"><div></div><span>✳</span></div></div></div><span class="visual-index">PROJECT 001</span></div>
-            <div class="card-meta"><div><span class="category">01 — DEVELOPMENT</span><h3>Digital Experiences</h3><p>Website portofolio, landing page, dan pengalaman digital yang responsif serta nyaman digunakan.</p></div><a href="#contact" aria-label="Diskusikan Digital Experiences">↗</a></div>
-          </article>
-          <article class="work-card reveal">
-            <div class="work-visual graphic-visual"><div class="graphic-poster"><span class="gp-small">STUDY / 002</span><b>LESS<br><em>but</em><br>BETTER.</b><div class="gp-circle"></div><span class="gp-bottom">FIND BEAUTY IN THE DETAILS</span></div><span class="visual-index">PROJECT 002</span></div>
-            <div class="card-meta"><div><span class="category">02 — VISUAL DESIGN</span><h3>Visual Stories</h3><p>Desain poster, materi publikasi, tipografi, dan identitas visual untuk berbagai kebutuhan.</p></div><a href="#contact" aria-label="Diskusikan Visual Stories">↗</a></div>
-          </article>
-          <article class="work-card reveal">
-            <div class="work-visual concept-visual"><div class="concept-orbit orbit-one"></div><div class="concept-orbit orbit-two"></div><div class="concept-core">IDEA<br><em>→</em><br>FORM</div><span class="visual-index">PROJECT 003</span><span class="concept-note">EXPERIMENT / 2026</span></div>
-            <div class="card-meta"><div><span class="category">03 — EXPLORATION</span><h3>Ideas in Motion</h3><p>Eksplorasi video editing, fotografi, serta ide digital yang menggabungkan kreativitas dan teknologi.</p></div><a href="#contact" aria-label="Diskusikan Ideas in Motion">↗</a></div>
-          </article>
+      <!-- WhatsApp -->
+      <div class="contact-card">
+        <div class="contact-header">
+          <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="contact-label">
+            <p>WhatsApp</p>
+            <h4>087716440922</h4>
+          </div>
         </div>
-        <p class="work-note">Catatan: visual proyek ini adalah mockup konseptual — ganti dengan hasil karyamu sendiri saat siap.</p>
+        <div class="contact-action">
+          <a href="https://wa.me/6287716440922" target="_blank" class="btn-contact-action">Chat WA ↗</a>
+        </div>
       </div>
-    </section>
 
-    <section class="skills wrap section" id="skills">
-      <div class="section-label reveal"><span>03</span><span class="label-line"></span><span>KEAHLIAN & MINAT</span></div>
-      <div class="skills-grid">
-        <div class="reveal"><h2>Tools are useful.<br><em>Ideas are everything.</em></h2><p class="skills-desc">Keterampilan yang sedang saya pelajari dan kembangkan satu proyek demi satu proyek.</p></div>
-        <div class="skill-cloud reveal"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span><span>MySQL</span><span>UI / UX</span><span>Graphic Design</span><span>Creative Thinking</span></div>
+      <!-- Email -->
+      <div class="contact-card">
+        <div class="contact-header">
+          <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+          <div class="contact-label">
+            <p>Email</p>
+            <h4>khalid.syabani@gmail.com</h4>
+          </div>
+        </div>
+        <div class="contact-action">
+          <a href="mailto:khalid.syabani@gmail.com" class="btn-contact-action">Kirim Email ↗</a>
+        </div>
       </div>
-      <div class="learning-note"><span class="tiny-star">✳</span><span>IN THE MAKING</span><p>Belum harus sempurna. Yang penting terus bertumbuh.</p></div>
-    </section>
+    </div>
+  </section>
 
-    <section class="contact wrap" id="contact">
-      <div class="contact-inner reveal"><div class="contact-mark">K<span>.</span></div><p class="eyebrow">PUNYA IDE? SAYA MAU DENGAR.</p><h2>Mari buat sesuatu<br><em>yang berarti.</em></h2><p class="contact-copy">Terbuka untuk kolaborasi, berbagi ide, atau sekadar ngobrol soal hal-hal kreatif.</p><a class="button light" href="mailto:khalid.syabani@gmail.com?subject=Halo%20Khalid">Kirim pesan <span>↗</span></a><span class="contact-foot">GOOD THINGS BEGIN WITH A CONVERSATION.</span></div>
-    </section>
-  </main>
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Muhammad Khalid Asy Sya'bani — Personal Digital Portfolio.</p>
+  </footer>
 
-  <footer class="wrap footer"><a class="wordmark" href="#top">khalid<span>®</span></a><p>Dirancang dengan rasa ingin tahu <span>✳</span></p><a href="#top">KEMBALI KE ATAS ↑</a><small>© 2026 KHALID — PERSONAL PORTFOLIO</small></footer>
 </body>
 </html>
