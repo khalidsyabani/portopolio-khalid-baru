@@ -1,0 +1,2 @@
+document.querySelectorAll('nav a').forEach(link=>link.addEventListener('click',()=>{document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));link.classList.add('active')}));
+document.querySelector('a[href^="mailto:"]').addEventListener('click',function(e){if(this.href.includes('khalid@example.com')){e.preventDefault();const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}});
