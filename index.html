@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Muhammad Khalid Asy Sya'bani — Digital Portfolio</title>
+
+  <!-- Favicon / Logo di Tab Browser -->
+  <link rel="icon" type="image/jpeg" href="ituaja.jpg">
+  <link rel="shortcut icon" type="image/x-icon" href="ituaja.jpg">
+  <link rel="apple-touch-icon" href="ituaja.jpg">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,6 +93,16 @@
       letter-spacing: -0.5px;
       color: #fff;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--primary-blue);
     }
     .logo span {
       color: var(--primary-blue);
@@ -441,9 +456,12 @@
   <div class="ambient-light light-1"></div>
   <div class="ambient-light light-2"></div>
 
-  <!-- Header -->
+  <!-- Header Nav -->
   <header>
-    <a href="#" class="logo">khalid<span>®</span></a>
+    <a href="#" class="logo">
+      <img src="ituaja.jfif" alt="Logo Khalid" onerror="this.src='ituaja.png'; this.onerror=null;">
+      khalid<span>®</span>
+    </a>
     <nav>
       <a href="#about">Tentang</a>
       <a href="#hobi">Hobi & Impian</a>
@@ -480,7 +498,7 @@
         </div>
         <div class="img-badge">
           <h4>Muhammad Khalid Asy Sya'bani</h4>
-          <p>Jakarta, 6 Agustus 2009</p>
+          <p>Jakarta, 6 AGUSTUS 2009</p>
         </div>
       </div>
     </div>
@@ -490,11 +508,11 @@
   <div class="marquee">
     <div class="marquee-content">
       <div class="marquee-item"><span>✳</span> PENUNTUT ILMU</div>
-      <div class="marquee-item"><span>✳</span> Agustus 2009</div>
+      <div class="marquee-item"><span>✳</span> Jakarta 2009</div>
       <div class="marquee-item"><span>✳</span> DIGITALLY CREATIVE</div>
       <div class="marquee-item"><span>✳</span> SURGA TANPA HISAB</div>
       <div class="marquee-item"><span>✳</span> PENUNTUT ILMU</div>
-      <div class="marquee-item"><span>✳</span> Agustus 2009</div>
+      <div class="marquee-item"><span>✳</span> JAKARTA 2009</div>
       <div class="marquee-item"><span>✳</span> DIGITALLY CREATIVE</div>
       <div class="marquee-item"><span>✳</span> SURGA TANPA HISAB</div>
     </div>
@@ -561,7 +579,7 @@
           <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
           <div class="contact-label">
             <p>Instagram</p>
-            <h4>@khalied.syaa</h4>
+            <h4>@gkhalied.syaa</h4>
           </div>
         </div>
         <div class="contact-action">
