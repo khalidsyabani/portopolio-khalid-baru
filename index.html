@@ -73,7 +73,6 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        /* Glassmorphism Styling */
         .glass-card {
             background: rgba(17, 30, 56, 0.55);
             backdrop-filter: blur(20px);
@@ -98,7 +97,6 @@
             border-bottom: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -114,7 +112,6 @@
             background: #38BDF8;
         }
 
-        /* Background Grid FX */
         .bg-grid-mesh {
             background-size: 40px 40px;
             background-image: 
@@ -127,7 +124,6 @@
                 linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
         }
 
-        /* Typing Caret Animation */
         .typing-cursor::after {
             content: '|';
             animation: blink 1s step-start infinite;
@@ -137,7 +133,6 @@
             50% { opacity: 0; }
         }
 
-        /* Cursor Glow Element */
         #cursorGlow {
             pointer-events: none;
             transition: transform 0.15s ease-out, opacity 0.3s ease;
@@ -146,10 +141,8 @@
 </head>
 <body class="bg-navy-950 text-slate-200 font-sans antialiased selection:bg-cyanGlow-400 selection:text-navy-950 transition-colors duration-500 min-h-screen flex flex-col justify-between overflow-x-hidden relative">
 
-    <!-- Interactive Cursor Ambient Glow -->
     <div id="cursorGlow" class="fixed top-0 left-0 w-96 h-96 -translate-x-1/2 -translate-y-1/2 bg-cyanGlow-400/15 rounded-full blur-[120px] z-0"></div>
 
-    <!-- Ambient Static Glow Spheres -->
     <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyanGlow-400/10 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-glow"></div>
     <div class="fixed top-1/3 -right-40 w-[500px] h-[500px] bg-navy-700/30 rounded-full blur-[150px] pointer-events-none z-0"></div>
     <div class="fixed bottom-10 -left-40 w-[600px] h-[600px] bg-cyanGlow-400/5 rounded-full blur-[160px] pointer-events-none z-0"></div>
@@ -158,7 +151,6 @@
     <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <!-- Brand Logo -->
             <a href="#hero" class="flex items-center space-x-3 group">
                 <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-cyanGlow-400 via-navy-700 to-navy-900 p-[1px] shadow-glow-cyan transition-transform duration-300 group-hover:scale-105">
                     <div class="w-full h-full bg-navy-950 rounded-[15px] flex items-center justify-center font-extrabold text-lg tracking-wider text-white">
@@ -173,7 +165,6 @@
                 </div>
             </a>
 
-            <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center space-x-1 glass-card px-4 py-2 rounded-full border border-white/10">
                 <a href="#hero" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Beranda</a>
                 <a href="#about" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Tentang</a>
@@ -183,27 +174,22 @@
                 <a href="#contact" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Kontak</a>
             </nav>
 
-            <!-- Action Controls -->
             <div class="flex items-center space-x-3">
-                <!-- Theme Toggle Button -->
                 <button id="themeToggleBtn" title="Ganti Mode Tampilan" class="p-2.5 rounded-xl glass-card text-slate-300 hover:text-white hover:border-cyanGlow-400/50 transition-all duration-300 focus:outline-none">
                     <i data-feather="moon" id="themeIcon" class="w-4 h-4"></i>
                 </button>
 
-                <!-- WhatsApp Quick CTA -->
                 <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-bold text-navy-950 bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 hover:from-cyanGlow-300 hover:to-cyanGlow-400 shadow-glow-cyan transition-all duration-300 hover:scale-[1.02]">
                     <i data-feather="message-circle" class="w-4 h-4 mr-2"></i>
                     <span>Hubungi Saya</span>
                 </a>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl glass-card text-slate-300 hover:text-white focus:outline-none">
                     <i data-feather="menu" id="menuIcon" class="w-5 h-5"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Nav Menu -->
         <div id="mobileMenu" class="hidden md:hidden glass-card border-b border-white/10 px-6 py-6 space-y-4">
             <a href="#hero" class="block text-sm font-medium text-slate-200 hover:text-cyanGlow-400 mobile-link">Beranda</a>
             <a href="#about" class="block text-sm font-medium text-slate-200 hover:text-cyanGlow-400 mobile-link">Tentang Saya</a>
@@ -222,16 +208,13 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     
-                    <!-- Left Hero Content -->
                     <div class="lg:col-span-7 text-center lg:text-left space-y-6">
                         
-                        <!-- Floating Badge -->
                         <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card border border-cyanGlow-400/30 text-cyanGlow-400 text-xs font-semibold tracking-wide shadow-glow-soft animate-float">
                             <span class="w-2 h-2 rounded-full bg-cyanGlow-400 animate-ping"></span>
                             <span>✦ Personal Portfolio & Tech Enthusiast</span>
                         </div>
 
-                        <!-- Main Title -->
                         <div class="space-y-2">
                             <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
                                 Muhammad Khalid <br/>
@@ -239,18 +222,15 @@
                                     Asy Sya'bani
                                 </span>
                             </h1>
-                            <!-- Animated Typing Effect -->
                             <div class="text-lg sm:text-2xl font-mono text-slate-300 font-medium h-8 pt-1">
                                 <span id="typingText" class="typing-cursor text-cyanGlow-400 font-semibold"></span>
                             </div>
                         </div>
 
-                        <!-- Sub-headline -->
                         <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
                             Kreatif, Pengembang, & Pembelajar Teknologi dari Jakarta. Berdedikasi membangun pengalaman digital interaktif, estetik, dan fungsional.
                         </p>
 
-                        <!-- Quick Info Chips -->
                         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
                             <div class="px-3.5 py-1.5 rounded-xl glass-card text-xs font-mono text-slate-300 border border-white/10 flex items-center">
                                 <span class="mr-2">🎂</span> 6 Agustus 2006
@@ -264,13 +244,12 @@
                             </div>
                         </div>
 
-                        <!-- CTA Buttons -->
                         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                             <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 hover:from-cyanGlow-300 hover:to-cyanGlow-400 text-navy-950 font-bold text-sm shadow-glow-cyan transition-all duration-300 hover:scale-[1.02] flex items-center justify-center">
                                 <span>Lihat Proyek</span>
                                 <i data-feather="arrow-down-right" class="w-4 h-4 ml-2"></i>
                             </a>
-                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20gin%20berdiskusi..." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-card text-slate-200 hover:text-white border border-white/10 hover:border-cyanGlow-400/50 font-bold text-sm transition-all duration-300 flex items-center justify-center">
+                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-card text-slate-200 hover:text-white border border-white/10 hover:border-cyanGlow-400/50 font-bold text-sm transition-all duration-300 flex items-center justify-center">
                                 <span>Kirim Pesan (WhatsApp)</span>
                                 <i data-feather="message-circle" class="w-4 h-4 ml-2 text-emerald-400"></i>
                             </a>
@@ -278,17 +257,13 @@
 
                     </div>
 
-                    <!-- Right Abstract Profile Card -->
                     <div class="lg:col-span-5 flex justify-center">
                         <div class="relative w-full max-w-md animate-float-delayed">
                             
-                            <!-- Glowing Aura -->
                             <div class="absolute -inset-1 bg-gradient-to-tr from-cyanGlow-400 to-navy-700 rounded-3xl blur-2xl opacity-50"></div>
 
-                            <!-- Glass Card Container -->
                             <div class="relative rounded-3xl glass-card p-8 space-y-6 shadow-2xl border border-white/15">
                                 
-                                <!-- Profile Header -->
                                 <div class="flex items-center space-x-4 border-b border-white/10 pb-6">
                                     <div class="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-cyanGlow-400/60 p-1 bg-navy-900 shrink-0">
                                         <img src="saya1.jpg" alt="Foto Muhammad Khalid Asy Sya'bani" class="w-full h-full rounded-xl object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -306,7 +281,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Personal Stats & Details -->
                                 <div class="space-y-4">
                                     <div class="p-4 rounded-2xl bg-navy-950/70 border border-white/5 space-y-2">
                                         <div class="flex justify-between text-xs font-mono text-slate-400">
@@ -330,7 +304,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Direct Social Connections -->
                                 <div class="flex justify-between items-center pt-2 border-t border-white/10">
                                     <span class="text-xs text-slate-400 font-mono">Sosial Media:</span>
                                     <div class="flex space-x-2">
@@ -358,10 +331,8 @@
                     <p class="text-slate-400 text-sm sm:text-base">Mengenal latar belakang, passion, dan data singkat Muhammad Khalid.</p>
                 </div>
 
-                <!-- Bento Grid Container -->
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     
-                    <!-- Bento 1: Main Bio (2 Cols) -->
                     <div class="md:col-span-2 lg:col-span-2 p-8 rounded-3xl glass-card border border-white/10 flex flex-col justify-between space-y-6 hover:border-cyanGlow-400/40 transition-all duration-300">
                         <div class="space-y-4">
                             <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 border border-cyanGlow-400/30 flex items-center justify-center text-cyanGlow-400">
@@ -379,7 +350,6 @@
                         </div>
                     </div>
 
-                    <!-- Bento 2: Tanggal Lahir Card -->
                     <div class="p-8 rounded-3xl glass-card border border-white/10 flex flex-col justify-between hover:border-cyanGlow-400/40 transition-all duration-300 group">
                         <div class="w-10 h-10 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                             <i data-feather="calendar" class="w-5 h-5"></i>
@@ -391,7 +361,6 @@
                         </div>
                     </div>
 
-                    <!-- Bento 3: Kontak Cepat Card -->
                     <div class="p-8 rounded-3xl glass-card border border-white/10 flex flex-col justify-between hover:border-cyanGlow-400/40 transition-all duration-300 group">
                         <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                             <i data-feather="phone-call" class="w-5 h-5"></i>
@@ -403,7 +372,6 @@
                         </div>
                     </div>
 
-                    <!-- Bento 4: Instagram Card -->
                     <div class="md:col-span-2 p-8 rounded-3xl glass-card border border-white/10 flex items-center justify-between hover:border-cyanGlow-400/40 transition-all duration-300">
                         <div class="space-y-2">
                             <div class="flex items-center space-x-2 text-pink-400">
@@ -418,7 +386,6 @@
                         </a>
                     </div>
 
-                    <!-- Bento 5: Stats Summary -->
                     <div class="md:col-span-1 lg:col-span-2 p-8 rounded-3xl glass-card border border-white/10 flex items-center space-x-6 hover:border-cyanGlow-400/40 transition-all duration-300">
                         <div class="p-4 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 hidden sm:block">
                             <i data-feather="award" class="w-8 h-8"></i>
@@ -443,10 +410,8 @@
                     <p class="text-slate-400 text-sm sm:text-base">Penguasaan teknologi dan alat pendukung karya digital.</p>
                 </div>
 
-                <!-- Grid Skills Cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     
-                    <!-- Skill 1 -->
                     <div class="p-6 rounded-3xl glass-card border border-white/10 hover:border-cyanGlow-400/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
                         <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center">
                             <i data-feather="code" class="w-6 h-6"></i>
@@ -458,7 +423,6 @@
                         </div>
                     </div>
 
-                    <!-- Skill 2 -->
                     <div class="p-6 rounded-3xl glass-card border border-white/10 hover:border-cyanGlow-400/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
                         <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center">
                             <i data-feather="cpu" class="w-6 h-6"></i>
@@ -470,7 +434,6 @@
                         </div>
                     </div>
 
-                    <!-- Skill 3 -->
                     <div class="p-6 rounded-3xl glass-card border border-white/10 hover:border-cyanGlow-400/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
                         <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center">
                             <i data-feather="layout" class="w-6 h-6"></i>
@@ -482,7 +445,6 @@
                         </div>
                     </div>
 
-                    <!-- Skill 4 -->
                     <div class="p-6 rounded-3xl glass-card border border-white/10 hover:border-cyanGlow-400/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
                         <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center">
                             <i data-feather="terminal" class="w-6 h-6"></i>
@@ -508,7 +470,6 @@
                     <p class="text-slate-400 text-sm sm:text-base">Koleksi karya eksplorasi teknologi milik Muhammad Khalid.</p>
                 </div>
 
-                <!-- Category Filters -->
                 <div class="flex justify-center space-x-2 sm:space-x-4 mb-12 overflow-x-auto pb-2">
                     <button class="filter-btn active px-5 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 text-navy-950 shadow-glow-cyan transition-all" data-filter="all">Semua Proyek</button>
                     <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-card text-slate-300 hover:text-white hover:border-cyanGlow-400/50 transition-all" data-filter="web">Web App</button>
@@ -518,81 +479,63 @@
                 <!-- Projects Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <!-- Project Card 1 -->
-                    <div class="project-card group rounded-3xl glass-card border border-white/10 overflow-hidden hover:border-cyanGlow-400/60 transition-all duration-500" data-category="web">
-                        <div class="relative overflow-hidden h-52 bg-navy-950">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80" alt="Cyber Dashboard Interface" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-navy-950/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
-                                <button onclick="openModal('Cyber Dashboard Interface', 'Platform antarmuka analitik waktu-nyata berbasiskan tema neon cyandark dengan visualisasi interaktif.', 'HTML5, Tailwind CSS, JavaScript')" class="px-4 py-2 rounded-xl bg-cyanGlow-400 text-navy-950 font-bold text-xs shadow-glow-cyan hover:scale-105 transition-transform flex items-center">
-                                    <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
-                                </button>
-                            </div>
+                    <div class="project-card group rounded-3xl glass-card border border-white/10 p-6 space-y-4 hover:border-cyanGlow-400/60 transition-all duration-500" data-category="web">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-cyanGlow-400 font-semibold">Web App</span>
+                            <span class="text-slate-400">2026</span>
                         </div>
-                        <div class="p-6 space-y-3">
-                            <div class="flex justify-between items-center text-xs font-mono">
-                                <span class="text-cyanGlow-400 font-semibold">Web App</span>
-                                <span class="text-slate-400">2026</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Cyber Dashboard Interface</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed line-clamp-2">
-                                Dashboard interaktif berkecepatan tinggi dengan elemen visual futuristik.
-                            </p>
-                            <div class="flex flex-wrap gap-2 pt-2">
-                                <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Tailwind</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
-                            </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Cyber Dashboard Interface</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">
+                            Dashboard interaktif berkecepatan tinggi dengan elemen visual futuristik.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Tailwind</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="openModal('Cyber Dashboard Interface', 'Platform antarmuka analitik waktu-nyata berbasiskan tema neon cyandark dengan visualisasi interaktif.', 'HTML5, Tailwind CSS, JavaScript')" class="w-full px-4 py-2.5 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 border border-cyanGlow-400/30 hover:bg-cyanGlow-400 hover:text-navy-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Project Card 2 -->
-                    <div class="project-card group rounded-3xl glass-card border border-white/10 overflow-hidden hover:border-cyanGlow-400/60 transition-all duration-500" data-category="design">
-                        <div class="relative overflow-hidden h-52 bg-navy-950">
-                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=700&q=80" alt="Glassmorphism Personal Brand" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-navy-950/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
-                                <button onclick="openModal('Glassmorphism Personal Brand', 'Eksplorasi konsep sistem desain antarmuka kaca buram (frosted glass) untuk profil digital.', 'Figma, UI/UX, Design System')" class="px-4 py-2 rounded-xl bg-cyanGlow-400 text-navy-950 font-bold text-xs shadow-glow-cyan hover:scale-105 transition-transform flex items-center">
-                                    <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
-                                </button>
-                            </div>
+                    <div class="project-card group rounded-3xl glass-card border border-white/10 p-6 space-y-4 hover:border-cyanGlow-400/60 transition-all duration-500" data-category="design">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-cyanGlow-400 font-semibold">UI/UX Design</span>
+                            <span class="text-slate-400">2026</span>
                         </div>
-                        <div class="p-6 space-y-3">
-                            <div class="flex justify-between items-center text-xs font-mono">
-                                <span class="text-cyanGlow-400 font-semibold">UI/UX Design</span>
-                                <span class="text-slate-400">2026</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Glassmorphism Personal Brand</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed line-clamp-2">
-                                Perancangan antarmuka pengguna ultra-modern dengan pencahayaan ambient.
-                            </p>
-                            <div class="flex flex-wrap gap-2 pt-2">
-                                <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Figma</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Glassmorphism</span>
-                            </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Glassmorphism Personal Brand</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">
+                            Perancangan antarmuka pengguna ultra-modern dengan pencahayaan ambient.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Figma</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Glassmorphism</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="openModal('Glassmorphism Personal Brand', 'Eksplorasi konsep sistem desain antarmuka kaca buram (frosted glass) untuk profil digital.', 'Figma, UI/UX, Design System')" class="w-full px-4 py-2.5 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 border border-cyanGlow-400/30 hover:bg-cyanGlow-400 hover:text-navy-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Project Card 3 -->
-                    <div class="project-card group rounded-3xl glass-card border border-white/10 overflow-hidden hover:border-cyanGlow-400/60 transition-all duration-500" data-category="web">
-                        <div class="relative overflow-hidden h-52 bg-navy-950">
-                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=700&q=80" alt="Smart Task Manager" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-navy-950/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
-                                <button onclick="openModal('Smart Task Manager', 'Aplikasi manajemen tugas produktivitas harian dengan dukungan penyimpanan lokal dan filter kustom.', 'JavaScript, HTML5, CSS Grid')" class="px-4 py-2 rounded-xl bg-cyanGlow-400 text-navy-950 font-bold text-xs shadow-glow-cyan hover:scale-105 transition-transform flex items-center">
-                                    <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
-                                </button>
-                            </div>
+                    <div class="project-card group rounded-3xl glass-card border border-white/10 p-6 space-y-4 hover:border-cyanGlow-400/60 transition-all duration-500" data-category="web">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-cyanGlow-400 font-semibold">Web App</span>
+                            <span class="text-slate-400">2025</span>
                         </div>
-                        <div class="p-6 space-y-3">
-                            <div class="flex justify-between items-center text-xs font-mono">
-                                <span class="text-cyanGlow-400 font-semibold">Web App</span>
-                                <span class="text-slate-400">2025</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Smart Task Manager</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed line-clamp-2">
-                                Aplikasi peningkat produktivitas harian dengan fungsionalitas mulus.
-                            </p>
-                            <div class="flex flex-wrap gap-2 pt-2">
-                                <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Web Storage</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
-                            </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Smart Task Manager</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">
+                            Aplikasi peningkat produktivitas harian dengan fungsionalitas mulus.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Web Storage</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="openModal('Smart Task Manager', 'Aplikasi manajemen tugas produktivitas harian dengan dukungan penyimpanan lokal dan filter kustom.', 'JavaScript, HTML5, CSS Grid')" class="w-full px-4 py-2.5 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 border border-cyanGlow-400/30 hover:bg-cyanGlow-400 hover:text-navy-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
+                            </button>
                         </div>
                     </div>
 
@@ -609,7 +552,6 @@
                     <p class="text-slate-400 text-sm sm:text-base">Kumpulan foto dan momen pilihan dalam perjalanan saya.</p>
                 </div>
 
-                <!-- Music Player: browser requires a user click to start audio -->
                 <div class="max-w-2xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl glass-card border border-cyanGlow-400/20">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-5">
                         <div class="w-14 h-14 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center shrink-0">
@@ -618,7 +560,7 @@
                         <div class="flex-1">
                             <h3 class="text-lg font-bold text-white">Musik Pilihan</h3>
                             <p class="text-sm text-slate-400">Putar atau jeda musik latar.</p>
-                            <audio id="portfolioMusic" controls preload="metadata" class="w-full mt-3">
+                            <audio id="portfolioMusic" controls autoplay loop preload="auto" class="w-full mt-3">
                                 <source src="musik.mp3" type="audio/mpeg">
                                 Browser Anda tidak mendukung pemutar audio.
                             </audio>
@@ -626,22 +568,18 @@
                     </div>
                 </div>
 
-                <!-- Gallery images: replace/add files and duplicate a card for more photos -->
+                <!-- Galeri bersih tanpa teks keterangan -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya1.jpg')">
                         <img src="saya1.jpg" alt="Foto saya" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
-                        <span class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white font-semibold">Foto Saya</span>
                     </button>
                     <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya2.jpg')">
                         <img src="saya2.jpg" alt="Momen pribadi 2" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
-                        <span class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white font-semibold">Momen 02</span>
                     </button>
                     <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya3.jpg')">
                         <img src="saya3.jpg" alt="Momen pribadi 3" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
-                        <span class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white font-semibold">Momen 03</span>
                     </button>
                 </div>
-                <p class="text-center text-xs text-slate-500 mt-5">Tambahkan foto bernama <code>saya2.jpg</code> dan <code>saya3.jpg</code> di folder yang sama jika ingin mengisi slot galeri lainnya.</p>
             </div>
         </section>
 
@@ -659,7 +597,6 @@
                 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                     
-                    <!-- Contact Info Cards -->
                     <div class="lg:col-span-5 space-y-6">
                         <div class="space-y-3">
                             <span class="text-xs font-mono font-semibold tracking-widest text-cyanGlow-400 uppercase">Hubungi Saya</span>
@@ -669,10 +606,8 @@
                             </p>
                         </div>
 
-                        <!-- Direct Social Contact Cards -->
                         <div class="space-y-4">
                             
-                            <!-- WhatsApp Card -->
                             <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="p-5 rounded-2xl glass-card border border-white/10 flex items-center justify-between hover:border-emerald-400/50 transition-all group">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
@@ -686,7 +621,6 @@
                                 <span class="text-xs font-bold text-emerald-400 font-mono">Kirim WA →</span>
                             </a>
 
-                            <!-- Email Card -->
                             <div class="p-5 rounded-2xl glass-card border border-white/10 flex items-center justify-between hover:border-cyanGlow-400/50 transition-all cursor-pointer group" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Alamat email berhasil disalin!')">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center shrink-0">
@@ -700,7 +634,6 @@
                                 <span class="text-xs font-bold text-cyanGlow-400 font-mono">Salin 📋</span>
                             </div>
 
-                            <!-- Instagram Card -->
                             <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-5 rounded-2xl glass-card border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all group">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center shrink-0">
@@ -717,29 +650,32 @@
                         </div>
                     </div>
 
-                    <!-- Interactive Form Area -->
                     <div class="lg:col-span-7">
-                        <form id="contactForm" class="p-8 sm:p-10 rounded-3xl glass-card border border-white/10 space-y-6 shadow-2xl">
+                        <!-- Form terhubung ke Web3Forms agar pesan langsung masuk ke email -->
+                        <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="p-8 sm:p-10 rounded-3xl glass-card border border-white/10 space-y-6 shadow-2xl">
                             <h3 class="text-xl font-bold text-white mb-2">Kirim Pesan Langsung</h3>
                             
+                            <!-- Ganti 'YOUR_ACCESS_KEY_HERE' dengan Access Key dari Web3Forms -->
+                            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div class="space-y-2">
                                     <label for="name" class="block text-xs font-mono font-semibold text-slate-300 uppercase">Nama Anda</label>
-                                    <input type="text" id="name" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all" placeholder="Nama Lengkap">
+                                    <input type="text" id="name" name="name" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all" placeholder="Nama Lengkap">
                                 </div>
                                 <div class="space-y-2">
                                     <label for="email" class="block text-xs font-mono font-semibold text-slate-300 uppercase">Email Anda</label>
-                                    <input type="email" id="email" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all" placeholder="email@domain.com">
+                                    <input type="email" id="email" name="email" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all" placeholder="email@domain.com">
                                 </div>
                             </div>
 
                             <div class="space-y-2">
                                 <label for="message" class="block text-xs font-mono font-semibold text-slate-300 uppercase">Isi Pesan</label>
-                                <textarea id="message" rows="4" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all resize-none" placeholder="Tuliskan ide, tawaran, atau pertanyaan Anda di sini..."></textarea>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all resize-none" placeholder="Tuliskan ide, tawaran, atau pertanyaan Anda di sini..."></textarea>
                             </div>
 
                             <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 hover:from-cyanGlow-300 hover:to-cyanGlow-400 text-navy-950 font-bold text-sm shadow-glow-cyan transition-all duration-300 hover:scale-[1.01] flex items-center justify-center space-x-2">
-                                <span>Kirimkan Pesan Simulasi</span>
+                                <span>Kirimkan Pesan</span>
                                 <i data-feather="send" class="w-4 h-4"></i>
                             </button>
                         </form>
@@ -800,16 +736,13 @@
 
     <!-- Interactive Scripts -->
     <script>
-        // Feather Icons
         feather.replace();
 
-        // Mouse Cursor Ambient Glow Movement
         const cursorGlow = document.getElementById('cursorGlow');
         window.addEventListener('mousemove', (e) => {
             cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
         });
 
-        // Typing Effect Subtitle
         const phrases = ["Pengembang Web", "Kreatif & Innovator", "Tech Enthusiast", "Pelajar Teknologi Jakarta"];
         let phraseIdx = 0;
         let charIdx = 0;
@@ -841,7 +774,6 @@
 
         document.addEventListener('DOMContentLoaded', typeLoop);
 
-        // Theme Toggle (Dark/Light)
         const themeToggleBtn = document.getElementById('themeToggleBtn');
         const themeIcon = document.getElementById('themeIcon');
         const html = document.documentElement;
@@ -859,7 +791,6 @@
             feather.replace();
         });
 
-        // Mobile Nav Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -874,7 +805,6 @@
             });
         });
 
-        // Portfolio Category Filter
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
 
@@ -900,7 +830,6 @@
             });
         });
 
-        // Modal Logic
         function openModal(title, desc, tech) {
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalDesc').textContent = desc;
@@ -912,7 +841,6 @@
             document.getElementById('projectModal').classList.add('hidden');
         }
 
-        // Copy to Clipboard Utility
         function copyToClipboard(text, customMessage) {
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(text);
@@ -927,7 +855,6 @@
             showToast("Tersalin!", customMessage);
         }
 
-        // Toast Feedback Function
         function showToast(title, message) {
             const toast = document.getElementById('toast');
             document.getElementById('toastTitle').textContent = title;
@@ -942,7 +869,6 @@
             }, 3500);
         }
 
-        // Gallery photo lightbox
         function openPhoto(src) {
             const modal = document.getElementById('photoModal');
             const image = document.getElementById('photoModalImage');
@@ -962,12 +888,65 @@
             if (event.key === 'Escape') closePhoto();
         });
 
-        // Contact Form Submission Handler
+        // Script Autoplay Musik & Fallback Interaksi Halaman
+        const portfolioMusic = document.getElementById('portfolioMusic');
+        let musicPlaying = false;
+
+        async function triggerAutoplay() {
+            try {
+                await portfolioMusic.play();
+                musicPlaying = true;
+            } catch (err) {
+                musicPlaying = false;
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            triggerAutoplay();
+        });
+
+        function startAudioOnInteraction() {
+            if (!musicPlaying) {
+                triggerAutoplay();
+            }
+            document.removeEventListener("click", startAudioOnInteraction);
+            document.removeEventListener("touchstart", startAudioOnInteraction);
+        }
+
+        document.addEventListener("click", startAudioOnInteraction);
+        document.addEventListener("touchstart", startAudioOnInteraction);
+
+        // Script Ajax Form Kontak agar Mengirim Pesan ke Email secara Asinkron
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            showToast("Pesan Terkirim!", "Terima kasih telah menghubungi Muhammad Khalid.");
-            contactForm.reset();
+            
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            showToast("Mengirim...", "Mohon tunggu sebentar.");
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: json
+                });
+                
+                const result = await response.json();
+                if (response.status === 200) {
+                    showToast("Pesan Terkirim!", "Terima kasih, pesan Anda berhasil masuk ke email Khalid.");
+                    contactForm.reset();
+                } else {
+                    showToast("Gagal!", result.message || "Terjadi kesalahan saat mengirim pesan.");
+                }
+            } catch (error) {
+                showToast("Error!", "Periksa koneksi internet Anda.");
+            }
         });
     </script>
 </body>
