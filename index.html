@@ -76,6 +76,19 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
+        /* Live Moving Gradient Cosmic Background */
+        @keyframes cosmicGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .live-space-bg {
+            background: linear-gradient(-45deg, #02040a, #0b1329, #111e38, #070d1e, #02040a);
+            background-size: 400% 400%;
+            animation: cosmicGradient 20s ease infinite;
+        }
+
         .glass-card {
             background: rgba(17, 30, 56, 0.55);
             backdrop-filter: blur(20px);
@@ -142,13 +155,27 @@
         }
     </style>
 </head>
-<body class="bg-navy-950 text-slate-200 font-sans antialiased selection:bg-cyanGlow-400 selection:text-navy-950 transition-colors duration-500 min-h-screen flex flex-col justify-between overflow-x-hidden relative">
+<body class="live-space-bg text-slate-200 font-sans antialiased selection:bg-cyanGlow-400 selection:text-navy-950 transition-colors duration-500 min-h-screen flex flex-col justify-between overflow-x-hidden relative">
 
-    <div id="cursorGlow" class="fixed top-0 left-0 w-96 h-96 -translate-x-1/2 -translate-y-1/2 bg-cyanGlow-400/15 rounded-full blur-[120px] z-0"></div>
+    <!-- Live Space & Planet 3D Interactive Canvas -->
+    <canvas id="spaceCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-80"></canvas>
+
+    <div id="cursorGlow" class="fixed top-0 left-0 w-96 h-96 -translate-x-1/2 -translate-y-1/2 bg-cyanGlow-400/15 rounded-full blur-[120px] z-0 pointer-events-none"></div>
 
     <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyanGlow-400/10 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-glow"></div>
     <div class="fixed top-1/3 -right-40 w-[500px] h-[500px] bg-navy-700/30 rounded-full blur-[150px] pointer-events-none z-0"></div>
     <div class="fixed bottom-10 -left-40 w-[600px] h-[600px] bg-cyanGlow-400/5 rounded-full blur-[160px] pointer-events-none z-0"></div>
+
+    <!-- Space Control Panel Floating Button -->
+    <div class="fixed bottom-6 left-6 z-40 hidden md:flex items-center gap-2 p-2 rounded-2xl glass-card border border-white/10 shadow-2xl text-xs font-mono">
+        <span class="text-slate-400 px-2">🪐 Orbit Speed:</span>
+        <button onclick="setPlanetSpeed(0.5)" class="px-2.5 py-1 rounded-lg bg-navy-900 hover:bg-cyanGlow-400 hover:text-navy-950 text-slate-300 transition-colors">0.5x</button>
+        <button onclick="setPlanetSpeed(1)" class="px-2.5 py-1 rounded-lg bg-cyanGlow-400 text-navy-950 font-bold">1x</button>
+        <button onclick="setPlanetSpeed(2)" class="px-2.5 py-1 rounded-lg bg-navy-900 hover:bg-cyanGlow-400 hover:text-navy-950 text-slate-300 transition-colors">2x</button>
+        <button onclick="spawnComet()" class="px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-sans font-semibold transition-colors flex items-center gap-1">
+            <span>☄️ Komet</span>
+        </button>
+    </div>
 
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
@@ -571,22 +598,22 @@
                     </div>
                 </div>
 
-                <!-- Galeri bersih tanpa teks keterangan -->
+                <!-- Galeri Foto -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya1.jpg')">
-                        <img src="saya1.jpg" alt="Foto saya" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
+                        <img src="saya1.jpg" alt="Foto saya 1" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
                     <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya2.jpg')">
-                        <img src="saya2.jpg" alt="Momen pribadi 2" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
+                        <img src="saya2.jpg" alt="Foto saya 2" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
                     <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya3.jpg')">
-                        <img src="saya3.jpg" alt="Momen pribadi 3" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
+                        <img src="saya3.jpg" alt="Foto saya 3" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya3.jpg')">
-                        <img src="saya4.jpg" alt="Momen pribadi 3" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya4.jpg')">
+                        <img src="saya4.jpg" alt="Foto saya 4" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya3.jpg')">
-                        <img src="saya5.jpg" alt="Momen pribadi 3" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya5.jpg')">
+                        <img src="saya5.jpg" alt="Foto saya 5" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
                 </div>
             </div>
@@ -643,7 +670,7 @@
                                 <span class="text-xs font-bold text-cyanGlow-400 font-mono">Salin 📋</span>
                             </div>
 
-                            <a href="https://instagram.com/khalied_waong_arab" target="_blank" class="p-5 rounded-2xl glass-card border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all group">
+                            <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-5 rounded-2xl glass-card border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all group">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center shrink-0">
                                         <i data-feather="instagram" class="w-5 h-5"></i>
@@ -660,11 +687,9 @@
                     </div>
 
                     <div class="lg:col-span-7">
-                        <!-- Form terhubung ke Web3Forms agar pesan langsung masuk ke email -->
                         <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="p-8 sm:p-10 rounded-3xl glass-card border border-white/10 space-y-6 shadow-2xl">
                             <h3 class="text-xl font-bold text-white mb-2">Kirim Pesan Langsung</h3>
                             
-                            <!-- Ganti 'YOUR_ACCESS_KEY_HERE' dengan Access Key dari Web3Forms -->
                             <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -706,7 +731,7 @@
             <div class="flex items-center space-x-4 text-slate-400">
                 <span>Jakarta, Indonesia</span>
                 <span>•</span>
-                <span>Deep Royal Navy & Cyan Glow</span>
+                <span>Deep Royal Navy & Cosmic Space</span>
             </div>
         </div>
     </footer>
@@ -743,7 +768,181 @@
         </div>
     </div>
 
-    <!-- Interactive Scripts -->
+    <!-- Interactive Canvas 3D Space & Planets Script -->
+    <script>
+        const canvas = document.getElementById('spaceCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let speedMultiplier = 1;
+
+        function setPlanetSpeed(speed) {
+            speedMultiplier = speed;
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Stars setup
+        const stars = [];
+        const starCount = 120;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                alpha: Math.random(),
+                speed: Math.random() * 0.02 + 0.005
+            });
+        }
+
+        // 3D Planets setup
+        const planets = [
+            {
+                name: "Cyan Giant",
+                radius: 42,
+                distance: 280,
+                angle: 0,
+                speed: 0.004,
+                color1: "#00f2fe",
+                color2: "#0072ff",
+                hasRing: true,
+                ringRadius: 65
+            },
+            {
+                name: "Gold Orb",
+                radius: 26,
+                distance: 180,
+                angle: Math.PI / 2,
+                speed: 0.007,
+                color1: "#fbbf24",
+                color2: "#d97706",
+                hasRing: false
+            },
+            {
+                name: "Purple Gas",
+                radius: 34,
+                distance: 380,
+                angle: Math.PI,
+                speed: 0.003,
+                color1: "#a855f7",
+                color2: "#6366f1",
+                hasRing: true,
+                ringRadius: 52
+            }
+        ];
+
+        // Comets
+        let comets = [];
+        function spawnComet() {
+            comets.push({
+                x: Math.random() * canvas.width * 0.8,
+                y: 0,
+                length: Math.random() * 80 + 50,
+                speedX: Math.random() * 6 + 4,
+                speedY: Math.random() * 6 + 4,
+                alpha: 1
+            });
+        }
+
+        setInterval(() => {
+            if (Math.random() < 0.4) spawnComet();
+        }, 4000);
+
+        function animateSpace() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Draw Twinkling Stars
+            stars.forEach(star => {
+                star.alpha += star.speed;
+                if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.alpha)})`;
+                ctx.fill();
+            });
+
+            // Center Space Origin
+            const centerX = canvas.width * 0.85;
+            const centerY = canvas.height * 0.35;
+
+            // 2. Draw Planets & Rings
+            planets.forEach(planet => {
+                planet.angle += planet.speed * speedMultiplier;
+
+                const x = centerX + Math.cos(planet.angle) * planet.distance;
+                const y = centerY + Math.sin(planet.angle) * (planet.distance * 0.4);
+
+                // Planet Shadow / Back Glow
+                ctx.beginPath();
+                ctx.arc(x, y, planet.radius + 8, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 242, 254, 0.05)`;
+                ctx.fill();
+
+                // Ring (behind planet)
+                if (planet.hasRing) {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.ellipse(x, y, planet.ringRadius, planet.ringRadius * 0.25, Math.PI / 6, 0, Math.PI * 2);
+                    ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                    ctx.restore();
+                }
+
+                // Planet Sphere Gradient
+                const grad = ctx.createRadialGradient(
+                    x - planet.radius * 0.3,
+                    y - planet.radius * 0.3,
+                    planet.radius * 0.1,
+                    x, y, planet.radius
+                );
+                grad.addColorStop(0, planet.color1);
+                grad.addColorStop(1, planet.color2);
+
+                ctx.beginPath();
+                ctx.arc(x, y, planet.radius, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+            });
+
+            // 3. Draw Comets
+            comets.forEach((comet, index) => {
+                comet.x += comet.speedX;
+                comet.y += comet.speedY;
+                comet.alpha -= 0.01;
+
+                if (comet.alpha <= 0) {
+                    comets.splice(index, 1);
+                    return;
+                }
+
+                const tailX = comet.x - comet.length;
+                const tailY = comet.y - (comet.length * (comet.speedY / comet.speedX));
+
+                const grad = ctx.createLinearGradient(comet.x, comet.y, tailX, tailY);
+                grad.addColorStop(0, `rgba(56, 189, 248, ${comet.alpha})`);
+                grad.addColorStop(1, `rgba(56, 189, 248, 0)`);
+
+                ctx.beginPath();
+                ctx.moveTo(comet.x, comet.y);
+                ctx.lineTo(tailX, tailY);
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            });
+
+            requestAnimationFrame(animateSpace);
+        }
+
+        animateSpace();
+    </script>
+
+    <!-- Interactive General Web Scripts -->
     <script>
         feather.replace();
 
@@ -752,7 +951,7 @@
             cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
         });
 
-        const phrases = ["Pengembang Web", "Kreatif & Innovator", "Tech Enthusiast", "Pelajar Teknologi "];
+        const phrases = ["Pengembang Web", "Kreatif & Innovator", "Tech Enthusiast", "Pelajar Teknologi"];
         let phraseIdx = 0;
         let charIdx = 0;
         let isDeleting = false;
@@ -897,7 +1096,6 @@
             if (event.key === 'Escape') closePhoto();
         });
 
-        // Script Autoplay Musik & Fallback Interaksi Halaman
         const portfolioMusic = document.getElementById('portfolioMusic');
         let musicPlaying = false;
 
@@ -925,7 +1123,6 @@
         document.addEventListener("click", startAudioOnInteraction);
         document.addEventListener("touchstart", startAudioOnInteraction);
 
-        // Script Ajax Form Kontak agar Mengirim Pesan ke Email secara Asinkron
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
