@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Khalid Asy Sya'bani — Hi-Tech Personal Portfolio</title>
-    <!-- Logo MKA untuk ikon tab browser (favicon) -->
+    <title>Muhammad Khalid Asy Sya'bani — Photographer & Video Editor Portfolio</title>
+    
+    <!-- Logo MKA Favicon -->
     <link rel="icon" type="image/png" href="logo-mka.png">
     <link rel="apple-touch-icon" href="logo-mka.png">
 
@@ -17,17 +18,18 @@
                 extend: {
                     colors: {
                         cyber: {
-                            950: '#020617',
-                            900: '#090D16',
+                            950: '#030712',
+                            900: '#080E1A',
                             800: '#0F172A',
                             700: '#1E293B',
-                            600: '#334155',
                         },
                         neon: {
                             cyan: '#00F0FF',
                             blue: '#3B82F6',
                             purple: '#A855F7',
                             emerald: '#10B981',
+                            amber: '#F59E0B',
+                            pink: '#EC4899'
                         }
                     },
                     fontFamily: {
@@ -35,24 +37,24 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     boxShadow: {
-                        'hd-glow': '0 0 25px -5px rgba(0, 240, 255, 0.4)',
-                        'hd-card': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
-                        'neon-glow': '0 0 40px -10px rgba(59, 130, 246, 0.5)',
+                        'ultra-cyan': '0 0 35px -5px rgba(0, 240, 255, 0.45)',
+                        'ultra-purple': '0 0 35px -5px rgba(168, 85, 247, 0.45)',
+                        'glass-card': '0 8px 32px 0 rgba(0, 240, 255, 0.12)',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'float-delayed': 'float 6s ease-in-out 3s infinite',
-                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
-                        'scanline': 'scanline 8s linear infinite',
+                        'aurora-glow': 'aurora 12s ease-in-out infinite alternate',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-10px) rotate(0.5deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(1deg)' },
                         },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: '0.3' },
-                            '50%': { opacity: '0.7' },
+                        aurora: {
+                            '0%': { opacity: '0.4', transform: 'scale(1) translate(0, 0)' },
+                            '50%': { opacity: '0.7', transform: 'scale(1.15) translate(-20px, 15px)' },
+                            '100%': { opacity: '0.5', transform: 'scale(0.95) translate(20px, -15px)' }
                         }
                     }
                 }
@@ -63,67 +65,59 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        /* Hi-Tech Cyber Background Gradient */
-        .hitech-space-bg {
-            background: radial-gradient(circle at 50% 0%, #0f172a 0%, #090d16 50%, #020617 100%);
+        body {
+            background-color: #030712;
         }
 
-        .glass-hd {
-            background: rgba(15, 23, 42, 0.7);
+        /* Glassmorphism 2.0 Styles */
+        .glass-ultra {
+            background: rgba(8, 14, 26, 0.65);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(0, 240, 255, 0.15);
+            border: 1px solid rgba(0, 240, 255, 0.22);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
         }
-        .light .glass-hd {
+        .light .glass-ultra {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(0, 240, 255, 0.12);
         }
 
         .glass-nav {
-            background: rgba(9, 13, 22, 0.85);
+            background: rgba(3, 7, 18, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.15);
-        }
-        .light .glass-nav {
-            background: rgba(248, 250, 252, 0.9);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.25);
         }
 
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #020617;
+            background: #030712;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1e293b;
+            background: #0f172a;
             border-radius: 9999px;
-            border: 2px solid #020617;
+            border: 2px solid #030712;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #00f0ff;
         }
 
-        .bg-cyber-grid {
-            background-size: 50px 50px;
-            background-image: 
-                linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-        }
-
         .typing-cursor::after {
-            content: '_';
+            content: '█';
             animation: blink 1s step-start infinite;
             color: #00F0FF;
+            margin-left: 2px;
         }
         @keyframes blink {
             50% { opacity: 0; }
@@ -131,30 +125,32 @@
 
         #cursorGlow {
             pointer-events: none;
-            transition: transform 0.1s ease-out;
+            transition: transform 0.05s ease-out;
         }
     </style>
 </head>
-<body class="hitech-space-bg text-slate-200 font-sans antialiased selection:bg-neon-cyan selection:text-cyber-950 transition-colors duration-500 min-h-screen flex flex-col justify-between overflow-x-hidden relative">
+<body class="text-slate-200 font-sans antialiased selection:bg-neon-cyan selection:text-cyber-950 transition-colors duration-500 min-h-screen flex flex-col justify-between overflow-x-hidden relative">
 
-    <!-- Interactive HD Tech Canvas -->
-    <canvas id="spaceCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-75"></canvas>
+    <!-- ULTRA LIVE TECH / NEON CANVAS BACKGROUND -->
+    <canvas id="techCanvas" class="fixed top-0 left-0 w-full h-full z-0 cursor-crosshair"></canvas>
 
     <!-- Cursor Glow Effect -->
-    <div id="cursorGlow" class="fixed top-0 left-0 w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 bg-neon-cyan/10 rounded-full blur-[140px] z-0 pointer-events-none"></div>
+    <div id="cursorGlow" class="fixed top-0 left-0 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-neon-cyan/15 via-neon-purple/10 to-transparent rounded-full blur-[150px] z-0 pointer-events-none"></div>
 
-    <!-- Ambient Lighting Blobs -->
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-neon-blue/10 rounded-full blur-[160px] pointer-events-none z-0 animate-pulse-glow"></div>
-    <div class="fixed top-1/2 -right-40 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[180px] pointer-events-none z-0"></div>
+    <!-- Ambient Aurora Nebula Light Blooms -->
+    <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-r from-neon-cyan/20 via-neon-purple/15 to-neon-blue/20 rounded-full blur-[180px] pointer-events-none z-0 animate-aurora-glow"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[700px] h-[700px] bg-gradient-to-tl from-neon-purple/20 via-neon-amber/10 to-transparent rounded-full blur-[200px] pointer-events-none z-0"></div>
 
-    <!-- Floating HD Tech Control Panel -->
-    <div class="fixed bottom-6 left-6 z-40 hidden md:flex items-center gap-2 p-2.5 rounded-2xl glass-hd shadow-2xl text-xs font-mono">
-        <span class="text-slate-400 px-2">⚡ System Mode:</span>
-        <button onclick="setPlanetSpeed(0.5)" class="px-2.5 py-1 rounded-lg bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-colors">0.5x</button>
-        <button onclick="setPlanetSpeed(1)" class="px-2.5 py-1 rounded-lg bg-neon-cyan text-cyber-950 font-bold">HD Normal</button>
-        <button onclick="setPlanetSpeed(2)" class="px-2.5 py-1 rounded-lg bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-colors">2x</button>
-        <button onclick="spawnComet()" class="px-3 py-1 rounded-lg bg-neon-blue hover:bg-blue-600 text-white font-sans font-semibold transition-colors flex items-center gap-1">
-            <span>☄️ Data Stream</span>
+    <!-- Floating Live Control Panel -->
+    <div class="fixed bottom-6 left-6 z-40 hidden md:flex items-center gap-2 p-3 rounded-2xl glass-ultra shadow-2xl text-xs font-mono border border-cyan-500/30">
+        <span class="text-slate-400 px-2 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-neon-cyan animate-ping"></span> ⚡ Neural Mesh:
+        </span>
+        <button onclick="setNodeSpeed(0.5)" class="px-2.5 py-1 rounded-xl bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-all">0.5x</button>
+        <button onclick="setNodeSpeed(1)" class="px-2.5 py-1 rounded-xl bg-neon-cyan text-cyber-950 font-bold shadow-ultra-cyan">HD Normal</button>
+        <button onclick="setNodeSpeed(2.5)" class="px-2.5 py-1 rounded-xl bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-all">2.5x Hyper</button>
+        <button onclick="triggerEnergySurge()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-purple hover:from-neon-purple hover:to-neon-cyan text-cyber-950 font-sans font-extrabold transition-all shadow-ultra-cyan flex items-center gap-1">
+            <span>✨ Pulse Energy</span>
         </button>
     </div>
 
@@ -163,104 +159,104 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
             <a href="#hero" class="flex items-center space-x-3 group">
-                <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-neon-cyan via-neon-blue to-cyber-800 p-[1.5px] shadow-hd-glow transition-transform duration-300 group-hover:scale-105">
+                <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-neon-cyan via-neon-purple to-neon-blue p-[1.5px] shadow-ultra-cyan transition-transform duration-300 group-hover:scale-105">
                     <div class="w-full h-full bg-cyber-950 rounded-[14px] flex items-center justify-center overflow-hidden">
                         <img src="logo-mka.png" alt="Logo MKA" class="w-full h-full object-contain p-0.5">
                     </div>
                 </div>
                 <div class="flex flex-col">
                     <span class="font-extrabold text-lg tracking-wider text-white group-hover:text-neon-cyan transition-colors">
-                        KHALID<span class="text-neon-cyan">.</span>TECH
+                        KHALID<span class="text-neon-cyan">.VISUAL</span>
                     </span>
-                    <span class="text-[9px] text-neon-cyan/80 font-mono -mt-1 tracking-widest uppercase">HD Systems v3.0</span>
+                    <span class="text-[9px] text-neon-cyan/80 font-mono -mt-1 tracking-widest uppercase">Photo & Video Specialist</span>
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center space-x-1 glass-hd px-4 py-2 rounded-full border border-cyan-500/20">
-                <a href="#hero" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Beranda</a>
-                <a href="#about" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Tentang</a>
-                <a href="#skills" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Tech Stack</a>
-                <a href="#portfolio" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Proyek</a>
-                <a href="#gallery" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Galeri</a>
-                <a href="#contact" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Kontak</a>
+            <nav class="hidden md:flex items-center space-x-1 glass-ultra px-4 py-2 rounded-full border border-cyan-500/20">
+                <a href="#hero" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/15 transition-all">Beranda</a>
+                <a href="#about" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/15 transition-all">Tentang</a>
+                <a href="#skills" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/15 transition-all">Keahlian</a>
+                <a href="#portfolio" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/15 transition-all">Proyek Karya</a>
+                <a href="#gallery" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/15 transition-all">Galeri</a>
+                <a href="#contact" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/15 transition-all">Kontak</a>
             </nav>
 
             <div class="flex items-center space-x-3">
-                <button id="themeToggleBtn" title="Ganti Mode Tampilan" class="p-2.5 rounded-xl glass-hd text-slate-300 hover:text-neon-cyan hover:border-neon-cyan/50 transition-all duration-300 focus:outline-none">
+                <button id="themeToggleBtn" title="Ganti Mode Tampilan" class="p-2.5 rounded-xl glass-ultra text-slate-300 hover:text-neon-cyan hover:border-neon-cyan/50 transition-all duration-300 focus:outline-none">
                     <i data-feather="moon" id="themeIcon" class="w-4 h-4"></i>
                 </button>
 
-                <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi%20proyek%20teknologi..." target="_blank" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-bold text-cyber-950 bg-gradient-to-r from-neon-cyan to-neon-blue hover:from-neon-blue hover:to-neon-cyan shadow-hd-glow transition-all duration-300 hover:scale-[1.02]">
-                    <i data-feather="cpu" class="w-4 h-4 mr-2"></i>
+                <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20diskusi%20proyek%20fotografi%20atau%20editing%20video..." target="_blank" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-extrabold text-cyber-950 bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple hover:opacity-90 shadow-ultra-cyan transition-all duration-300 hover:scale-[1.03]">
+                    <i data-feather="camera" class="w-4 h-4 mr-2"></i>
                     <span>Inisiasi Kontak</span>
                 </a>
 
-                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl glass-hd text-slate-300 hover:text-white focus:outline-none">
+                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl glass-ultra text-slate-300 hover:text-white focus:outline-none">
                     <i data-feather="menu" id="menuIcon" class="w-5 h-5"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobileMenu" class="hidden md:hidden glass-hd border-b border-cyan-500/20 px-6 py-6 space-y-4">
+        <div id="mobileMenu" class="hidden md:hidden glass-ultra border-b border-cyan-500/20 px-6 py-6 space-y-4">
             <a href="#hero" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Beranda</a>
             <a href="#about" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Tentang Saya</a>
-            <a href="#skills" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Tech Stack</a>
+            <a href="#skills" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Keahlian Utama</a>
             <a href="#portfolio" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Proyek Karya</a>
-            <a href="#gallery" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Galeri Saya</a>
+            <a href="#gallery" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Galeri Foto</a>
             <a href="#contact" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Kontak & Sosmed</a>
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content Body -->
     <main class="flex-grow pt-24 relative z-10">
 
         <!-- Hero Section -->
-        <section id="hero" class="min-h-[88vh] flex items-center justify-center relative bg-cyber-grid py-12">
+        <section id="hero" class="min-h-[88vh] flex items-center justify-center relative py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     
                     <div class="lg:col-span-7 text-center lg:text-left space-y-6">
                         
-                        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-hd border border-neon-cyan/40 text-neon-cyan text-xs font-semibold tracking-wide shadow-neon-glow animate-float">
+                        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-ultra border border-neon-cyan/40 text-neon-cyan text-xs font-semibold tracking-wide shadow-ultra-cyan animate-float">
                             <span class="w-2 h-2 rounded-full bg-neon-cyan animate-ping"></span>
-                            <span>✦ HD Tech Infrastructure & Digital Creator</span>
+                            <span>📸 Photographer & Video Editor Specialist</span>
                         </div>
 
                         <div class="space-y-2">
                             <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
                                 Muhammad Khalid <br/>
-                                <span class="bg-gradient-to-r from-neon-cyan via-neon-blue to-white bg-clip-text text-transparent">
+                                <span class="bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text text-transparent">
                                     Asy Sya'bani
                                 </span>
                             </h1>
-                            <div class="text-lg sm:text-2xl font-mono text-slate-300 font-medium h-8 pt-1">
+                            <div class="text-lg sm:text-2xl font-mono text-slate-300 font-medium h-9 pt-1">
                                 <span id="typingText" class="typing-cursor text-neon-cyan font-bold"></span>
                             </div>
                         </div>
 
-                        <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-                            Menggabungkan performa tinggi (HD), desain antarmuka futuristik, dan arsitektur kode bersih untuk pengalaman digital masa depan.
+                        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                            Menggabungkan estetika fotografi visual, editing video dinamis, grading warna cinematic, serta desain grafik Canva modern dan web portofolio.
                         </p>
 
                         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                            <div class="px-3.5 py-1.5 rounded-xl glass-hd text-xs font-mono text-slate-300 border border-white/10 flex items-center">
-                                <span class="mr-2">🎂</span> 6 Agustus 2006
+                            <div class="px-3.5 py-1.5 rounded-xl glass-ultra text-xs font-mono text-slate-300 border border-white/10 flex items-center">
+                                <span class="mr-2">🎂</span> 6 Agustus 2009
                             </div>
-                            <div class="px-3.5 py-1.5 rounded-xl glass-hd text-xs font-mono text-slate-300 border border-white/10 flex items-center">
+                            <div class="px-3.5 py-1.5 rounded-xl glass-ultra text-xs font-mono text-slate-300 border border-white/10 flex items-center">
                                 <span class="mr-2">📍</span> Jakarta, Indonesia
                             </div>
-                            <div class="px-3.5 py-1.5 rounded-xl glass-hd text-xs font-mono text-slate-300 border border-white/10 flex items-center cursor-pointer hover:border-neon-cyan/50 transition-colors" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Email berhasil disalin!')">
+                            <div class="px-3.5 py-1.5 rounded-xl glass-ultra text-xs font-mono text-slate-300 border border-white/10 flex items-center cursor-pointer hover:border-neon-cyan/50 transition-colors" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Email berhasil disalin!')">
                                 <span class="mr-2">✉️</span> khalid.syabani@gmail.com
                                 <i data-feather="copy" class="w-3 h-3 ml-2 text-neon-cyan"></i>
                             </div>
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-neon-cyan to-neon-blue hover:from-neon-blue hover:to-neon-cyan text-cyber-950 font-extrabold text-sm shadow-hd-glow transition-all duration-300 hover:scale-[1.02] flex items-center justify-center">
-                                <span>Jelajahi Portofolio</span>
-                                <i data-feather="arrow-down-right" class="w-4 h-4 ml-2"></i>
+                            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple hover:opacity-95 text-cyber-950 font-extrabold text-sm shadow-ultra-cyan transition-all duration-300 hover:scale-[1.02] flex items-center justify-center">
+                                <span>Lihat Karya Visual</span>
+                                <i data-feather="video" class="w-4 h-4 ml-2"></i>
                             </a>
-                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-hd text-slate-200 hover:text-white border border-white/10 hover:border-neon-cyan/50 font-bold text-sm transition-all duration-300 flex items-center justify-center">
+                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20tertarik%20dengan%20jasa%20editing%20/%20fotografi..." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-ultra text-slate-200 hover:text-white border border-white/10 hover:border-neon-cyan/50 font-bold text-sm transition-all duration-300 flex items-center justify-center">
                                 <span>WhatsApp Direct</span>
                                 <i data-feather="message-circle" class="w-4 h-4 ml-2 text-emerald-400"></i>
                             </a>
@@ -271,9 +267,9 @@
                     <div class="lg:col-span-5 flex justify-center">
                         <div class="relative w-full max-w-md animate-float-delayed">
                             
-                            <div class="absolute -inset-1 bg-gradient-to-tr from-neon-cyan via-neon-blue to-neon-purple rounded-3xl blur-2xl opacity-40"></div>
+                            <div class="absolute -inset-1.5 bg-gradient-to-tr from-neon-cyan via-neon-purple to-neon-pink rounded-3xl blur-2xl opacity-50"></div>
 
-                            <div class="relative rounded-3xl glass-hd p-8 space-y-6 shadow-2xl border border-cyan-500/30">
+                            <div class="relative rounded-3xl glass-ultra p-8 space-y-6 shadow-2xl border border-cyan-500/30">
                                 
                                 <div class="flex items-center space-x-4 border-b border-white/10 pb-6">
                                     <div class="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-neon-cyan/80 p-1 bg-cyber-900 shrink-0">
@@ -287,7 +283,7 @@
                                         </div>
                                         <p class="text-xs text-neon-cyan font-mono">@khalied.syaa</p>
                                         <div class="inline-flex items-center mt-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-medium font-mono">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> SYSTEM ONLINE
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> CAMERA & EDITOR READY
                                         </div>
                                     </div>
                                 </div>
@@ -295,28 +291,28 @@
                                 <div class="space-y-4">
                                     <div class="p-4 rounded-2xl bg-cyber-950/80 border border-white/5 space-y-2 font-mono text-xs">
                                         <div class="flex justify-between text-slate-400">
-                                            <span>Core Engine</span>
-                                            <span class="text-neon-cyan">High-Definition Tech</span>
+                                            <span>Visual Mastery</span>
+                                            <span class="text-neon-cyan">CapCut & Color Grading</span>
                                         </div>
                                         <div class="w-full h-1.5 bg-cyber-900 rounded-full overflow-hidden">
-                                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 95%"></div>
+                                            <div class="h-full bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink rounded-full" style="width: 98%"></div>
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="p-4 rounded-2xl bg-cyber-950/80 border border-white/5 text-center">
-                                            <div class="text-2xl font-extrabold text-white font-mono">15+</div>
-                                            <div class="text-[11px] text-slate-400 mt-0.5 font-mono">Proyek HD</div>
+                                            <div class="text-2xl font-extrabold text-white font-mono">20+</div>
+                                            <div class="text-[11px] text-slate-400 mt-0.5 font-mono">Video & Foto</div>
                                         </div>
                                         <div class="p-4 rounded-2xl bg-cyber-950/80 border border-white/5 text-center">
-                                            <div class="text-2xl font-extrabold text-neon-cyan font-mono">100%</div>
-                                            <div class="text-[11px] text-slate-400 mt-0.5 font-mono">Optimized</div>
+                                            <div class="text-2xl font-extrabold text-neon-cyan font-mono">4K HD</div>
+                                            <div class="text-[11px] text-slate-400 mt-0.5 font-mono">Quality Standard</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="flex justify-between items-center pt-2 border-t border-white/10">
-                                    <span class="text-xs text-slate-400 font-mono">Koneksi Jaringan:</span>
+                                    <span class="text-xs text-slate-400 font-mono">Koneksi Sosial:</span>
                                     <div class="flex space-x-2">
                                         <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-2 rounded-lg bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-colors" title="Instagram"><i data-feather="instagram" class="w-4 h-4"></i></a>
                                         <a href="https://wa.me/6287716440922" target="_blank" class="p-2 rounded-lg bg-cyber-900 hover:bg-emerald-400 hover:text-cyber-950 text-slate-300 transition-colors" title="WhatsApp"><i data-feather="phone" class="w-4 h-4"></i></a>
@@ -337,42 +333,42 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Profil & Biodata</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Eksplorasi Teknologi & Karakter</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Mengenal lebih dekat identitas dan latar belakang Muhammad Khalid.</p>
+                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Profil & Identitas</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Eksplorasi Visi & Karakter</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Detail biodata dan passion Muhammad Khalid dalam dunia Fotografi & Editing Video.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     
-                    <div class="md:col-span-2 lg:col-span-2 p-8 rounded-3xl glass-hd border border-white/10 flex flex-col justify-between space-y-6 hover:border-neon-cyan/50 transition-all duration-300">
+                    <div class="md:col-span-2 lg:col-span-2 p-8 rounded-3xl glass-ultra border border-white/10 flex flex-col justify-between space-y-6 hover:border-neon-cyan/50 transition-all duration-300">
                         <div class="space-y-4">
                             <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan">
-                                <i data-feather="cpu" class="w-6 h-6"></i>
+                                <i data-feather="aperture" class="w-6 h-6"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-white">Inovasi Berbasis Performa & Estetika</h3>
+                            <h3 class="text-2xl font-bold text-white">Kreativitas Visual, Fotografi & Editing Dynamic</h3>
                             <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-                                Halo! Saya <strong class="text-white font-semibold">Muhammad Khalid Asy Sya'bani</strong>, lahir di Jakarta, 6 Agustus 2006. Berfokus pada pengembangan sistem web modern, rekayasa perangkat lunak interaktif, dan implementasi visual beresolusi tinggi.
+                                Saya <strong class="text-white font-semibold">Muhammad Khalid Asy Sya'bani</strong>, lahir di Jakarta, 6 Agustus 2009. Berfokus pada penangkapan sudut pandang fotografi estetis, penyuntingan video CapCut dinamis, color grading sinematik, desain grafik Canva, dan penyusunan web portofolio visual.
                             </p>
                         </div>
                         <div class="pt-4 border-t border-white/10 flex flex-wrap gap-2">
-                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan">#JakartaTech</span>
-                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan">#HighDefinition</span>
-                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan">#SoftwareEngineer</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan">#Photographer2009</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-purple/10 border border-neon-purple/30 text-neon-purple">#VideoEditor</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue">#ColorGrading</span>
                         </div>
                     </div>
 
-                    <div class="p-8 rounded-3xl glass-hd border border-white/10 flex flex-col justify-between hover:border-neon-cyan/50 transition-all duration-300 group">
+                    <div class="p-8 rounded-3xl glass-ultra border border-white/10 flex flex-col justify-between hover:border-neon-cyan/50 transition-all duration-300 group">
                         <div class="w-10 h-10 rounded-xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                             <i data-feather="calendar" class="w-5 h-5"></i>
                         </div>
                         <div>
                             <div class="text-xs text-slate-400 font-mono uppercase">Tanggal Lahir</div>
-                            <div class="text-xl font-bold text-white mt-1">6 Agustus 2006</div>
+                            <div class="text-xl font-bold text-white mt-1">6 Agustus 2009</div>
                             <div class="text-xs text-neon-cyan mt-1 font-mono">Jakarta, Indonesia</div>
                         </div>
                     </div>
 
-                    <div class="p-8 rounded-3xl glass-hd border border-white/10 flex flex-col justify-between hover:border-emerald-400/50 transition-all duration-300 group">
+                    <div class="p-8 rounded-3xl glass-ultra border border-white/10 flex flex-col justify-between hover:border-emerald-400/50 transition-all duration-300 group">
                         <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                             <i data-feather="phone-call" class="w-5 h-5"></i>
                         </div>
@@ -383,27 +379,27 @@
                         </div>
                     </div>
 
-                    <div class="md:col-span-2 p-8 rounded-3xl glass-hd border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all duration-300">
+                    <div class="md:col-span-2 p-8 rounded-3xl glass-ultra border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all duration-300">
                         <div class="space-y-2">
                             <div class="flex items-center space-x-2 text-pink-400">
                                 <i data-feather="instagram" class="w-5 h-5"></i>
                                 <span class="text-xs font-mono uppercase text-slate-400">Instagram Official</span>
                             </div>
                             <h4 class="font-bold text-white text-xl font-mono">@khalied.syaa</h4>
-                            <p class="text-slate-400 text-xs">Jejak aktivitas digital dan portofolio visual harian.</p>
+                            <p class="text-slate-400 text-xs">Portofolio visual, hasil tangkapan lensa, dan hasil karya editing harian.</p>
                         </div>
                         <a href="https://instagram.com/khalied.syaa" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-xs shadow-lg hover:scale-105 transition-transform shrink-0">
-                            Buka IG
+                            Buka Profil IG
                         </a>
                     </div>
 
-                    <div class="md:col-span-1 lg:col-span-2 p-8 rounded-3xl glass-hd border border-white/10 flex items-center space-x-6 hover:border-neon-cyan/50 transition-all duration-300">
+                    <div class="md:col-span-1 lg:col-span-2 p-8 rounded-3xl glass-ultra border border-white/10 flex items-center space-x-6 hover:border-neon-cyan/50 transition-all duration-300">
                         <div class="p-4 rounded-2xl bg-neon-cyan/10 text-neon-cyan hidden sm:block">
-                            <i data-feather="shield" class="w-8 h-8"></i>
+                            <i data-feather="film" class="w-8 h-8"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white text-lg">Standar HD & Keamanan</h4>
-                            <p class="text-slate-400 text-xs sm:text-sm mt-1">Mengutamakan optimalisasi kecepatan muat, struktur bersih, dan tampilan tajam.</p>
+                            <h4 class="font-bold text-white text-lg">Kualitas Sinematik HD</h4>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-1">Pengolahan tone warna profesional, alur video cerita presisi, dan desain estetis.</p>
                         </div>
                     </div>
 
@@ -411,59 +407,59 @@
             </div>
         </section>
 
-        <!-- Tech Stack Section -->
-        <section id="skills" class="py-24 relative bg-cyber-900/50 border-t border-cyan-500/10">
+        <!-- Main Skills Section -->
+        <section id="skills" class="py-24 relative border-t border-cyan-500/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Keahlian & Stack</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Teknologi & Perangkat HD</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Spesifikasi teknis dan perangkat yang digunakan dalam membangun karya.</p>
+                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Keahlian Utama</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Fotografi & Editing Studio</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Spesialisasi utama Muhammad Khalid dalam penciptaan konten visual digital.</p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     
-                    <div class="p-6 rounded-3xl glass-hd border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                    <div class="p-6 rounded-3xl glass-ultra border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
                         <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
-                            <i data-feather="code" class="w-6 h-6"></i>
+                            <i data-feather="camera" class="w-6 h-6"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">Web Architecture</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed font-light">HTML5, Advanced CSS3, JavaScript (ES6+), Tailwind CSS HD Framework.</p>
+                        <h3 class="text-lg font-bold text-white">Fotografi</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">Teknik pencahayaan, komposisi bingkai, lanskap, portrait, dan fotografi konsep visual.</p>
                         <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 92%"></div>
+                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 95%"></div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-3xl glass-hd border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                    <div class="p-6 rounded-3xl glass-ultra border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
                         <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
-                            <i data-feather="cpu" class="w-6 h-6"></i>
+                            <i data-feather="video" class="w-6 h-6"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">System Logic</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed font-light">Algoritma terstruktur, pemecahan masalah kompleks, optimasi performa skrip.</p>
+                        <h3 class="text-lg font-bold text-white">Editing Video & CapCut</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">Penyuntingan video ritme dinamis, transisi tajam, motion text, dan alur CapCut Pro.</p>
                         <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 88%"></div>
+                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-purple rounded-full" style="width: 96%"></div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-3xl glass-hd border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                    <div class="p-6 rounded-3xl glass-ultra border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
+                            <i data-feather="sliders" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Grading Color</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">Penyelarasan mood warna sinematik, penyesuaian kurva tone, exposure, dan LUTs kustom.</p>
+                        <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-neon-purple to-neon-pink rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl glass-ultra border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
                         <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
                             <i data-feather="layout" class="w-6 h-6"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">UI/UX High-Def</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed font-light">Glassmorphism, Cyber-Grid Layouts, Prototyping interaktif via Figma.</p>
+                        <h3 class="text-lg font-bold text-white">Canva & Web Portofolio</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">Desain Canva estetik, tata letak konten media sosial, dan pembuatan web portofolio modern.</p>
                         <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 90%"></div>
-                        </div>
-                    </div>
-
-                    <div class="p-6 rounded-3xl glass-hd border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
-                            <i data-feather="terminal" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-white">Dev Tools & Git</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed font-light">Git version control, GitHub workflows, VS Code, Cloud Deployment.</p>
-                        <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 85%"></div>
+                            <div class="h-full bg-gradient-to-r from-neon-blue to-neon-cyan rounded-full" style="width: 90%"></div>
                         </div>
                     </div>
 
@@ -471,80 +467,145 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- Projects & Digital HD Section -->
         <section id="portfolio" class="py-24 relative border-t border-cyan-500/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
-                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Portofolio Karya</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Proyek & Sistem Digital HD</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Kumpulan eksplorasi teknologi dan antarmuka buatan Muhammad Khalid.</p>
+                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Portofolio & Digital HD</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Proyek Karya Visual & Digital HD</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Penggunaan Canva, Fotografi, CapCut, Grading Color, Web Portofolio, dan Editing Video.</p>
                 </div>
 
                 <div class="flex justify-center space-x-2 sm:space-x-4 mb-12 overflow-x-auto pb-2">
-                    <button class="filter-btn active px-5 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-neon-cyan to-neon-blue text-cyber-950 shadow-hd-glow transition-all" data-filter="all">Semua Proyek</button>
-                    <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-hd text-slate-300 hover:text-white hover:border-neon-cyan/50 transition-all" data-filter="web">Web App</button>
-                    <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-hd text-slate-300 hover:text-white hover:border-neon-cyan/50 transition-all" data-filter="design">UI/UX Design</button>
+                    <button class="filter-btn active px-5 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-neon-cyan to-neon-blue text-cyber-950 shadow-ultra-cyan transition-all" data-filter="all">Semua Karya</button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-ultra text-slate-300 hover:text-white hover:border-neon-cyan/50 transition-all" data-filter="video">Video & Foto</button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-ultra text-slate-300 hover:text-white hover:border-neon-cyan/50 transition-all" data-filter="design">Design & Web</button>
                 </div>
 
-                <!-- Projects Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <div class="project-card group rounded-3xl glass-hd border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="web">
+                    <!-- Proyek 1: Penggunaan Canva -->
+                    <div class="project-card group rounded-3xl glass-ultra border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="design">
                         <div class="flex justify-between items-center text-xs font-mono">
-                            <span class="text-neon-cyan font-semibold">Web App HD</span>
-                            <span class="text-slate-400">2026</span>
+                            <span class="text-neon-cyan font-semibold">Penggunaan Canva</span>
+                            <span class="text-slate-400">Digital HD</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Cyber Dashboard Interface</h3>
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Desain Graphic & Content Brand</h3>
                         <p class="text-slate-400 text-xs leading-relaxed font-light">
-                            Dashboard interaktif berkecepatan tinggi dengan elemen visual futuristik dan responsif.
+                            Pembuatan microblog, poster, dan materi branding digital menggunakan Canva Pro berestetika tinggi.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Canva Pro</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Poster HD</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="openModal('Desain Canva & Branding Digital', 'Pemanfaatan elemen Canva Pro untuk menciptakan materi promosi visual, banner, dan tata letak feeds sosial yang harmonis.', 'Canva Pro, Graphic Design, Branding')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Proyek 2: Fotografi -->
+                    <div class="project-card group rounded-3xl glass-ultra border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="video">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-neon-cyan font-semibold">Fotografi</span>
+                            <span class="text-slate-400">Digital HD</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Eksplorasi Fotografi Urban & Portrait</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">
+                            Sesi pengambilan foto suasana kota Jakarta, detail portrait, dan teknik komposisi pencahayaan dramatis.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Fotografi</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Urban Portrait</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="openModal('Fotografi Urban & Portrait', 'Koleksi foto resolusi tinggi dengan penekanan pada komposisi rule-of-thirds, pencahayaan alami, dan depth of field memikat.', 'Fotografi, Camera Framing, Outdoor Session')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Proyek 3: Editing Video & CapCut -->
+                    <div class="project-card group rounded-3xl glass-ultra border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="video">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-neon-cyan font-semibold">Editing Video & CapCut</span>
+                            <span class="text-slate-400">Digital HD</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Cinematic Short & Beats Sync</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">
+                            Pengeditan video reels/tiktok pendek dengan sinkronisasi musik yang pas, efek transisi, dan sound design.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Editing Video</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">CapCut Pro</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="openModal('Editing Video & CapCut Sync', 'Proses editing cepat dan presisi menggunakan CapCut Pro untuk menghasilkan potongan klip ritmis dan transisi dinamis.', 'CapCut Pro, Editing Video, Beat Matching')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Proyek 4: Grading Color -->
+                    <div class="project-card group rounded-3xl glass-ultra border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="video">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-neon-cyan font-semibold">Grading Color</span>
+                            <span class="text-slate-400">Digital HD</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Cyberpunk & Mood Color Grading</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">
+                            Pemberian warna sinematik bernuansa Moody Teal-Orange dan Cyber Neon pada footage mentah.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Grading Color</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">LUTs Cinematic</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="openModal('Grading Color Sinematik', 'Penyelarasan warna video dan foto untuk memberikan nuansa visual emosional, moody, dan berkarakter unik.', 'Grading Color, LUTs, Tone Curve, Highlights Adjust')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Proyek 5: Web Portofolio -->
+                    <div class="project-card group rounded-3xl glass-ultra border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="design">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-neon-cyan font-semibold">Web Portofolio</span>
+                            <span class="text-slate-400">Digital HD</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Interactive Visual Web Portfolio</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">
+                            Platform web interaktif berteknologi live canvas wallpaper untuk menampilkan galeri foto & video modern.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Web Portofolio</span>
                             <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Tailwind HD</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
                         </div>
                         <div class="pt-2">
-                            <button onclick="openModal('Cyber Dashboard Interface', 'Platform antarmuka analitik waktu-nyata berbasiskan tema neon cyandark dengan visualisasi interaktif beresolusi tinggi.', 'HTML5, Tailwind CSS, JavaScript')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                            <button onclick="openModal('Web Portofolio Interaktif', 'Pengembangan antarmuka web khusus untuk memamerkan karya visual, galeri, dan identitas kreator secara profesional.', 'Web Portofolio, HTML5, Canvas Live Wallpaper')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
                                 <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
                             </button>
                         </div>
                     </div>
 
-                    <div class="project-card group rounded-3xl glass-hd border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="design">
+                    <!-- Proyek 6: Editing Video Complete -->
+                    <div class="project-card group rounded-3xl glass-ultra border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="video">
                         <div class="flex justify-between items-center text-xs font-mono">
-                            <span class="text-neon-cyan font-semibold">UI/UX Design</span>
-                            <span class="text-slate-400">2026</span>
+                            <span class="text-neon-cyan font-semibold">Editing Video</span>
+                            <span class="text-slate-400">Digital HD</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Glassmorphism Personal Brand</h3>
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Full Motion & Visual Storytelling</h3>
                         <p class="text-slate-400 text-xs leading-relaxed font-light">
-                            Perancangan antarmuka pengguna ultra-modern dengan efek kaca buram dan pencahayaan ambient.
+                            Penggabungan storytelling video, efek suara, teks animasi, serta komposisi visual yang rapi.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Figma HD</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Glassmorphism</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Editing Video</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Visual Story</span>
                         </div>
                         <div class="pt-2">
-                            <button onclick="openModal('Glassmorphism Personal Brand', 'Eksplorasi konsep sistem desain antarmuka kaca buram beresolusi tinggi untuk profil digital profesional.', 'Figma, UI/UX, Design System')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
-                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="project-card group rounded-3xl glass-hd border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="web">
-                        <div class="flex justify-between items-center text-xs font-mono">
-                            <span class="text-neon-cyan font-semibold">Web App HD</span>
-                            <span class="text-slate-400">2025</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Smart Task Manager</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed font-light">
-                            Aplikasi peningkat produktivitas harian dengan fungsionalitas mulus dan penyimpanan lokal.
-                        </p>
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Web Storage</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
-                        </div>
-                        <div class="pt-2">
-                            <button onclick="openModal('Smart Task Manager', 'Aplikasi manajemen tugas produktivitas harian dengan dukungan penyimpanan lokal dan filter kustom berbasis web.', 'JavaScript, HTML5, CSS Grid')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                            <button onclick="openModal('Editing Video & Storytelling', 'Proses produksi video menyeluruh dari pemotongan klip awal hingga ekspor akhir dengan kualitas resolusi tinggi.', 'Editing Video, Sound Design, Motion Graphics')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
                                 <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
                             </button>
                         </div>
@@ -555,22 +616,22 @@
         </section>
 
         <!-- Gallery & Music Section -->
-        <section id="gallery" class="py-24 relative bg-cyber-900/50 border-t border-cyan-500/10">
+        <section id="gallery" class="py-24 relative border-t border-cyan-500/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
                     <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Galeri & Media</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Galeri & Audio Latar</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Kumpulan dokumentasi foto dan pemutar audio bertema teknologi.</p>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Galeri Hasil Foto & Audio Latar</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Dokumentasi momen tangkapan lensa serta pemutar musik digital.</p>
                 </div>
 
-                <div class="max-w-2xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl glass-hd border border-neon-cyan/30">
+                <div class="max-w-2xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl glass-ultra border border-neon-cyan/30">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-5">
                         <div class="w-14 h-14 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center shrink-0">
                             <i data-feather="music" class="w-7 h-7"></i>
                         </div>
                         <div class="flex-1">
                             <h3 class="text-lg font-bold text-white">Audio Stream HD</h3>
-                            <p class="text-sm text-slate-400 font-light">Putar atau jeda musik latar digital.</p>
+                            <p class="text-sm text-slate-400 font-light">Pemutar audio latar suasana teknologi & sinematik.</p>
                             <audio id="portfolioMusic" controls autoplay loop preload="auto" class="w-full mt-3">
                                 <source src="musik.mp3" type="audio/mpeg">
                                 Browser Anda tidak mendukung pemutar audio.
@@ -579,30 +640,30 @@
                     </div>
                 </div>
 
-                <!-- Galeri Foto -->
+                <!-- Foto Grid Gallery -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya1.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-ultra border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya1.jpg')">
                         <img src="saya1.jpg" alt="Foto saya 1" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya2.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-ultra border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya2.jpg')">
                         <img src="saya2.jpg" alt="Foto saya 2" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya3.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-ultra border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya3.jpg')">
                         <img src="saya3.jpg" alt="Foto saya 3" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya4.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-ultra border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya4.jpg')">
                         <img src="saya4.jpg" alt="Foto saya 4" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya5.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-ultra border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya5.jpg')">
                         <img src="saya5.jpg" alt="Foto saya 5" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Photo Lightbox -->
+        <!-- Photo Lightbox Modal -->
         <div id="photoModal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md" onclick="closePhoto()">
-            <button type="button" class="absolute top-5 right-5 p-3 rounded-xl glass-hd text-white" aria-label="Tutup foto" onclick="closePhoto()">
+            <button type="button" class="absolute top-5 right-5 p-3 rounded-xl glass-ultra text-white" aria-label="Tutup foto" onclick="closePhoto()">
                 <i data-feather="x" class="w-6 h-6"></i>
             </button>
             <img id="photoModalImage" src="" alt="Foto galeri ukuran besar" class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl border border-neon-cyan/40" onclick="event.stopPropagation()">
@@ -617,15 +678,15 @@
                     <div class="lg:col-span-5 space-y-6">
                         <div class="space-y-3">
                             <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Hubungi Sistem</span>
-                            <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">Inisiasi Komunikasi</h2>
+                            <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">Inisiasi Kontak</h2>
                             <p class="text-slate-400 text-sm leading-relaxed font-light">
-                                Punya proyek teknologi, tawaran kolaborasi, atau ingin berdiskusi? Gunakan saluran komunikasi langsung di bawah ini.
+                                Ingin menggunakan jasa fotografi, editing video CapCut, grading color sinematik, atau proyek Canva? Silakan hubungi via saluran di bawah ini.
                             </p>
                         </div>
 
                         <div class="space-y-4">
                             
-                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="p-5 rounded-2xl glass-hd border border-white/10 flex items-center justify-between hover:border-emerald-400/50 transition-all group">
+                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20diskusi%20proyek%20fotografi%20atau%20editing%20video..." target="_blank" class="p-5 rounded-2xl glass-ultra border border-white/10 flex items-center justify-between hover:border-emerald-400/50 transition-all group">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
                                         <i data-feather="phone" class="w-5 h-5"></i>
@@ -638,7 +699,7 @@
                                 <span class="text-xs font-bold text-emerald-400 font-mono">Kirim WA →</span>
                             </a>
 
-                            <div class="p-5 rounded-2xl glass-hd border border-white/10 flex items-center justify-between hover:border-neon-cyan/50 transition-all cursor-pointer group" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Alamat email berhasil disalin!')">
+                            <div class="p-5 rounded-2xl glass-ultra border border-white/10 flex items-center justify-between hover:border-neon-cyan/50 transition-all cursor-pointer group" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Alamat email berhasil disalin!')">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center shrink-0">
                                         <i data-feather="mail" class="w-5 h-5"></i>
@@ -651,7 +712,7 @@
                                 <span class="text-xs font-bold text-neon-cyan font-mono">Salin 📋</span>
                             </div>
 
-                            <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-5 rounded-2xl glass-hd border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all group">
+                            <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-5 rounded-2xl glass-ultra border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all group">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center shrink-0">
                                         <i data-feather="instagram" class="w-5 h-5"></i>
@@ -668,8 +729,8 @@
                     </div>
 
                     <div class="lg:col-span-7">
-                        <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="p-8 sm:p-10 rounded-3xl glass-hd border border-cyan-500/30 space-y-6 shadow-2xl">
-                            <h3 class="text-xl font-bold text-white mb-2">Kirim Pesan Sistem</h3>
+                        <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="p-8 sm:p-10 rounded-3xl glass-ultra border border-cyan-500/30 space-y-6 shadow-2xl">
+                            <h3 class="text-xl font-bold text-white mb-2">Kirim Pesan Langsung</h3>
                             
                             <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 
@@ -686,10 +747,10 @@
 
                             <div class="space-y-2">
                                 <label for="message" class="block text-xs font-mono font-semibold text-slate-300 uppercase">Isi Pesan</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-5 py-3.5 rounded-2xl bg-cyber-950/90 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan text-sm transition-all resize-none" placeholder="Tuliskan detail proyek atau pesan Anda di sini..."></textarea>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-5 py-3.5 rounded-2xl bg-cyber-950/90 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan text-sm transition-all resize-none" placeholder="Tuliskan pesan atau detail kebutuhan video/fotografi Anda di sini..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-neon-cyan to-neon-blue hover:from-neon-blue hover:to-neon-cyan text-cyber-950 font-extrabold text-sm shadow-hd-glow transition-all duration-300 hover:scale-[1.01] flex items-center justify-center space-x-2">
+                            <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple hover:opacity-95 text-cyber-950 font-extrabold text-sm shadow-ultra-cyan transition-all duration-300 hover:scale-[1.01] flex items-center justify-center space-x-2">
                                 <span>Kirimkan Pesan HD</span>
                                 <i data-feather="send" class="w-4 h-4"></i>
                             </button>
@@ -707,18 +768,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-2">
                 <img src="logo-mka.png" alt="Logo MKA" class="w-7 h-7 object-contain">
-                <span>&copy; 2026 Muhammad Khalid Asy Sya'bani. HD Tech Systems. All Rights Reserved.</span>
+                <span>&copy; 2026 Muhammad Khalid Asy Sya'bani. Visual & Creative Portfolio.</span>
             </div>
             <div class="flex items-center space-x-4 text-neon-cyan">
                 <span>Jakarta, Indonesia</span>
                 <span>•</span>
-                <span>High-Definition Cyber Core</span>
+                <span>3D Polyhedron Live Canvas</span>
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm w-full p-4 rounded-2xl glass-hd border border-neon-cyan/40 shadow-2xl flex items-start space-x-3 pointer-events-none">
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm w-full p-4 rounded-2xl glass-ultra border border-neon-cyan/40 shadow-2xl flex items-start space-x-3 pointer-events-none">
         <div class="p-2 rounded-xl bg-neon-cyan/20 text-neon-cyan shrink-0">
             <i data-feather="check-circle" class="w-5 h-5"></i>
         </div>
@@ -728,10 +789,10 @@
         </div>
     </div>
 
-    <!-- Project Detail Modal Popup -->
+    <!-- Project Detail Modal -->
     <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-cyber-950/80 backdrop-blur-md">
-        <div class="relative w-full max-w-lg rounded-3xl glass-hd border border-cyan-500/40 p-8 space-y-6 shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white p-2 rounded-xl glass-hd">
+        <div class="relative w-full max-w-lg rounded-3xl glass-ultra border border-cyan-500/40 p-8 space-y-6 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white p-2 rounded-xl glass-ultra">
                 <i data-feather="x" class="w-5 h-5"></i>
             </button>
 
@@ -743,187 +804,261 @@
             <p id="modalDesc" class="text-slate-300 text-sm leading-relaxed font-light">Deskripsi lengkap sistem akan muncul di sini.</p>
 
             <div class="pt-4 border-t border-white/10 flex justify-end space-x-3">
-                <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl glass-hd text-xs font-bold text-slate-300 hover:text-white">Tutup</button>
-                <a href="https://wa.me/6287716440922" target="_blank" onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-neon-cyan text-cyber-950 font-bold text-xs shadow-hd-glow">Diskusi via WhatsApp</a>
+                <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl glass-ultra text-xs font-bold text-slate-300 hover:text-white">Tutup</button>
+                <a href="https://wa.me/6287716440922" target="_blank" onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-neon-cyan text-cyber-950 font-bold text-xs shadow-ultra-cyan">Diskusi via WhatsApp</a>
             </div>
         </div>
     </div>
 
-    <!-- Interactive Canvas HD Tech Script -->
+    <!-- ADVANCED ULTRA-AESTHETIC LIVE CANVAS WALLPAPER SCRIPT -->
     <script>
-        const canvas = document.getElementById('spaceCanvas');
+        const canvas = document.getElementById('techCanvas');
         const ctx = canvas.getContext('2d');
 
         let speedMultiplier = 1;
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 200
+        };
 
-        function setPlanetSpeed(speed) {
+        const shockwaves = [];
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('click', (e) => {
+            shockwaves.push({
+                x: e.clientX,
+                y: e.clientY,
+                radius: 10,
+                maxRadius: 280,
+                alpha: 1,
+                color: Math.random() > 0.5 ? '#00F0FF' : '#A855F7'
+            });
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function setNodeSpeed(speed) {
             speedMultiplier = speed;
         }
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            initPhysicsElements();
         }
         window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
-        // HD Tech Particle Grid setup
-        const particles = [];
-        const particleCount = 100;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.8 + 0.5,
-                alpha: Math.random(),
-                speed: Math.random() * 0.025 + 0.008
-            });
-        }
+        let nodes = [];
+        let polyhedrons = [];
 
-        // Cyber Orbs 3D setup
-        const orbs = [
-            {
-                name: "Neon Cyan Core",
-                radius: 40,
-                distance: 260,
-                angle: 0,
-                speed: 0.005,
-                color1: "#00F0FF",
-                color2: "#3B82F6",
-                hasRing: true,
-                ringRadius: 62
-            },
-            {
-                name: "Quantum Orb",
-                radius: 24,
-                distance: 170,
-                angle: Math.PI / 2,
-                speed: 0.008,
-                color1: "#A855F7",
-                color2: "#3B82F6",
-                hasRing: false
-            },
-            {
-                name: "Hyper Blue",
-                radius: 32,
-                distance: 350,
-                angle: Math.PI,
-                speed: 0.0035,
-                color1: "#38BDF8",
-                color2: "#1D4ED8",
-                hasRing: true,
-                ringRadius: 48
+        function initPhysicsElements() {
+            nodes = [];
+            polyhedrons = [];
+
+            const density = Math.floor((canvas.width * canvas.height) / 10000);
+            const count = Math.min(Math.max(density, 60), 130);
+
+            const colors = ['#00F0FF', '#3B82F6', '#A855F7', '#EC4899', '#10B981'];
+
+            for (let i = 0; i < count; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 1.1,
+                    vy: (Math.random() - 0.5) * 1.1,
+                    radius: Math.random() * 2.5 + 1,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    pulse: Math.random() * Math.PI * 2
+                });
             }
-        ];
 
-        // Data Comets / Streams
-        let streams = [];
-        function spawnComet() {
-            streams.push({
-                x: Math.random() * canvas.width * 0.8,
-                y: 0,
-                length: Math.random() * 90 + 60,
-                speedX: Math.random() * 7 + 5,
-                speedY: Math.random() * 7 + 5,
-                alpha: 1
-            });
+            // Floating Cyber Polyhedrons / Crystals
+            for (let i = 0; i < 8; i++) {
+                polyhedrons.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 25 + 15,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.02,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    color: colors[i % colors.length]
+                });
+            }
         }
 
-        setInterval(() => {
-            if (Math.random() < 0.5) spawnComet();
-        }, 3500);
+        function triggerEnergySurge() {
+            nodes.forEach(node => {
+                node.vx *= 3.5;
+                node.vy *= 3.5;
+            });
 
-        function animateHDTech() {
+            shockwaves.push({
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                radius: 10,
+                maxRadius: Math.max(canvas.width, canvas.height) * 0.8,
+                alpha: 1,
+                color: '#00F0FF'
+            });
+
+            setTimeout(() => {
+                nodes.forEach(node => {
+                    node.vx /= 3.5;
+                    node.vy /= 3.5;
+                });
+            }, 1200);
+        }
+
+        function drawPolyhedron(poly) {
+            ctx.save();
+            ctx.translate(poly.x, poly.y);
+            ctx.rotate(poly.rotation);
+
+            ctx.beginPath();
+            const sides = 6;
+            for (let i = 0; i < sides; i++) {
+                const angle = (i * 2 * Math.PI) / sides;
+                const px = Math.cos(angle) * poly.size;
+                const py = Math.sin(angle) * poly.size;
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+
+            ctx.strokeStyle = poly.color;
+            ctx.lineWidth = 1;
+            ctx.globalAlpha = 0.25;
+            ctx.stroke();
+
+            // Inner cross star
+            ctx.beginPath();
+            ctx.moveTo(-poly.size, 0);
+            ctx.lineTo(poly.size, 0);
+            ctx.moveTo(0, -poly.size);
+            ctx.lineTo(0, poly.size);
+            ctx.strokeStyle = poly.color;
+            ctx.globalAlpha = 0.15;
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        function animateLiveWallpaper() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Draw HD Particles / Stars
-            particles.forEach(p => {
-                p.alpha += p.speed;
-                if (p.alpha > 1 || p.alpha < 0) p.speed = -p.speed;
+            // 1. Draw Mouse Shockwave Ripples
+            for (let i = shockwaves.length - 1; i >= 0; i--) {
+                const sw = shockwaves[i];
+                sw.radius += 8 * speedMultiplier;
+                sw.alpha -= 0.015;
 
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 240, 255, ${Math.abs(p.alpha)})`;
-                ctx.fill();
-            });
-
-            // Center Origin
-            const centerX = canvas.width * 0.85;
-            const centerY = canvas.height * 0.35;
-
-            // 2. Draw Cyber Orbs & Rings
-            orbs.forEach(orb => {
-                orb.angle += orb.speed * speedMultiplier;
-
-                const x = centerX + Math.cos(orb.angle) * orb.distance;
-                const y = centerY + Math.sin(orb.angle) * (orb.distance * 0.4);
-
-                // Orb Glow
-                ctx.beginPath();
-                ctx.arc(x, y, orb.radius + 10, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 240, 255, 0.06)`;
-                ctx.fill();
-
-                // Ring
-                if (orb.hasRing) {
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.ellipse(x, y, orb.ringRadius, orb.ringRadius * 0.28, Math.PI / 6, 0, Math.PI * 2);
-                    ctx.strokeStyle = "rgba(0, 240, 255, 0.3)";
-                    ctx.lineWidth = 2.5;
-                    ctx.stroke();
-                    ctx.restore();
+                if (sw.alpha <= 0 || sw.radius >= sw.maxRadius) {
+                    shockwaves.splice(i, 1);
+                    continue;
                 }
 
-                // Orb Gradient
-                const grad = ctx.createRadialGradient(
-                    x - orb.radius * 0.3,
-                    y - orb.radius * 0.3,
-                    orb.radius * 0.1,
-                    x, y, orb.radius
-                );
-                grad.addColorStop(0, orb.color1);
-                grad.addColorStop(1, orb.color2);
-
                 ctx.beginPath();
-                ctx.arc(x, y, orb.radius, 0, Math.PI * 2);
-                ctx.fillStyle = grad;
-                ctx.fill();
-            });
-
-            // 3. Draw Data Streams
-            streams.forEach((stream, index) => {
-                stream.x += stream.speedX;
-                stream.y += stream.speedY;
-                stream.alpha -= 0.012;
-
-                if (stream.alpha <= 0) {
-                    streams.splice(index, 1);
-                    return;
-                }
-
-                const tailX = stream.x - stream.length;
-                const tailY = stream.y - (stream.length * (stream.speedY / stream.speedX));
-
-                const grad = ctx.createLinearGradient(stream.x, stream.y, tailX, tailY);
-                grad.addColorStop(0, `rgba(0, 240, 255, ${stream.alpha})`);
-                grad.addColorStop(1, `rgba(0, 240, 255, 0)`);
-
-                ctx.beginPath();
-                ctx.moveTo(stream.x, stream.y);
-                ctx.lineTo(tailX, tailY);
-                ctx.strokeStyle = grad;
+                ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = sw.color;
+                ctx.globalAlpha = sw.alpha;
                 ctx.lineWidth = 2;
                 ctx.stroke();
+                ctx.globalAlpha = 1;
+            }
+
+            // 2. Animate Floating Geometric Polyhedrons
+            polyhedrons.forEach(poly => {
+                poly.x += poly.vx * speedMultiplier;
+                poly.y += poly.vy * speedMultiplier;
+                poly.rotation += poly.rotSpeed * speedMultiplier;
+
+                if (poly.x < -50) poly.x = canvas.width + 50;
+                if (poly.x > canvas.width + 50) poly.x = -50;
+                if (poly.y < -50) poly.y = canvas.height + 50;
+                if (poly.y > canvas.height + 50) poly.y = -50;
+
+                drawPolyhedron(poly);
             });
 
-            requestAnimationFrame(animateHDTech);
+            // 3. Animate Interactive Mesh Nodes
+            for (let i = 0; i < nodes.length; i++) {
+                let nodeA = nodes[i];
+
+                nodeA.x += nodeA.vx * speedMultiplier;
+                nodeA.y += nodeA.vy * speedMultiplier;
+
+                if (nodeA.x < 0 || nodeA.x > canvas.width) nodeA.vx *= -1;
+                if (nodeA.y < 0 || nodeA.y > canvas.height) nodeA.vy *= -1;
+
+                // Mouse Magnetic Attraction
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - nodeA.x;
+                    let dy = mouse.y - nodeA.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < mouse.radius) {
+                        let force = (mouse.radius - dist) / mouse.radius;
+                        nodeA.x -= (dx / dist) * force * 3.5;
+                        nodeA.y -= (dy / dist) * force * 3.5;
+
+                        // Glowing Mouse Line Connection
+                        ctx.beginPath();
+                        ctx.moveTo(nodeA.x, nodeA.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.45 * force})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+
+                // Node Pulse Radius Glow
+                nodeA.pulse += 0.03;
+                let currentRadius = nodeA.radius + Math.sin(nodeA.pulse) * 0.8;
+
+                ctx.beginPath();
+                ctx.arc(nodeA.x, nodeA.y, Math.max(currentRadius, 0.5), 0, Math.PI * 2);
+                ctx.fillStyle = nodeA.color;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = nodeA.color;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // Inter-node Beams
+                for (let j = i + 1; j < nodes.length; j++) {
+                    let nodeB = nodes[j];
+                    let dx = nodeA.x - nodeB.x;
+                    let dy = nodeA.y - nodeB.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 135) {
+                        let opacity = (1 - dist / 135) * 0.35;
+                        ctx.beginPath();
+                        ctx.moveTo(nodeA.x, nodeA.y);
+                        ctx.lineTo(nodeB.x, nodeB.y);
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${opacity})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateLiveWallpaper);
         }
 
-        animateHDTech();
+        resizeCanvas();
+        animateLiveWallpaper();
     </script>
 
-    <!-- Interactive General Web Scripts -->
+    <!-- UI Interactions & Typing Effect Script -->
     <script>
         feather.replace();
 
@@ -932,7 +1067,7 @@
             cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
         });
 
-        const phrases = ["HD Web Engineer", "Cyber Tech Enthusiast", "UI/UX Innovator", "Digital Systems Builder"];
+        const phrases = ["Photographer & Video Editor", "CapCut & Color Grading Specialist", "Canva & Visual Creator", "Web Portfolio Developer"];
         let phraseIdx = 0;
         let charIdx = 0;
         let isDeleting = false;
@@ -1000,12 +1135,12 @@
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => {
-                    b.classList.remove('active', 'bg-gradient-to-r', 'from-neon-cyan', 'to-neon-blue', 'text-cyber-950', 'shadow-hd-glow');
-                    b.classList.add('glass-hd', 'text-slate-300');
+                    b.classList.remove('active', 'bg-gradient-to-r', 'from-neon-cyan', 'to-neon-blue', 'text-cyber-950', 'shadow-ultra-cyan');
+                    b.classList.add('glass-ultra', 'text-slate-300');
                 });
 
-                btn.classList.add('active', 'bg-gradient-to-r', 'from-neon-cyan', 'to-neon-blue', 'text-cyber-950', 'shadow-hd-glow');
-                btn.classList.remove('glass-hd', 'text-slate-300');
+                btn.classList.add('active', 'bg-gradient-to-r', 'from-neon-cyan', 'to-neon-blue', 'text-cyber-950', 'shadow-ultra-cyan');
+                btn.classList.remove('glass-ultra', 'text-slate-300');
 
                 const filter = btn.getAttribute('data-filter');
 
@@ -1126,7 +1261,7 @@
                 
                 const result = await response.json();
                 if (response.status === 200) {
-                    showToast("Pesan Terkirim!", "Terima kasih, pesan Anda berhasil masuk ke sistem Khalid.");
+                    showToast("Pesan Terkirim!", "Terima kasih, pesan Anda berhasil dikirim ke Khalid.");
                     contactForm.reset();
                 } else {
                     showToast("Gagal!", result.message || "Terjadi kesalahan saat mengirim pesan.");
