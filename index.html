@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Khalid Asy Sya'bani — Personal Portfolio</title>
+    <title>Muhammad Khalid Asy Sya'bani — Hi-Tech Personal Portfolio</title>
     <!-- Logo MKA untuk ikon tab browser (favicon) -->
     <link rel="icon" type="image/png" href="logo-mka.png">
     <link rel="apple-touch-icon" href="logo-mka.png">
@@ -16,26 +16,18 @@
             theme: {
                 extend: {
                     colors: {
-                        navy: {
-                            950: '#030712',
-                            900: '#0B1329',
-                            800: '#111E38',
-                            700: '#1D2D50',
-                            600: '#2A3F68',
+                        cyber: {
+                            950: '#020617',
+                            900: '#090D16',
+                            800: '#0F172A',
+                            700: '#1E293B',
+                            600: '#334155',
                         },
-                        slate: {
-                            850: '#162032',
-                            800: '#1E293B',
-                            700: '#334155',
-                            400: '#94A3B8',
-                            300: '#CBD5E1',
-                            200: '#E2E8F0',
-                        },
-                        cyanGlow: {
-                            400: '#38BDF8',
-                            300: '#7DD3FC',
-                            200: '#BAE6FD',
-                            glow: 'rgba(56, 189, 248, 0.35)'
+                        neon: {
+                            cyan: '#00F0FF',
+                            blue: '#3B82F6',
+                            purple: '#A855F7',
+                            emerald: '#10B981',
                         }
                     },
                     fontFamily: {
@@ -43,23 +35,24 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-                        'glow-cyan': '0 0 35px -5px rgba(56, 189, 248, 0.4)',
-                        'glow-soft': '0 0 50px -10px rgba(125, 211, 252, 0.25)',
+                        'hd-glow': '0 0 25px -5px rgba(0, 240, 255, 0.4)',
+                        'hd-card': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
+                        'neon-glow': '0 0 40px -10px rgba(59, 130, 246, 0.5)',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'float-delayed': 'float 6s ease-in-out 3s infinite',
-                        'pulse-glow': 'pulseGlow 5s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+                        'scanline': 'scanline 8s linear infinite',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-12px) rotate(0.5deg)' },
+                            '50%': { transform: 'translateY(-10px) rotate(0.5deg)' },
                         },
                         pulseGlow: {
-                            '0%, 100%': { opacity: '0.4' },
-                            '50%': { opacity: '0.75' },
+                            '0%, 100%': { opacity: '0.3' },
+                            '50%': { opacity: '0.7' },
                         }
                     }
                 }
@@ -70,46 +63,38 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        /* Live Moving Gradient Cosmic Background */
-        @keyframes cosmicGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Hi-Tech Cyber Background Gradient */
+        .hitech-space-bg {
+            background: radial-gradient(circle at 50% 0%, #0f172a 0%, #090d16 50%, #020617 100%);
         }
 
-        .live-space-bg {
-            background: linear-gradient(-45deg, #02040a, #0b1329, #111e38, #070d1e, #02040a);
-            background-size: 400% 400%;
-            animation: cosmicGradient 20s ease infinite;
+        .glass-hd {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(0, 240, 255, 0.15);
         }
-
-        .glass-card {
-            background: rgba(17, 30, 56, 0.55);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .light .glass-card {
-            background: rgba(255, 255, 255, 0.82);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(203, 213, 225, 0.8);
+        .light .glass-hd {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .glass-nav {
-            background: rgba(11, 19, 41, 0.85);
+            background: rgba(9, 13, 22, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.15);
         }
         .light .glass-nav {
-            background: rgba(248, 250, 252, 0.88);
+            background: rgba(248, 250, 252, 0.9);
             border-bottom: 1px solid rgba(226, 232, 240, 0.8);
         }
 
@@ -117,33 +102,28 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #030712;
+            background: #020617;
         }
         ::-webkit-scrollbar-thumb {
-            background: #111E38;
+            background: #1e293b;
             border-radius: 9999px;
-            border: 2px solid #030712;
+            border: 2px solid #020617;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #38BDF8;
+            background: #00f0ff;
         }
 
-        .bg-grid-mesh {
-            background-size: 40px 40px;
+        .bg-cyber-grid {
+            background-size: 50px 50px;
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-        }
-        .light .bg-grid-mesh {
-            background-image: 
-                linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+                linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
         }
 
         .typing-cursor::after {
-            content: '|';
+            content: '_';
             animation: blink 1s step-start infinite;
-            color: #38BDF8;
+            color: #00F0FF;
         }
         @keyframes blink {
             50% { opacity: 0; }
@@ -151,29 +131,30 @@
 
         #cursorGlow {
             pointer-events: none;
-            transition: transform 0.15s ease-out, opacity 0.3s ease;
+            transition: transform 0.1s ease-out;
         }
     </style>
 </head>
-<body class="live-space-bg text-slate-200 font-sans antialiased selection:bg-cyanGlow-400 selection:text-navy-950 transition-colors duration-500 min-h-screen flex flex-col justify-between overflow-x-hidden relative">
+<body class="hitech-space-bg text-slate-200 font-sans antialiased selection:bg-neon-cyan selection:text-cyber-950 transition-colors duration-500 min-h-screen flex flex-col justify-between overflow-x-hidden relative">
 
-    <!-- Live Space & Planet 3D Interactive Canvas -->
-    <canvas id="spaceCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-80"></canvas>
+    <!-- Interactive HD Tech Canvas -->
+    <canvas id="spaceCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-75"></canvas>
 
-    <div id="cursorGlow" class="fixed top-0 left-0 w-96 h-96 -translate-x-1/2 -translate-y-1/2 bg-cyanGlow-400/15 rounded-full blur-[120px] z-0 pointer-events-none"></div>
+    <!-- Cursor Glow Effect -->
+    <div id="cursorGlow" class="fixed top-0 left-0 w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 bg-neon-cyan/10 rounded-full blur-[140px] z-0 pointer-events-none"></div>
 
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyanGlow-400/10 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-glow"></div>
-    <div class="fixed top-1/3 -right-40 w-[500px] h-[500px] bg-navy-700/30 rounded-full blur-[150px] pointer-events-none z-0"></div>
-    <div class="fixed bottom-10 -left-40 w-[600px] h-[600px] bg-cyanGlow-400/5 rounded-full blur-[160px] pointer-events-none z-0"></div>
+    <!-- Ambient Lighting Blobs -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-neon-blue/10 rounded-full blur-[160px] pointer-events-none z-0 animate-pulse-glow"></div>
+    <div class="fixed top-1/2 -right-40 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[180px] pointer-events-none z-0"></div>
 
-    <!-- Space Control Panel Floating Button -->
-    <div class="fixed bottom-6 left-6 z-40 hidden md:flex items-center gap-2 p-2 rounded-2xl glass-card border border-white/10 shadow-2xl text-xs font-mono">
-        <span class="text-slate-400 px-2">🪐 Orbit Speed:</span>
-        <button onclick="setPlanetSpeed(0.5)" class="px-2.5 py-1 rounded-lg bg-navy-900 hover:bg-cyanGlow-400 hover:text-navy-950 text-slate-300 transition-colors">0.5x</button>
-        <button onclick="setPlanetSpeed(1)" class="px-2.5 py-1 rounded-lg bg-cyanGlow-400 text-navy-950 font-bold">1x</button>
-        <button onclick="setPlanetSpeed(2)" class="px-2.5 py-1 rounded-lg bg-navy-900 hover:bg-cyanGlow-400 hover:text-navy-950 text-slate-300 transition-colors">2x</button>
-        <button onclick="spawnComet()" class="px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-sans font-semibold transition-colors flex items-center gap-1">
-            <span>☄️ Komet</span>
+    <!-- Floating HD Tech Control Panel -->
+    <div class="fixed bottom-6 left-6 z-40 hidden md:flex items-center gap-2 p-2.5 rounded-2xl glass-hd shadow-2xl text-xs font-mono">
+        <span class="text-slate-400 px-2">⚡ System Mode:</span>
+        <button onclick="setPlanetSpeed(0.5)" class="px-2.5 py-1 rounded-lg bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-colors">0.5x</button>
+        <button onclick="setPlanetSpeed(1)" class="px-2.5 py-1 rounded-lg bg-neon-cyan text-cyber-950 font-bold">HD Normal</button>
+        <button onclick="setPlanetSpeed(2)" class="px-2.5 py-1 rounded-lg bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-colors">2x</button>
+        <button onclick="spawnComet()" class="px-3 py-1 rounded-lg bg-neon-blue hover:bg-blue-600 text-white font-sans font-semibold transition-colors flex items-center gap-1">
+            <span>☄️ Data Stream</span>
         </button>
     </div>
 
@@ -182,51 +163,51 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
             <a href="#hero" class="flex items-center space-x-3 group">
-                <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-cyanGlow-400 via-navy-700 to-navy-900 p-[1px] shadow-glow-cyan transition-transform duration-300 group-hover:scale-105">
-                    <div class="w-full h-full bg-navy-950 rounded-[15px] flex items-center justify-center overflow-hidden">
+                <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-neon-cyan via-neon-blue to-cyber-800 p-[1.5px] shadow-hd-glow transition-transform duration-300 group-hover:scale-105">
+                    <div class="w-full h-full bg-cyber-950 rounded-[14px] flex items-center justify-center overflow-hidden">
                         <img src="logo-mka.png" alt="Logo MKA" class="w-full h-full object-contain p-0.5">
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-extrabold text-lg tracking-wider text-white group-hover:text-cyanGlow-400 transition-colors">
-                        KHALID<span class="text-cyanGlow-400">.</span>
+                    <span class="font-extrabold text-lg tracking-wider text-white group-hover:text-neon-cyan transition-colors">
+                        KHALID<span class="text-neon-cyan">.</span>TECH
                     </span>
-                    <span class="text-[10px] text-slate-400 font-mono -mt-1 tracking-widest uppercase">Personal Digital Space</span>
+                    <span class="text-[9px] text-neon-cyan/80 font-mono -mt-1 tracking-widest uppercase">HD Systems v3.0</span>
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center space-x-1 glass-card px-4 py-2 rounded-full border border-white/10">
-                <a href="#hero" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Beranda</a>
-                <a href="#about" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Tentang</a>
-                <a href="#skills" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Keahlian</a>
-                <a href="#portfolio" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Proyek</a>
-                <a href="#gallery" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Galeri</a>
-                <a href="#contact" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-all">Kontak</a>
+            <nav class="hidden md:flex items-center space-x-1 glass-hd px-4 py-2 rounded-full border border-cyan-500/20">
+                <a href="#hero" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Beranda</a>
+                <a href="#about" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Tentang</a>
+                <a href="#skills" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Tech Stack</a>
+                <a href="#portfolio" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Proyek</a>
+                <a href="#gallery" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Galeri</a>
+                <a href="#contact" class="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-neon-cyan/10 transition-all">Kontak</a>
             </nav>
 
             <div class="flex items-center space-x-3">
-                <button id="themeToggleBtn" title="Ganti Mode Tampilan" class="p-2.5 rounded-xl glass-card text-slate-300 hover:text-white hover:border-cyanGlow-400/50 transition-all duration-300 focus:outline-none">
+                <button id="themeToggleBtn" title="Ganti Mode Tampilan" class="p-2.5 rounded-xl glass-hd text-slate-300 hover:text-neon-cyan hover:border-neon-cyan/50 transition-all duration-300 focus:outline-none">
                     <i data-feather="moon" id="themeIcon" class="w-4 h-4"></i>
                 </button>
 
-                <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-bold text-navy-950 bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 hover:from-cyanGlow-300 hover:to-cyanGlow-400 shadow-glow-cyan transition-all duration-300 hover:scale-[1.02]">
-                    <i data-feather="message-circle" class="w-4 h-4 mr-2"></i>
-                    <span>Hubungi Saya</span>
+                <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi%20proyek%20teknologi..." target="_blank" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-bold text-cyber-950 bg-gradient-to-r from-neon-cyan to-neon-blue hover:from-neon-blue hover:to-neon-cyan shadow-hd-glow transition-all duration-300 hover:scale-[1.02]">
+                    <i data-feather="cpu" class="w-4 h-4 mr-2"></i>
+                    <span>Inisiasi Kontak</span>
                 </a>
 
-                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl glass-card text-slate-300 hover:text-white focus:outline-none">
+                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl glass-hd text-slate-300 hover:text-white focus:outline-none">
                     <i data-feather="menu" id="menuIcon" class="w-5 h-5"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobileMenu" class="hidden md:hidden glass-card border-b border-white/10 px-6 py-6 space-y-4">
-            <a href="#hero" class="block text-sm font-medium text-slate-200 hover:text-cyanGlow-400 mobile-link">Beranda</a>
-            <a href="#about" class="block text-sm font-medium text-slate-200 hover:text-cyanGlow-400 mobile-link">Tentang Saya</a>
-            <a href="#skills" class="block text-sm font-medium text-slate-200 hover:text-cyanGlow-400 mobile-link">Keahlian</a>
-            <a href="#portfolio" class="block text-sm font-medium text-slate-200 hover:text-cyanGlow-400 mobile-link">Proyek Karya</a>
-            <a href="#gallery" class="block text-sm font-medium text-slate-200 hover:text-cyanGlow-400 mobile-link">Galeri Saya</a>
-            <a href="#contact" class="block text-sm font-medium text-slate-200 hover:text-cyanGlow-400 mobile-link">Kontak & Sosmed</a>
+        <div id="mobileMenu" class="hidden md:hidden glass-hd border-b border-cyan-500/20 px-6 py-6 space-y-4">
+            <a href="#hero" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Beranda</a>
+            <a href="#about" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Tentang Saya</a>
+            <a href="#skills" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Tech Stack</a>
+            <a href="#portfolio" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Proyek Karya</a>
+            <a href="#gallery" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Galeri Saya</a>
+            <a href="#contact" class="block text-sm font-medium text-slate-200 hover:text-neon-cyan mobile-link">Kontak & Sosmed</a>
         </div>
     </header>
 
@@ -234,53 +215,53 @@
     <main class="flex-grow pt-24 relative z-10">
 
         <!-- Hero Section -->
-        <section id="hero" class="min-h-[88vh] flex items-center justify-center relative bg-grid-mesh py-12">
+        <section id="hero" class="min-h-[88vh] flex items-center justify-center relative bg-cyber-grid py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     
                     <div class="lg:col-span-7 text-center lg:text-left space-y-6">
                         
-                        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card border border-cyanGlow-400/30 text-cyanGlow-400 text-xs font-semibold tracking-wide shadow-glow-soft animate-float">
-                            <span class="w-2 h-2 rounded-full bg-cyanGlow-400 animate-ping"></span>
-                            <span>✦ Personal Portfolio & Tech Enthusiast</span>
+                        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-hd border border-neon-cyan/40 text-neon-cyan text-xs font-semibold tracking-wide shadow-neon-glow animate-float">
+                            <span class="w-2 h-2 rounded-full bg-neon-cyan animate-ping"></span>
+                            <span>✦ HD Tech Infrastructure & Digital Creator</span>
                         </div>
 
                         <div class="space-y-2">
                             <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
                                 Muhammad Khalid <br/>
-                                <span class="bg-gradient-to-r from-cyanGlow-400 via-cyanGlow-300 to-slate-200 bg-clip-text text-transparent">
+                                <span class="bg-gradient-to-r from-neon-cyan via-neon-blue to-white bg-clip-text text-transparent">
                                     Asy Sya'bani
                                 </span>
                             </h1>
                             <div class="text-lg sm:text-2xl font-mono text-slate-300 font-medium h-8 pt-1">
-                                <span id="typingText" class="typing-cursor text-cyanGlow-400 font-semibold"></span>
+                                <span id="typingText" class="typing-cursor text-neon-cyan font-bold"></span>
                             </div>
                         </div>
 
                         <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-                            Kreatif, Pengembang, & Pembelajar Teknologi dari Jakarta. Berdedikasi membangun pengalaman digital interaktif, estetik, dan fungsional.
+                            Menggabungkan performa tinggi (HD), desain antarmuka futuristik, dan arsitektur kode bersih untuk pengalaman digital masa depan.
                         </p>
 
                         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                            <div class="px-3.5 py-1.5 rounded-xl glass-card text-xs font-mono text-slate-300 border border-white/10 flex items-center">
+                            <div class="px-3.5 py-1.5 rounded-xl glass-hd text-xs font-mono text-slate-300 border border-white/10 flex items-center">
                                 <span class="mr-2">🎂</span> 6 Agustus 2006
                             </div>
-                            <div class="px-3.5 py-1.5 rounded-xl glass-card text-xs font-mono text-slate-300 border border-white/10 flex items-center">
+                            <div class="px-3.5 py-1.5 rounded-xl glass-hd text-xs font-mono text-slate-300 border border-white/10 flex items-center">
                                 <span class="mr-2">📍</span> Jakarta, Indonesia
                             </div>
-                            <div class="px-3.5 py-1.5 rounded-xl glass-card text-xs font-mono text-slate-300 border border-white/10 flex items-center cursor-pointer hover:border-cyanGlow-400/50 transition-colors" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Email berhasil disalin!')">
+                            <div class="px-3.5 py-1.5 rounded-xl glass-hd text-xs font-mono text-slate-300 border border-white/10 flex items-center cursor-pointer hover:border-neon-cyan/50 transition-colors" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Email berhasil disalin!')">
                                 <span class="mr-2">✉️</span> khalid.syabani@gmail.com
-                                <i data-feather="copy" class="w-3 h-3 ml-2 text-cyanGlow-400"></i>
+                                <i data-feather="copy" class="w-3 h-3 ml-2 text-neon-cyan"></i>
                             </div>
                         </div>
 
                         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 hover:from-cyanGlow-300 hover:to-cyanGlow-400 text-navy-950 font-bold text-sm shadow-glow-cyan transition-all duration-300 hover:scale-[1.02] flex items-center justify-center">
-                                <span>Lihat Proyek</span>
+                            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-neon-cyan to-neon-blue hover:from-neon-blue hover:to-neon-cyan text-cyber-950 font-extrabold text-sm shadow-hd-glow transition-all duration-300 hover:scale-[1.02] flex items-center justify-center">
+                                <span>Jelajahi Portofolio</span>
                                 <i data-feather="arrow-down-right" class="w-4 h-4 ml-2"></i>
                             </a>
-                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-card text-slate-200 hover:text-white border border-white/10 hover:border-cyanGlow-400/50 font-bold text-sm transition-all duration-300 flex items-center justify-center">
-                                <span>Kirim Pesan (WhatsApp)</span>
+                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-hd text-slate-200 hover:text-white border border-white/10 hover:border-neon-cyan/50 font-bold text-sm transition-all duration-300 flex items-center justify-center">
+                                <span>WhatsApp Direct</span>
                                 <i data-feather="message-circle" class="w-4 h-4 ml-2 text-emerald-400"></i>
                             </a>
                         </div>
@@ -290,56 +271,56 @@
                     <div class="lg:col-span-5 flex justify-center">
                         <div class="relative w-full max-w-md animate-float-delayed">
                             
-                            <div class="absolute -inset-1 bg-gradient-to-tr from-cyanGlow-400 to-navy-700 rounded-3xl blur-2xl opacity-50"></div>
+                            <div class="absolute -inset-1 bg-gradient-to-tr from-neon-cyan via-neon-blue to-neon-purple rounded-3xl blur-2xl opacity-40"></div>
 
-                            <div class="relative rounded-3xl glass-card p-8 space-y-6 shadow-2xl border border-white/15">
+                            <div class="relative rounded-3xl glass-hd p-8 space-y-6 shadow-2xl border border-cyan-500/30">
                                 
                                 <div class="flex items-center space-x-4 border-b border-white/10 pb-6">
-                                    <div class="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-cyanGlow-400/60 p-1 bg-navy-900 shrink-0">
+                                    <div class="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-neon-cyan/80 p-1 bg-cyber-900 shrink-0">
                                         <img src="saya1.jpg" alt="Foto Muhammad Khalid Asy Sya'bani" class="w-full h-full rounded-xl object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                        <div class="w-full h-full bg-gradient-to-br from-navy-700 to-navy-950 rounded-xl items-center justify-center text-2xl font-extrabold text-cyanGlow-400" style="display:none">MK</div>
+                                        <div class="w-full h-full bg-gradient-to-br from-cyber-700 to-cyber-950 rounded-xl items-center justify-center text-2xl font-extrabold text-neon-cyan" style="display:none">MK</div>
                                     </div>
                                     <div>
                                         <div class="flex items-center space-x-2">
                                             <h3 class="font-bold text-white text-lg">M. Khalid Asy Sya'bani</h3>
-                                            <i data-feather="check-circle" class="w-4 h-4 text-cyanGlow-400"></i>
+                                            <i data-feather="check-circle" class="w-4 h-4 text-neon-cyan"></i>
                                         </div>
-                                        <p class="text-xs text-cyanGlow-300 font-mono">@khalied.syaa</p>
-                                        <div class="inline-flex items-center mt-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-medium">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> Open for Opportunities
+                                        <p class="text-xs text-neon-cyan font-mono">@khalied.syaa</p>
+                                        <div class="inline-flex items-center mt-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-medium font-mono">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> SYSTEM ONLINE
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="space-y-4">
-                                    <div class="p-4 rounded-2xl bg-navy-950/70 border border-white/5 space-y-2">
-                                        <div class="flex justify-between text-xs font-mono text-slate-400">
-                                            <span>Fokus Utama</span>
-                                            <span class="text-cyanGlow-400">Tech & Web Development</span>
+                                    <div class="p-4 rounded-2xl bg-cyber-950/80 border border-white/5 space-y-2 font-mono text-xs">
+                                        <div class="flex justify-between text-slate-400">
+                                            <span>Core Engine</span>
+                                            <span class="text-neon-cyan">High-Definition Tech</span>
                                         </div>
-                                        <div class="w-full h-1.5 bg-navy-900 rounded-full overflow-hidden">
-                                            <div class="h-full bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 rounded-full" style="width: 90%"></div>
+                                        <div class="w-full h-1.5 bg-cyber-900 rounded-full overflow-hidden">
+                                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 95%"></div>
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-2 gap-3">
-                                        <div class="p-4 rounded-2xl bg-navy-950/70 border border-white/5 text-center">
+                                        <div class="p-4 rounded-2xl bg-cyber-950/80 border border-white/5 text-center">
                                             <div class="text-2xl font-extrabold text-white font-mono">15+</div>
-                                            <div class="text-[11px] text-slate-400 mt-0.5">Proyek Selesai</div>
+                                            <div class="text-[11px] text-slate-400 mt-0.5 font-mono">Proyek HD</div>
                                         </div>
-                                        <div class="p-4 rounded-2xl bg-navy-950/70 border border-white/5 text-center">
-                                            <div class="text-2xl font-extrabold text-cyanGlow-400 font-mono">100%</div>
-                                            <div class="text-[11px] text-slate-400 mt-0.5">Semangat Belajar</div>
+                                        <div class="p-4 rounded-2xl bg-cyber-950/80 border border-white/5 text-center">
+                                            <div class="text-2xl font-extrabold text-neon-cyan font-mono">100%</div>
+                                            <div class="text-[11px] text-slate-400 mt-0.5 font-mono">Optimized</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="flex justify-between items-center pt-2 border-t border-white/10">
-                                    <span class="text-xs text-slate-400 font-mono">Sosial Media:</span>
+                                    <span class="text-xs text-slate-400 font-mono">Koneksi Jaringan:</span>
                                     <div class="flex space-x-2">
-                                        <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-2 rounded-lg bg-navy-900 hover:bg-cyanGlow-400 hover:text-navy-950 text-slate-300 transition-colors" title="Instagram"><i data-feather="instagram" class="w-4 h-4"></i></a>
-                                        <a href="https://wa.me/6287716440922" target="_blank" class="p-2 rounded-lg bg-navy-900 hover:bg-emerald-400 hover:text-navy-950 text-slate-300 transition-colors" title="WhatsApp"><i data-feather="phone" class="w-4 h-4"></i></a>
-                                        <a href="mailto:khalid.syabani@gmail.com" class="p-2 rounded-lg bg-navy-900 hover:bg-cyanGlow-400 hover:text-navy-950 text-slate-300 transition-colors" title="Email"><i data-feather="mail" class="w-4 h-4"></i></a>
+                                        <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-2 rounded-lg bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-colors" title="Instagram"><i data-feather="instagram" class="w-4 h-4"></i></a>
+                                        <a href="https://wa.me/6287716440922" target="_blank" class="p-2 rounded-lg bg-cyber-900 hover:bg-emerald-400 hover:text-cyber-950 text-slate-300 transition-colors" title="WhatsApp"><i data-feather="phone" class="w-4 h-4"></i></a>
+                                        <a href="mailto:khalid.syabani@gmail.com" class="p-2 rounded-lg bg-cyber-900 hover:bg-neon-cyan hover:text-cyber-950 text-slate-300 transition-colors" title="Email"><i data-feather="mail" class="w-4 h-4"></i></a>
                                     </div>
                                 </div>
 
@@ -352,77 +333,77 @@
         </section>
 
         <!-- About Bento Grid Section -->
-        <section id="about" class="py-24 relative border-t border-white/5">
+        <section id="about" class="py-24 relative border-t border-cyan-500/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                    <span class="text-xs font-mono font-semibold tracking-widest text-cyanGlow-400 uppercase">Tentang Saya</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Profil & Biodata Pribadi</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Mengenal latar belakang, passion, dan data singkat Muhammad Khalid.</p>
+                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Profil & Biodata</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Eksplorasi Teknologi & Karakter</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Mengenal lebih dekat identitas dan latar belakang Muhammad Khalid.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     
-                    <div class="md:col-span-2 lg:col-span-2 p-8 rounded-3xl glass-card border border-white/10 flex flex-col justify-between space-y-6 hover:border-cyanGlow-400/40 transition-all duration-300">
+                    <div class="md:col-span-2 lg:col-span-2 p-8 rounded-3xl glass-hd border border-white/10 flex flex-col justify-between space-y-6 hover:border-neon-cyan/50 transition-all duration-300">
                         <div class="space-y-4">
-                            <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 border border-cyanGlow-400/30 flex items-center justify-center text-cyanGlow-400">
-                                <i data-feather="user" class="w-6 h-6"></i>
+                            <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan">
+                                <i data-feather="cpu" class="w-6 h-6"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-white">Eksplorasi Tanpa Batas di Dunia Teknologi</h3>
+                            <h3 class="text-2xl font-bold text-white">Inovasi Berbasis Performa & Estetika</h3>
                             <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-                                Halo! Saya <strong class="text-white font-semibold">Muhammad Khalid Asy Sya'bani</strong>, lahir di Jakarta pada tanggal 6 Agustus 2006. Memiliki ketertarikan mendalam dalam rekayasa perangkat lunak, pengembangan web, dan penciptaan produk digital yang estetik dan intuitif.
+                                Halo! Saya <strong class="text-white font-semibold">Muhammad Khalid Asy Sya'bani</strong>, lahir di Jakarta, 6 Agustus 2006. Berfokus pada pengembangan sistem web modern, rekayasa perangkat lunak interaktif, dan implementasi visual beresolusi tinggi.
                             </p>
                         </div>
                         <div class="pt-4 border-t border-white/10 flex flex-wrap gap-2">
-                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyanGlow-400/10 border border-cyanGlow-400/30 text-cyanGlow-300">#JakartaNative</span>
-                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyanGlow-400/10 border border-cyanGlow-400/30 text-cyanGlow-300">#TechEnthusiast</span>
-                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyanGlow-400/10 border border-cyanGlow-400/30 text-cyanGlow-300">#ProblemSolver</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan">#JakartaTech</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan">#HighDefinition</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan">#SoftwareEngineer</span>
                         </div>
                     </div>
 
-                    <div class="p-8 rounded-3xl glass-card border border-white/10 flex flex-col justify-between hover:border-cyanGlow-400/40 transition-all duration-300 group">
-                        <div class="w-10 h-10 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <div class="p-8 rounded-3xl glass-hd border border-white/10 flex flex-col justify-between hover:border-neon-cyan/50 transition-all duration-300 group">
+                        <div class="w-10 h-10 rounded-xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                             <i data-feather="calendar" class="w-5 h-5"></i>
                         </div>
                         <div>
                             <div class="text-xs text-slate-400 font-mono uppercase">Tanggal Lahir</div>
                             <div class="text-xl font-bold text-white mt-1">6 Agustus 2006</div>
-                            <div class="text-xs text-cyanGlow-400 mt-1 font-mono">Jakarta, Indonesia</div>
+                            <div class="text-xs text-neon-cyan mt-1 font-mono">Jakarta, Indonesia</div>
                         </div>
                     </div>
 
-                    <div class="p-8 rounded-3xl glass-card border border-white/10 flex flex-col justify-between hover:border-cyanGlow-400/40 transition-all duration-300 group">
+                    <div class="p-8 rounded-3xl glass-hd border border-white/10 flex flex-col justify-between hover:border-emerald-400/50 transition-all duration-300 group">
                         <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                             <i data-feather="phone-call" class="w-5 h-5"></i>
                         </div>
                         <div>
                             <div class="text-xs text-slate-400 font-mono uppercase">WhatsApp Direct</div>
-                            <div class="text-lg font-bold text-white mt-1">087716440922</div>
-                            <a href="https://wa.me/6287716440922" target="_blank" class="text-xs text-emerald-400 hover:underline mt-1 inline-block font-mono">Chat Langsung →</a>
+                            <div class="text-lg font-bold text-white mt-1 font-mono">087716440922</div>
+                            <a href="https://wa.me/6287716440922" target="_blank" class="text-xs text-emerald-400 hover:underline mt-1 inline-block font-mono">Hubungkan →</a>
                         </div>
                     </div>
 
-                    <div class="md:col-span-2 p-8 rounded-3xl glass-card border border-white/10 flex items-center justify-between hover:border-cyanGlow-400/40 transition-all duration-300">
+                    <div class="md:col-span-2 p-8 rounded-3xl glass-hd border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all duration-300">
                         <div class="space-y-2">
                             <div class="flex items-center space-x-2 text-pink-400">
                                 <i data-feather="instagram" class="w-5 h-5"></i>
                                 <span class="text-xs font-mono uppercase text-slate-400">Instagram Official</span>
                             </div>
-                            <h4 class="font-bold text-white text-xl">@khalied.syaa</h4>
-                            <p class="text-slate-400 text-xs">Ikuti aktivitas, kreativitas, dan update perjalanan saya.</p>
+                            <h4 class="font-bold text-white text-xl font-mono">@khalied.syaa</h4>
+                            <p class="text-slate-400 text-xs">Jejak aktivitas digital dan portofolio visual harian.</p>
                         </div>
                         <a href="https://instagram.com/khalied.syaa" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-xs shadow-lg hover:scale-105 transition-transform shrink-0">
-                            Kunjungi IG
+                            Buka IG
                         </a>
                     </div>
 
-                    <div class="md:col-span-1 lg:col-span-2 p-8 rounded-3xl glass-card border border-white/10 flex items-center space-x-6 hover:border-cyanGlow-400/40 transition-all duration-300">
-                        <div class="p-4 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 hidden sm:block">
-                            <i data-feather="award" class="w-8 h-8"></i>
+                    <div class="md:col-span-1 lg:col-span-2 p-8 rounded-3xl glass-hd border border-white/10 flex items-center space-x-6 hover:border-neon-cyan/50 transition-all duration-300">
+                        <div class="p-4 rounded-2xl bg-neon-cyan/10 text-neon-cyan hidden sm:block">
+                            <i data-feather="shield" class="w-8 h-8"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white text-lg">Komitmen Kualitas & Hasil</h4>
-                            <p class="text-slate-400 text-xs sm:text-sm mt-1">Mengutamakan kode yang rapi, arsitektur kokoh, serta tampilan visual modern.</p>
+                            <h4 class="font-bold text-white text-lg">Standar HD & Keamanan</h4>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-1">Mengutamakan optimalisasi kecepatan muat, struktur bersih, dan tampilan tajam.</p>
                         </div>
                     </div>
 
@@ -430,59 +411,59 @@
             </div>
         </section>
 
-        <!-- Skills & Tech Stack Section -->
-        <section id="skills" class="py-24 relative bg-navy-900/40 border-t border-white/5">
+        <!-- Tech Stack Section -->
+        <section id="skills" class="py-24 relative bg-cyber-900/50 border-t border-cyan-500/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                    <span class="text-xs font-mono font-semibold tracking-widest text-cyanGlow-400 uppercase">Keahlian & Kemampuan</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Tech Stack & Spesialisasi</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Penguasaan teknologi dan alat pendukung karya digital.</p>
+                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Keahlian & Stack</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Teknologi & Perangkat HD</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Spesifikasi teknis dan perangkat yang digunakan dalam membangun karya.</p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     
-                    <div class="p-6 rounded-3xl glass-card border border-white/10 hover:border-cyanGlow-400/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center">
+                    <div class="p-6 rounded-3xl glass-hd border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
                             <i data-feather="code" class="w-6 h-6"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">Web Development</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">HTML5, CSS3, JavaScript (ES6+), Tailwind CSS, React basics.</p>
-                        <div class="w-full h-1.5 bg-navy-950 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 rounded-full" style="width: 90%"></div>
+                        <h3 class="text-lg font-bold text-white">Web Architecture</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">HTML5, Advanced CSS3, JavaScript (ES6+), Tailwind CSS HD Framework.</p>
+                        <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 92%"></div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-3xl glass-card border border-white/10 hover:border-cyanGlow-400/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center">
+                    <div class="p-6 rounded-3xl glass-hd border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
                             <i data-feather="cpu" class="w-6 h-6"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">Programming Logic</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Algoritma dasar, pemecahan masalah logis, dan manipulasi data.</p>
-                        <div class="w-full h-1.5 bg-navy-950 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 rounded-full" style="width: 85%"></div>
+                        <h3 class="text-lg font-bold text-white">System Logic</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">Algoritma terstruktur, pemecahan masalah kompleks, optimasi performa skrip.</p>
+                        <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 88%"></div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-3xl glass-card border border-white/10 hover:border-cyanGlow-400/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center">
+                    <div class="p-6 rounded-3xl glass-hd border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
                             <i data-feather="layout" class="w-6 h-6"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">UI/UX & Visual Design</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Glassmorphism, Responsive Grid, Wireframing, Figma prototyping.</p>
-                        <div class="w-full h-1.5 bg-navy-950 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 rounded-full" style="width: 88%"></div>
+                        <h3 class="text-lg font-bold text-white">UI/UX High-Def</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">Glassmorphism, Cyber-Grid Layouts, Prototyping interaktif via Figma.</p>
+                        <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 90%"></div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-3xl glass-card border border-white/10 hover:border-cyanGlow-400/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
-                        <div class="w-12 h-12 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center">
+                    <div class="p-6 rounded-3xl glass-hd border border-white/10 hover:border-neon-cyan/60 hover:-translate-y-1 transition-all duration-300 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center">
                             <i data-feather="terminal" class="w-6 h-6"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white">Tools & Workflow</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">Git, GitHub, VS Code, Vercel Deployment, Command Line.</p>
-                        <div class="w-full h-1.5 bg-navy-950 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 rounded-full" style="width: 82%"></div>
+                        <h3 class="text-lg font-bold text-white">Dev Tools & Git</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">Git version control, GitHub workflows, VS Code, Cloud Deployment.</p>
+                        <div class="w-full h-1.5 bg-cyber-950 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-neon-cyan to-neon-blue rounded-full" style="width: 85%"></div>
                         </div>
                     </div>
 
@@ -491,80 +472,80 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="portfolio" class="py-24 relative border-t border-white/5">
+        <section id="portfolio" class="py-24 relative border-t border-cyan-500/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
-                    <span class="text-xs font-mono font-semibold tracking-widest text-cyanGlow-400 uppercase">Portofolio Karya</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Proyek & Eksperimen Digital</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Koleksi karya eksplorasi teknologi milik Muhammad Khalid.</p>
+                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Portofolio Karya</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Proyek & Sistem Digital HD</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Kumpulan eksplorasi teknologi dan antarmuka buatan Muhammad Khalid.</p>
                 </div>
 
                 <div class="flex justify-center space-x-2 sm:space-x-4 mb-12 overflow-x-auto pb-2">
-                    <button class="filter-btn active px-5 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 text-navy-950 shadow-glow-cyan transition-all" data-filter="all">Semua Proyek</button>
-                    <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-card text-slate-300 hover:text-white hover:border-cyanGlow-400/50 transition-all" data-filter="web">Web App</button>
-                    <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-card text-slate-300 hover:text-white hover:border-cyanGlow-400/50 transition-all" data-filter="design">UI/UX Design</button>
+                    <button class="filter-btn active px-5 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-neon-cyan to-neon-blue text-cyber-950 shadow-hd-glow transition-all" data-filter="all">Semua Proyek</button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-hd text-slate-300 hover:text-white hover:border-neon-cyan/50 transition-all" data-filter="web">Web App</button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold glass-hd text-slate-300 hover:text-white hover:border-neon-cyan/50 transition-all" data-filter="design">UI/UX Design</button>
                 </div>
 
                 <!-- Projects Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <div class="project-card group rounded-3xl glass-card border border-white/10 p-6 space-y-4 hover:border-cyanGlow-400/60 transition-all duration-500" data-category="web">
+                    <div class="project-card group rounded-3xl glass-hd border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="web">
                         <div class="flex justify-between items-center text-xs font-mono">
-                            <span class="text-cyanGlow-400 font-semibold">Web App</span>
+                            <span class="text-neon-cyan font-semibold">Web App HD</span>
                             <span class="text-slate-400">2026</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Cyber Dashboard Interface</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">
-                            Dashboard interaktif berkecepatan tinggi dengan elemen visual futuristik.
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Cyber Dashboard Interface</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">
+                            Dashboard interaktif berkecepatan tinggi dengan elemen visual futuristik dan responsif.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Tailwind</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Tailwind HD</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
                         </div>
                         <div class="pt-2">
-                            <button onclick="openModal('Cyber Dashboard Interface', 'Platform antarmuka analitik waktu-nyata berbasiskan tema neon cyandark dengan visualisasi interaktif.', 'HTML5, Tailwind CSS, JavaScript')" class="w-full px-4 py-2.5 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 border border-cyanGlow-400/30 hover:bg-cyanGlow-400 hover:text-navy-950 font-bold text-xs transition-all flex items-center justify-center">
-                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
+                            <button onclick="openModal('Cyber Dashboard Interface', 'Platform antarmuka analitik waktu-nyata berbasiskan tema neon cyandark dengan visualisasi interaktif beresolusi tinggi.', 'HTML5, Tailwind CSS, JavaScript')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
                             </button>
                         </div>
                     </div>
 
-                    <div class="project-card group rounded-3xl glass-card border border-white/10 p-6 space-y-4 hover:border-cyanGlow-400/60 transition-all duration-500" data-category="design">
+                    <div class="project-card group rounded-3xl glass-hd border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="design">
                         <div class="flex justify-between items-center text-xs font-mono">
-                            <span class="text-cyanGlow-400 font-semibold">UI/UX Design</span>
+                            <span class="text-neon-cyan font-semibold">UI/UX Design</span>
                             <span class="text-slate-400">2026</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Glassmorphism Personal Brand</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">
-                            Perancangan antarmuka pengguna ultra-modern dengan pencahayaan ambient.
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Glassmorphism Personal Brand</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">
+                            Perancangan antarmuka pengguna ultra-modern dengan efek kaca buram dan pencahayaan ambient.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Figma</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Glassmorphism</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Figma HD</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Glassmorphism</span>
                         </div>
                         <div class="pt-2">
-                            <button onclick="openModal('Glassmorphism Personal Brand', 'Eksplorasi konsep sistem desain antarmuka kaca buram (frosted glass) untuk profil digital.', 'Figma, UI/UX, Design System')" class="w-full px-4 py-2.5 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 border border-cyanGlow-400/30 hover:bg-cyanGlow-400 hover:text-navy-950 font-bold text-xs transition-all flex items-center justify-center">
-                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
+                            <button onclick="openModal('Glassmorphism Personal Brand', 'Eksplorasi konsep sistem desain antarmuka kaca buram beresolusi tinggi untuk profil digital profesional.', 'Figma, UI/UX, Design System')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
                             </button>
                         </div>
                     </div>
 
-                    <div class="project-card group rounded-3xl glass-card border border-white/10 p-6 space-y-4 hover:border-cyanGlow-400/60 transition-all duration-500" data-category="web">
+                    <div class="project-card group rounded-3xl glass-hd border border-white/10 p-6 space-y-4 hover:border-neon-cyan/60 transition-all duration-500" data-category="web">
                         <div class="flex justify-between items-center text-xs font-mono">
-                            <span class="text-cyanGlow-400 font-semibold">Web App</span>
+                            <span class="text-neon-cyan font-semibold">Web App HD</span>
                             <span class="text-slate-400">2025</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-cyanGlow-300 transition-colors">Smart Task Manager</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed">
-                            Aplikasi peningkat produktivitas harian dengan fungsionalitas mulus.
+                        <h3 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Smart Task Manager</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed font-light">
+                            Aplikasi peningkat produktivitas harian dengan fungsionalitas mulus dan penyimpanan lokal.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">Web Storage</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-navy-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">Web Storage</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-cyber-950 text-slate-300 font-mono text-[10px] border border-white/5">JavaScript</span>
                         </div>
                         <div class="pt-2">
-                            <button onclick="openModal('Smart Task Manager', 'Aplikasi manajemen tugas produktivitas harian dengan dukungan penyimpanan lokal dan filter kustom.', 'JavaScript, HTML5, CSS Grid')" class="w-full px-4 py-2.5 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 border border-cyanGlow-400/30 hover:bg-cyanGlow-400 hover:text-navy-950 font-bold text-xs transition-all flex items-center justify-center">
-                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Proyek
+                            <button onclick="openModal('Smart Task Manager', 'Aplikasi manajemen tugas produktivitas harian dengan dukungan penyimpanan lokal dan filter kustom berbasis web.', 'JavaScript, HTML5, CSS Grid')" class="w-full px-4 py-2.5 rounded-xl bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan hover:text-cyber-950 font-bold text-xs transition-all flex items-center justify-center">
+                                <i data-feather="eye" class="w-3.5 h-3.5 mr-1.5"></i> Detail Sistem
                             </button>
                         </div>
                     </div>
@@ -573,23 +554,23 @@
             </div>
         </section>
 
-        <!-- Personal Photo & Music Section -->
-        <section id="gallery" class="py-24 relative bg-navy-900/40 border-t border-white/5">
+        <!-- Gallery & Music Section -->
+        <section id="gallery" class="py-24 relative bg-cyber-900/50 border-t border-cyan-500/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
-                    <span class="text-xs font-mono font-semibold tracking-widest text-cyanGlow-400 uppercase">Momen & Cerita</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Galeri Saya</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Kumpulan foto dan momen pilihan dalam perjalanan saya.</p>
+                    <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Galeri & Media</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Galeri & Audio Latar</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Kumpulan dokumentasi foto dan pemutar audio bertema teknologi.</p>
                 </div>
 
-                <div class="max-w-2xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl glass-card border border-cyanGlow-400/20">
+                <div class="max-w-2xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl glass-hd border border-neon-cyan/30">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-5">
-                        <div class="w-14 h-14 rounded-2xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center shrink-0">
+                        <div class="w-14 h-14 rounded-2xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center shrink-0">
                             <i data-feather="music" class="w-7 h-7"></i>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-lg font-bold text-white">Musik Pilihan</h3>
-                            <p class="text-sm text-slate-400">Putar atau jeda musik latar.</p>
+                            <h3 class="text-lg font-bold text-white">Audio Stream HD</h3>
+                            <p class="text-sm text-slate-400 font-light">Putar atau jeda musik latar digital.</p>
                             <audio id="portfolioMusic" controls autoplay loop preload="auto" class="w-full mt-3">
                                 <source src="musik.mp3" type="audio/mpeg">
                                 Browser Anda tidak mendukung pemutar audio.
@@ -600,19 +581,19 @@
 
                 <!-- Galeri Foto -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya1.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya1.jpg')">
                         <img src="saya1.jpg" alt="Foto saya 1" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya2.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya2.jpg')">
                         <img src="saya2.jpg" alt="Foto saya 2" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya3.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya3.jpg')">
                         <img src="saya3.jpg" alt="Foto saya 3" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya4.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya4.jpg')">
                         <img src="saya4.jpg" alt="Foto saya 4" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
-                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-card border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyanGlow-400" onclick="openPhoto('saya5.jpg')">
+                    <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-hd border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya5.jpg')">
                         <img src="saya5.jpg" alt="Foto saya 5" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
                 </div>
@@ -621,63 +602,63 @@
 
         <!-- Photo Lightbox -->
         <div id="photoModal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md" onclick="closePhoto()">
-            <button type="button" class="absolute top-5 right-5 p-3 rounded-xl glass-card text-white" aria-label="Tutup foto" onclick="closePhoto()">
+            <button type="button" class="absolute top-5 right-5 p-3 rounded-xl glass-hd text-white" aria-label="Tutup foto" onclick="closePhoto()">
                 <i data-feather="x" class="w-6 h-6"></i>
             </button>
-            <img id="photoModalImage" src="" alt="Foto galeri ukuran besar" class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl" onclick="event.stopPropagation()">
+            <img id="photoModalImage" src="" alt="Foto galeri ukuran besar" class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl border border-neon-cyan/40" onclick="event.stopPropagation()">
         </div>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-24 relative border-t border-white/5">
+        <section id="contact" class="py-24 relative border-t border-cyan-500/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                     
                     <div class="lg:col-span-5 space-y-6">
                         <div class="space-y-3">
-                            <span class="text-xs font-mono font-semibold tracking-widest text-cyanGlow-400 uppercase">Hubungi Saya</span>
-                            <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">Mari Berkomunikasi</h2>
+                            <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Hubungi Sistem</span>
+                            <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">Inisiasi Komunikasi</h2>
                             <p class="text-slate-400 text-sm leading-relaxed font-light">
-                                Punya ide menarik, penawaran kolaborasi, atau sekadar ingin menyapa? Klik opsi kontak langsung di bawah ini.
+                                Punya proyek teknologi, tawaran kolaborasi, atau ingin berdiskusi? Gunakan saluran komunikasi langsung di bawah ini.
                             </p>
                         </div>
 
                         <div class="space-y-4">
                             
-                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="p-5 rounded-2xl glass-card border border-white/10 flex items-center justify-between hover:border-emerald-400/50 transition-all group">
+                            <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20berdiskusi..." target="_blank" class="p-5 rounded-2xl glass-hd border border-white/10 flex items-center justify-between hover:border-emerald-400/50 transition-all group">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
                                         <i data-feather="phone" class="w-5 h-5"></i>
                                     </div>
                                     <div>
-                                        <div class="text-[10px] font-mono text-slate-400 uppercase">WhatsApp Chat</div>
-                                        <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">087716440922</div>
+                                        <div class="text-[10px] font-mono text-slate-400 uppercase">WhatsApp Direct</div>
+                                        <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors font-mono">087716440922</div>
                                     </div>
                                 </div>
                                 <span class="text-xs font-bold text-emerald-400 font-mono">Kirim WA →</span>
                             </a>
 
-                            <div class="p-5 rounded-2xl glass-card border border-white/10 flex items-center justify-between hover:border-cyanGlow-400/50 transition-all cursor-pointer group" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Alamat email berhasil disalin!')">
+                            <div class="p-5 rounded-2xl glass-hd border border-white/10 flex items-center justify-between hover:border-neon-cyan/50 transition-all cursor-pointer group" onclick="copyToClipboard('khalid.syabani@gmail.com', 'Alamat email berhasil disalin!')">
                                 <div class="flex items-center space-x-4">
-                                    <div class="w-12 h-12 rounded-xl bg-cyanGlow-400/10 text-cyanGlow-400 flex items-center justify-center shrink-0">
+                                    <div class="w-12 h-12 rounded-xl bg-neon-cyan/10 text-neon-cyan flex items-center justify-center shrink-0">
                                         <i data-feather="mail" class="w-5 h-5"></i>
                                     </div>
                                     <div>
                                         <div class="text-[10px] font-mono text-slate-400 uppercase">Email Resmi</div>
-                                        <div class="text-sm font-bold text-white group-hover:text-cyanGlow-400 transition-colors">khalid.syabani@gmail.com</div>
+                                        <div class="text-sm font-bold text-white group-hover:text-neon-cyan transition-colors font-mono">khalid.syabani@gmail.com</div>
                                     </div>
                                 </div>
-                                <span class="text-xs font-bold text-cyanGlow-400 font-mono">Salin 📋</span>
+                                <span class="text-xs font-bold text-neon-cyan font-mono">Salin 📋</span>
                             </div>
 
-                            <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-5 rounded-2xl glass-card border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all group">
+                            <a href="https://instagram.com/khalied.syaa" target="_blank" class="p-5 rounded-2xl glass-hd border border-white/10 flex items-center justify-between hover:border-pink-500/50 transition-all group">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center shrink-0">
                                         <i data-feather="instagram" class="w-5 h-5"></i>
                                     </div>
                                     <div>
                                         <div class="text-[10px] font-mono text-slate-400 uppercase">Instagram Profil</div>
-                                        <div class="text-sm font-bold text-white group-hover:text-pink-400 transition-colors">@khalied.syaa</div>
+                                        <div class="text-sm font-bold text-white group-hover:text-pink-400 transition-colors font-mono">@khalied.syaa</div>
                                     </div>
                                 </div>
                                 <span class="text-xs font-bold text-pink-400 font-mono">Follow →</span>
@@ -687,29 +668,29 @@
                     </div>
 
                     <div class="lg:col-span-7">
-                        <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="p-8 sm:p-10 rounded-3xl glass-card border border-white/10 space-y-6 shadow-2xl">
-                            <h3 class="text-xl font-bold text-white mb-2">Kirim Pesan Langsung</h3>
+                        <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="p-8 sm:p-10 rounded-3xl glass-hd border border-cyan-500/30 space-y-6 shadow-2xl">
+                            <h3 class="text-xl font-bold text-white mb-2">Kirim Pesan Sistem</h3>
                             
                             <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div class="space-y-2">
                                     <label for="name" class="block text-xs font-mono font-semibold text-slate-300 uppercase">Nama Anda</label>
-                                    <input type="text" id="name" name="name" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all" placeholder="Nama Lengkap">
+                                    <input type="text" id="name" name="name" required class="w-full px-5 py-3.5 rounded-2xl bg-cyber-950/90 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan text-sm transition-all" placeholder="Nama Lengkap">
                                 </div>
                                 <div class="space-y-2">
                                     <label for="email" class="block text-xs font-mono font-semibold text-slate-300 uppercase">Email Anda</label>
-                                    <input type="email" id="email" name="email" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all" placeholder="email@domain.com">
+                                    <input type="email" id="email" name="email" required class="w-full px-5 py-3.5 rounded-2xl bg-cyber-950/90 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan text-sm transition-all" placeholder="email@domain.com">
                                 </div>
                             </div>
 
                             <div class="space-y-2">
                                 <label for="message" class="block text-xs font-mono font-semibold text-slate-300 uppercase">Isi Pesan</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-5 py-3.5 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyanGlow-400 focus:ring-1 focus:ring-cyanGlow-400 text-sm transition-all resize-none" placeholder="Tuliskan ide, tawaran, atau pertanyaan Anda di sini..."></textarea>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-5 py-3.5 rounded-2xl bg-cyber-950/90 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan text-sm transition-all resize-none" placeholder="Tuliskan detail proyek atau pesan Anda di sini..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-cyanGlow-400 to-cyanGlow-300 hover:from-cyanGlow-300 hover:to-cyanGlow-400 text-navy-950 font-bold text-sm shadow-glow-cyan transition-all duration-300 hover:scale-[1.01] flex items-center justify-center space-x-2">
-                                <span>Kirimkan Pesan</span>
+                            <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-neon-cyan to-neon-blue hover:from-neon-blue hover:to-neon-cyan text-cyber-950 font-extrabold text-sm shadow-hd-glow transition-all duration-300 hover:scale-[1.01] flex items-center justify-center space-x-2">
+                                <span>Kirimkan Pesan HD</span>
                                 <i data-feather="send" class="w-4 h-4"></i>
                             </button>
                         </form>
@@ -722,53 +703,53 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-navy-950 border-t border-white/10 py-10 relative z-10 text-slate-400 text-xs font-mono">
+    <footer class="bg-cyber-950 border-t border-cyan-500/20 py-10 relative z-10 text-slate-400 text-xs font-mono">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-2">
                 <img src="logo-mka.png" alt="Logo MKA" class="w-7 h-7 object-contain">
-                <span>&copy; 2026 Muhammad Khalid Asy Sya'bani. All Rights Reserved.</span>
+                <span>&copy; 2026 Muhammad Khalid Asy Sya'bani. HD Tech Systems. All Rights Reserved.</span>
             </div>
-            <div class="flex items-center space-x-4 text-slate-400">
+            <div class="flex items-center space-x-4 text-neon-cyan">
                 <span>Jakarta, Indonesia</span>
                 <span>•</span>
-                <span>Deep Royal Navy & Cosmic Space</span>
+                <span>High-Definition Cyber Core</span>
             </div>
         </div>
     </footer>
 
     <!-- Interactive Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm w-full p-4 rounded-2xl glass-card border border-cyanGlow-400/40 shadow-2xl flex items-start space-x-3 pointer-events-none">
-        <div class="p-2 rounded-xl bg-cyanGlow-400/20 text-cyanGlow-400 shrink-0">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm w-full p-4 rounded-2xl glass-hd border border-neon-cyan/40 shadow-2xl flex items-start space-x-3 pointer-events-none">
+        <div class="p-2 rounded-xl bg-neon-cyan/20 text-neon-cyan shrink-0">
             <i data-feather="check-circle" class="w-5 h-5"></i>
         </div>
         <div>
-            <h5 class="text-sm font-bold text-white" id="toastTitle">Berhasil!</h5>
-            <p class="text-xs text-slate-300 mt-0.5" id="toastMessage">Pesan Anda telah diterima.</p>
+            <h5 class="text-sm font-bold text-white font-mono" id="toastTitle">Berhasil!</h5>
+            <p class="text-xs text-slate-300 mt-0.5" id="toastMessage">Sistem merespons dengan baik.</p>
         </div>
     </div>
 
     <!-- Project Detail Modal Popup -->
-    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-navy-950/80 backdrop-blur-md">
-        <div class="relative w-full max-w-lg rounded-3xl glass-card border border-white/20 p-8 space-y-6 shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white p-2 rounded-xl glass-card">
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-cyber-950/80 backdrop-blur-md">
+        <div class="relative w-full max-w-lg rounded-3xl glass-hd border border-cyan-500/40 p-8 space-y-6 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white p-2 rounded-xl glass-hd">
                 <i data-feather="x" class="w-5 h-5"></i>
             </button>
 
             <div class="space-y-2">
-                <span id="modalTech" class="text-xs font-mono text-cyanGlow-400">Stack Tech</span>
+                <span id="modalTech" class="text-xs font-mono text-neon-cyan">Stack Tech</span>
                 <h3 id="modalTitle" class="text-2xl font-bold text-white">Judul Proyek</h3>
             </div>
 
-            <p id="modalDesc" class="text-slate-300 text-sm leading-relaxed font-light">Deskripsi lengkap proyek akan muncul di sini.</p>
+            <p id="modalDesc" class="text-slate-300 text-sm leading-relaxed font-light">Deskripsi lengkap sistem akan muncul di sini.</p>
 
             <div class="pt-4 border-t border-white/10 flex justify-end space-x-3">
-                <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl glass-card text-xs font-bold text-slate-300 hover:text-white">Tutup</button>
-                <a href="https://wa.me/6287716440922" target="_blank" onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-cyanGlow-400 text-navy-950 font-bold text-xs shadow-glow-cyan">Diskusi via WhatsApp</a>
+                <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl glass-hd text-xs font-bold text-slate-300 hover:text-white">Tutup</button>
+                <a href="https://wa.me/6287716440922" target="_blank" onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-neon-cyan text-cyber-950 font-bold text-xs shadow-hd-glow">Diskusi via WhatsApp</a>
             </div>
         </div>
     </div>
 
-    <!-- Interactive Canvas 3D Space & Planets Script -->
+    <!-- Interactive Canvas HD Tech Script -->
     <script>
         const canvas = document.getElementById('spaceCanvas');
         const ctx = canvas.getContext('2d');
@@ -786,160 +767,160 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // Stars setup
-        const stars = [];
-        const starCount = 120;
-        for (let i = 0; i < starCount; i++) {
-            stars.push({
+        // HD Tech Particle Grid setup
+        const particles = [];
+        const particleCount = 100;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5 + 0.5,
+                radius: Math.random() * 1.8 + 0.5,
                 alpha: Math.random(),
-                speed: Math.random() * 0.02 + 0.005
+                speed: Math.random() * 0.025 + 0.008
             });
         }
 
-        // 3D Planets setup
-        const planets = [
+        // Cyber Orbs 3D setup
+        const orbs = [
             {
-                name: "Cyan Giant",
-                radius: 42,
-                distance: 280,
+                name: "Neon Cyan Core",
+                radius: 40,
+                distance: 260,
                 angle: 0,
-                speed: 0.004,
-                color1: "#00f2fe",
-                color2: "#0072ff",
+                speed: 0.005,
+                color1: "#00F0FF",
+                color2: "#3B82F6",
                 hasRing: true,
-                ringRadius: 65
+                ringRadius: 62
             },
             {
-                name: "Gold Orb",
-                radius: 26,
-                distance: 180,
+                name: "Quantum Orb",
+                radius: 24,
+                distance: 170,
                 angle: Math.PI / 2,
-                speed: 0.007,
-                color1: "#fbbf24",
-                color2: "#d97706",
+                speed: 0.008,
+                color1: "#A855F7",
+                color2: "#3B82F6",
                 hasRing: false
             },
             {
-                name: "Purple Gas",
-                radius: 34,
-                distance: 380,
+                name: "Hyper Blue",
+                radius: 32,
+                distance: 350,
                 angle: Math.PI,
-                speed: 0.003,
-                color1: "#a855f7",
-                color2: "#6366f1",
+                speed: 0.0035,
+                color1: "#38BDF8",
+                color2: "#1D4ED8",
                 hasRing: true,
-                ringRadius: 52
+                ringRadius: 48
             }
         ];
 
-        // Comets
-        let comets = [];
+        // Data Comets / Streams
+        let streams = [];
         function spawnComet() {
-            comets.push({
+            streams.push({
                 x: Math.random() * canvas.width * 0.8,
                 y: 0,
-                length: Math.random() * 80 + 50,
-                speedX: Math.random() * 6 + 4,
-                speedY: Math.random() * 6 + 4,
+                length: Math.random() * 90 + 60,
+                speedX: Math.random() * 7 + 5,
+                speedY: Math.random() * 7 + 5,
                 alpha: 1
             });
         }
 
         setInterval(() => {
-            if (Math.random() < 0.4) spawnComet();
-        }, 4000);
+            if (Math.random() < 0.5) spawnComet();
+        }, 3500);
 
-        function animateSpace() {
+        function animateHDTech() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Draw Twinkling Stars
-            stars.forEach(star => {
-                star.alpha += star.speed;
-                if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
+            // 1. Draw HD Particles / Stars
+            particles.forEach(p => {
+                p.alpha += p.speed;
+                if (p.alpha > 1 || p.alpha < 0) p.speed = -p.speed;
 
                 ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.alpha)})`;
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 240, 255, ${Math.abs(p.alpha)})`;
                 ctx.fill();
             });
 
-            // Center Space Origin
+            // Center Origin
             const centerX = canvas.width * 0.85;
             const centerY = canvas.height * 0.35;
 
-            // 2. Draw Planets & Rings
-            planets.forEach(planet => {
-                planet.angle += planet.speed * speedMultiplier;
+            // 2. Draw Cyber Orbs & Rings
+            orbs.forEach(orb => {
+                orb.angle += orb.speed * speedMultiplier;
 
-                const x = centerX + Math.cos(planet.angle) * planet.distance;
-                const y = centerY + Math.sin(planet.angle) * (planet.distance * 0.4);
+                const x = centerX + Math.cos(orb.angle) * orb.distance;
+                const y = centerY + Math.sin(orb.angle) * (orb.distance * 0.4);
 
-                // Planet Shadow / Back Glow
+                // Orb Glow
                 ctx.beginPath();
-                ctx.arc(x, y, planet.radius + 8, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 242, 254, 0.05)`;
+                ctx.arc(x, y, orb.radius + 10, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 240, 255, 0.06)`;
                 ctx.fill();
 
-                // Ring (behind planet)
-                if (planet.hasRing) {
+                // Ring
+                if (orb.hasRing) {
                     ctx.save();
                     ctx.beginPath();
-                    ctx.ellipse(x, y, planet.ringRadius, planet.ringRadius * 0.25, Math.PI / 6, 0, Math.PI * 2);
-                    ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
-                    ctx.lineWidth = 3;
+                    ctx.ellipse(x, y, orb.ringRadius, orb.ringRadius * 0.28, Math.PI / 6, 0, Math.PI * 2);
+                    ctx.strokeStyle = "rgba(0, 240, 255, 0.3)";
+                    ctx.lineWidth = 2.5;
                     ctx.stroke();
                     ctx.restore();
                 }
 
-                // Planet Sphere Gradient
+                // Orb Gradient
                 const grad = ctx.createRadialGradient(
-                    x - planet.radius * 0.3,
-                    y - planet.radius * 0.3,
-                    planet.radius * 0.1,
-                    x, y, planet.radius
+                    x - orb.radius * 0.3,
+                    y - orb.radius * 0.3,
+                    orb.radius * 0.1,
+                    x, y, orb.radius
                 );
-                grad.addColorStop(0, planet.color1);
-                grad.addColorStop(1, planet.color2);
+                grad.addColorStop(0, orb.color1);
+                grad.addColorStop(1, orb.color2);
 
                 ctx.beginPath();
-                ctx.arc(x, y, planet.radius, 0, Math.PI * 2);
+                ctx.arc(x, y, orb.radius, 0, Math.PI * 2);
                 ctx.fillStyle = grad;
                 ctx.fill();
             });
 
-            // 3. Draw Comets
-            comets.forEach((comet, index) => {
-                comet.x += comet.speedX;
-                comet.y += comet.speedY;
-                comet.alpha -= 0.01;
+            // 3. Draw Data Streams
+            streams.forEach((stream, index) => {
+                stream.x += stream.speedX;
+                stream.y += stream.speedY;
+                stream.alpha -= 0.012;
 
-                if (comet.alpha <= 0) {
-                    comets.splice(index, 1);
+                if (stream.alpha <= 0) {
+                    streams.splice(index, 1);
                     return;
                 }
 
-                const tailX = comet.x - comet.length;
-                const tailY = comet.y - (comet.length * (comet.speedY / comet.speedX));
+                const tailX = stream.x - stream.length;
+                const tailY = stream.y - (stream.length * (stream.speedY / stream.speedX));
 
-                const grad = ctx.createLinearGradient(comet.x, comet.y, tailX, tailY);
-                grad.addColorStop(0, `rgba(56, 189, 248, ${comet.alpha})`);
-                grad.addColorStop(1, `rgba(56, 189, 248, 0)`);
+                const grad = ctx.createLinearGradient(stream.x, stream.y, tailX, tailY);
+                grad.addColorStop(0, `rgba(0, 240, 255, ${stream.alpha})`);
+                grad.addColorStop(1, `rgba(0, 240, 255, 0)`);
 
                 ctx.beginPath();
-                ctx.moveTo(comet.x, comet.y);
+                ctx.moveTo(stream.x, stream.y);
                 ctx.lineTo(tailX, tailY);
                 ctx.strokeStyle = grad;
                 ctx.lineWidth = 2;
                 ctx.stroke();
             });
 
-            requestAnimationFrame(animateSpace);
+            requestAnimationFrame(animateHDTech);
         }
 
-        animateSpace();
+        animateHDTech();
     </script>
 
     <!-- Interactive General Web Scripts -->
@@ -951,11 +932,11 @@
             cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
         });
 
-        const phrases = ["Pengembang Web", "Kreatif & Innovator", "Tech Enthusiast", "Pelajar Teknologi"];
+        const phrases = ["HD Web Engineer", "Cyber Tech Enthusiast", "UI/UX Innovator", "Digital Systems Builder"];
         let phraseIdx = 0;
         let charIdx = 0;
         let isDeleting = false;
-        const typingSpeed = 100;
+        const typingSpeed = 90;
         const typingElem = document.getElementById('typingText');
 
         function typeLoop() {
@@ -1019,12 +1000,12 @@
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => {
-                    b.classList.remove('active', 'bg-gradient-to-r', 'from-cyanGlow-400', 'to-cyanGlow-300', 'text-navy-950', 'shadow-glow-cyan');
-                    b.classList.add('glass-card', 'text-slate-300');
+                    b.classList.remove('active', 'bg-gradient-to-r', 'from-neon-cyan', 'to-neon-blue', 'text-cyber-950', 'shadow-hd-glow');
+                    b.classList.add('glass-hd', 'text-slate-300');
                 });
 
-                btn.classList.add('active', 'bg-gradient-to-r', 'from-cyanGlow-400', 'to-cyanGlow-300', 'text-navy-950', 'shadow-glow-cyan');
-                btn.classList.remove('glass-card', 'text-slate-300');
+                btn.classList.add('active', 'bg-gradient-to-r', 'from-neon-cyan', 'to-neon-blue', 'text-cyber-950', 'shadow-hd-glow');
+                btn.classList.remove('glass-hd', 'text-slate-300');
 
                 const filter = btn.getAttribute('data-filter');
 
@@ -1145,7 +1126,7 @@
                 
                 const result = await response.json();
                 if (response.status === 200) {
-                    showToast("Pesan Terkirim!", "Terima kasih, pesan Anda berhasil masuk ke email Khalid.");
+                    showToast("Pesan Terkirim!", "Terima kasih, pesan Anda berhasil masuk ke sistem Khalid.");
                     contactForm.reset();
                 } else {
                     showToast("Gagal!", result.message || "Terjadi kesalahan saat mengirim pesan.");
