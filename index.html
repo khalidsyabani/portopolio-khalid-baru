@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth dark">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,23 +186,62 @@
             text-shadow: 0 0 26px rgba(100,116,255,.13);
         }
 
+        /* Wallpaper teknologi: grid sirkuit, jalur neon, dan glow cyan-biru */
+        #techWallpaperOverlay {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            overflow: hidden; opacity: .9;
+            background:
+              radial-gradient(ellipse at 18% 22%, rgba(0,240,255,.16), transparent 34%),
+              radial-gradient(ellipse at 82% 72%, rgba(75,65,255,.19), transparent 38%),
+              linear-gradient(135deg, rgba(2,8,23,.78), rgba(4,15,35,.64) 48%, rgba(8,5,29,.8));
+        }
+        #techWallpaperOverlay::before {
+            content: ''; position: absolute; inset: -40%;
+            background-image:
+              linear-gradient(rgba(0,220,255,.11) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,220,255,.11) 1px, transparent 1px),
+              linear-gradient(rgba(91,110,255,.06) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(91,110,255,.06) 1px, transparent 1px);
+            background-size: 54px 54px, 54px 54px, 12px 12px, 12px 12px;
+            transform: perspective(650px) rotateX(8deg) rotateZ(-7deg);
+            mask-image: linear-gradient(to bottom, black, rgba(0,0,0,.72) 72%, transparent);
+            animation: techGridDrift 28s linear infinite;
+        }
+        #techWallpaperOverlay::after {
+            content: ''; position: absolute; inset: 0;
+            background:
+              linear-gradient(90deg, transparent 0 8%, rgba(0,240,255,.32) 8.1%, transparent 8.3% 23%, rgba(0,240,255,.18) 23.1%, transparent 23.3%),
+              linear-gradient(0deg, transparent 0 18%, rgba(0,240,255,.18) 18.1%, transparent 18.3% 61%, rgba(117,91,255,.22) 61.1%, transparent 61.3%);
+            opacity: .38;
+            mask-image: radial-gradient(ellipse at center, black 10%, transparent 82%);
+            animation: circuitPulse 7s ease-in-out infinite alternate;
+        }
+        html.light #techWallpaperOverlay {
+            opacity: .72;
+            background:
+              radial-gradient(ellipse at 18% 22%, rgba(0,190,255,.20), transparent 35%),
+              radial-gradient(ellipse at 82% 72%, rgba(95,90,255,.15), transparent 38%),
+              linear-gradient(135deg, rgba(218,241,255,.76), rgba(235,242,255,.72) 48%, rgba(230,225,255,.74));
+        }
+        html.light #techWallpaperOverlay::before {
+            background-image: linear-gradient(rgba(0,115,180,.13) 1px, transparent 1px), linear-gradient(90deg, rgba(0,115,180,.13) 1px, transparent 1px), linear-gradient(rgba(75,95,190,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(75,95,190,.07) 1px, transparent 1px);
+        }
+        @keyframes techGridDrift { from { background-position: 0 0, 0 0, 0 0, 0 0; } to { background-position: 108px 108px, 108px 108px, 24px 24px, 24px 24px; } }
+        @keyframes circuitPulse { from { opacity: .18; transform: translateX(-1%); } to { opacity: .48; transform: translateX(1%); } }
+        @media (prefers-reduced-motion: reduce) { #techWallpaperOverlay::before, #techWallpaperOverlay::after { animation: none; } }
+
     </style>
 
     <style>
       /* Hanya panel yang sesuai tema yang terlihat; breakpoint desktop sama seperti panel asli. */
-      #nightControlPanel, #skyControlPanel { display: none; }
+      #nightControlPanel { display: none; }
       @media (min-width: 768px) {
         html:not(.light) #nightControlPanel { display: flex; }
-        html.light #skyControlPanel { display: flex; }
       }
       html:not(.light) #nightControlPanel { background: rgba(8, 17, 31, .88); color: #e0f2fe; border-color: rgba(0,240,255,.3); }
       html:not(.light) #nightControlPanel button[data-speed] { background: rgba(15,35,60,.82); color: #cbd5e1; border-color: rgba(0,240,255,.14); box-shadow: none; }
       html:not(.light) #nightControlPanel button[data-speed].is-live-selected { background: #00f0ff; color: #061626; font-weight: 800; box-shadow: 0 0 18px rgba(0,240,255,.22); }
-      html.light #skyControlPanel { background: rgba(247,252,255,.86); color: #174766; border-color: rgba(105,176,218,.5); box-shadow: 0 12px 35px rgba(45,105,160,.16); }
-      html.light #skyControlPanel button[data-weather] { background: rgba(240,249,255,.97); color: #24516c; border-color: rgba(105,176,218,.62); box-shadow: 0 3px 10px rgba(70,145,190,.08); }
-      html.light #skyControlPanel button[data-weather].is-live-selected { background: linear-gradient(135deg,#278fca,#63c5ed); color: #fff; font-weight: 800; border-color: #258fc1; box-shadow: 0 5px 18px rgba(37,143,193,.32); transform: translateY(-1px); }
-      html.light #skyControlPanel button[data-weather] { transition: background .25s ease, box-shadow .25s ease, transform .25s ease; }
-      @media (max-width: 767px) { #skyControlPanel, #nightControlPanel { left: 12px; right: 12px; bottom: 12px; justify-content: center; gap: 6px; } #skyControlPanel span, #nightControlPanel span { padding-left: 4px; padding-right: 4px; } #skyControlPanel button, #nightControlPanel button { padding-left: 8px; padding-right: 8px; } }
+      @media (max-width: 767px) { #nightControlPanel { left: 12px; right: 12px; bottom: 12px; justify-content: center; gap: 6px; } #nightControlPanel span { padding-left: 4px; padding-right: 4px; } #nightControlPanel button { padding-left: 8px; padding-right: 8px; } }
     </style>
 
 </head>
@@ -210,6 +249,7 @@
 
     <!-- ULTRA LIVE TECH / NEON CANVAS BACKGROUND -->
     <canvas id="techCanvas" class="fixed top-0 left-0 w-full h-full z-0 cursor-crosshair"></canvas>
+    <div id="techWallpaperOverlay" aria-hidden="true"></div>
 
     <!-- Cursor Glow Effect -->
     <div id="cursorGlow" class="fixed top-0 left-0 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-neon-cyan/15 via-neon-purple/10 to-transparent rounded-full blur-[150px] z-0 pointer-events-none"></div>
@@ -231,18 +271,6 @@
         </button>
     </div>
 
-    <!-- Kontrol mode siang: tema Langit Live -->
-    <div id="skyControlPanel" class="fixed bottom-6 left-6 z-40 hidden md:flex flex-wrap items-center gap-2 p-3 rounded-2xl shadow-xl text-xs border border-sky-200/80 bg-white/75 backdrop-blur-xl text-sky-900 transition-all duration-500">
-        <span class="px-2 flex items-center gap-1.5 font-semibold whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span> ☁️ Langit Live:
-        </span>
-        <button data-weather="rain" aria-pressed="false" onclick="setSkyWeather('rain')" title="Aktifkan hujan yang bergerak" class="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-800 transition-all">🌧️ Hujan</button>
-        <button data-weather="clear" aria-pressed="true" onclick="setSkyWeather('clear')" title="Langit cerah dan awan bergerak" class="px-3 py-1.5 rounded-xl bg-sky-500 text-white font-bold shadow-md shadow-sky-200">🌤️ Natural</button>
-        <button data-weather="tornado" aria-pressed="false" onclick="setSkyWeather('tornado')" title="Aktifkan animasi pusaran angin" class="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-800 transition-all">🌪️ Puting Beliung</button>
-        <button onclick="triggerEnergySurge()" title="Aktifkan kilau cahaya matahari" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-300 via-orange-300 to-pink-300 hover:from-amber-400 hover:to-pink-400 text-orange-950 font-bold transition-all shadow-md flex items-center gap-1">
-            <span>☀️ Sinar Surya</span>
-        </button>
-    </div>
 
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
@@ -272,9 +300,6 @@
             </nav>
 
             <div class="flex items-center space-x-3">
-                <button id="themeToggleBtn" title="Ganti Mode Tampilan" class="p-2.5 rounded-xl glass-ultra text-slate-300 hover:text-neon-cyan hover:border-neon-cyan/50 transition-all duration-300 focus:outline-none">
-                    <i data-feather="moon" id="themeIcon" class="w-4 h-4"></i>
-                </button>
 
                 <a href="https://wa.me/6287716440922?text=Halo%20Khalid,%20saya%20ingin%20diskusi%20proyek%20fotografi%20atau%20editing%20video..." target="_blank" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-extrabold text-cyber-950 bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple hover:opacity-90 shadow-ultra-cyan transition-all duration-300 hover:scale-[1.03]">
                     <i data-feather="camera" class="w-4 h-4 mr-2"></i>
@@ -710,8 +735,8 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
                     <span class="text-xs font-mono font-semibold tracking-widest text-neon-cyan uppercase">Galeri & Media</span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Galeri Hasil Foto & Audio Latar</h2>
-                    <p class="text-slate-400 text-sm sm:text-base">Dokumentasi momen tangkapan lensa serta pemutar musik digital.</p>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Galeri Foto, Video & Audio</h2>
+                    <p class="text-slate-400 text-sm sm:text-base">Dokumentasi foto, video karya, dan pemutar musik digital.</p>
                 </div>
 
                 <div class="max-w-2xl mx-auto mb-12 p-6 sm:p-8 rounded-3xl glass-ultra border border-neon-cyan/30">
@@ -747,6 +772,36 @@
                     <button type="button" class="gallery-item group relative text-left rounded-3xl overflow-hidden glass-ultra border border-white/10 focus:outline-none focus:ring-2 focus:ring-neon-cyan" onclick="openPhoto('saya5.jpg')">
                         <img src="saya5.jpg" alt="Foto saya 5" loading="lazy" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'">
                     </button>
+
+                    <!-- Video Karya: simpan file dengan nama karya1.mp4 di folder yang sama -->
+                    <div class="gallery-item rounded-3xl overflow-hidden glass-ultra border border-neon-cyan/30 p-3">
+                        <div class="flex items-center justify-between gap-3 px-2 py-2">
+                            <div>
+                                <p class="text-sm font-bold text-white">Video Karya 01</p>
+                                <p class="text-xs text-slate-400">Karya editing video</p>
+                            </div>
+                            <span class="text-neon-cyan"><i data-feather="video" class="w-5 h-5"></i></span>
+                        </div>
+                        <video controls playsinline preload="metadata" class="w-full aspect-video rounded-2xl bg-black object-contain" aria-label="Video karya 1">
+                            <source src="karya1.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung pemutar video.
+                        </video>
+                    </div>
+
+                    <!-- Video Karya 02: simpan file dengan nama karya2.mp4 di folder yang sama -->
+                    <div class="gallery-item rounded-3xl overflow-hidden glass-ultra border border-neon-cyan/30 p-3">
+                        <div class="flex items-center justify-between gap-3 px-2 py-2">
+                            <div>
+                                <p class="text-sm font-bold text-white">Video Karya 02</p>
+                                <p class="text-xs text-slate-400">Karya editing video</p>
+                            </div>
+                            <span class="text-neon-cyan"><i data-feather="video" class="w-5 h-5"></i></span>
+                        </div>
+                        <video controls playsinline preload="metadata" class="w-full aspect-video rounded-2xl bg-black object-contain" aria-label="Video karya 2">
+                            <source src="karya2.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung pemutar video.
+                        </video>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1005,45 +1060,15 @@
         });
 
         function setNodeSpeed(speed) {
-            // Tiap tema punya pengaturan gerak sendiri sehingga mode lain tidak ikut berubah.
-            if (document.documentElement.classList.contains('light')) {
-                skySpeedMultiplier = speed;
-            } else {
-                speedMultiplier = speed;
-            }
-            document.querySelectorAll('#nightControlPanel [data-speed], #skyControlPanel [data-speed]').forEach(button => {
-                const isActive = Number(button.dataset.speed) === Number(speed) &&
-                    ((document.documentElement.classList.contains('light') && button.closest('#skyControlPanel')) ||
-                     (!document.documentElement.classList.contains('light') && button.closest('#nightControlPanel')));
+            speedMultiplier = speed;
+            document.querySelectorAll('#nightControlPanel [data-speed]').forEach(button => {
+                const isActive = Number(button.dataset.speed) === Number(speed);
                 button.classList.toggle('font-bold', isActive);
                 button.classList.toggle('is-live-selected', isActive);
                 button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
             });
         }
 
-        function setSkyWeather(mode) {
-            const allowedModes = ['rain', 'clear', 'tornado'];
-            if (!allowedModes.includes(mode)) mode = 'clear';
-            skyWeatherMode = mode;
-            document.querySelectorAll('#skyControlPanel [data-weather]').forEach(button => {
-                const active = button.dataset.weather === skyWeatherMode;
-                button.classList.toggle('is-live-selected', active);
-                button.classList.toggle('font-bold', active);
-                button.setAttribute('aria-pressed', active ? 'true' : 'false');
-            });
-            const skyPulseButton = document.querySelector('#skyControlPanel button[onclick="triggerEnergySurge()"]');
-            if (skyPulseButton) {
-                const pulseLabel = mode === 'rain' ? '⚡ Kilau Hujan' : (mode === 'tornado' ? '💨 Energi Pusaran' : '☀️ Sinar Surya');
-                skyPulseButton.querySelector('span').textContent = pulseLabel;
-                skyPulseButton.title = mode === 'rain' ? 'Aktifkan kilau cahaya hujan' : (mode === 'tornado' ? 'Aktifkan gelombang energi pusaran' : 'Aktifkan kilau cahaya matahari');
-            }
-            // Suasana berubah halus ketika tombol cuaca dipilih.
-            if (mode === 'rain') {
-                clouds.forEach(cloud => { cloud.alpha = Math.min(.68, cloud.alpha + .12); });
-            } else if (mode === 'clear') {
-                clouds.forEach(cloud => { cloud.alpha = Math.max(.27, Math.min(.54, cloud.alpha)); });
-            }
-        }
 
         function resizeCanvas() {
             viewWidth = window.innerWidth;
@@ -1750,31 +1775,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', typeLoop);
-
-        const themeToggleBtn = document.getElementById('themeToggleBtn');
-        const themeIcon = document.getElementById('themeIcon');
-        const html = document.documentElement;
-
-        themeToggleBtn.addEventListener('click', () => {
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                html.classList.add('light');
-                themeIcon.setAttribute('data-feather', 'sun');
-                themeToggleBtn.title = 'Ganti ke Mode Malam';
-            } else {
-                html.classList.remove('light');
-                html.classList.add('dark');
-                themeIcon.setAttribute('data-feather', 'moon');
-                themeToggleBtn.title = 'Ganti ke Mode Siang';
-            }
-            feather.replace();
-            // Panel dan efek ikut berganti; pilihan cuaca siang tidak mengubah Neural Mesh malam.
-            if (html.classList.contains('light')) {
-                setSkyWeather(skyWeatherMode);
-            } else {
-                setNodeSpeed(speedMultiplier);
-            }
-        });
 
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
