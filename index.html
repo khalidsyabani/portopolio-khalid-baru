@@ -244,6 +244,57 @@
       @media (max-width: 767px) { #nightControlPanel { left: 12px; right: 12px; bottom: 12px; justify-content: center; gap: 6px; } #nightControlPanel span { padding-left: 4px; padding-right: 4px; } #nightControlPanel button { padding-left: 8px; padding-right: 8px; } }
     </style>
 
+
+    <style>
+      html { scroll-padding-top: 5.5rem; }
+      body { width: 100%; overflow-x: hidden; }
+      img, video, canvas { max-width: 100%; }
+      button, a { touch-action: manipulation; }
+      .project-card[hidden] { display: none !important; }
+      .modal-open { overflow: hidden; }
+      #mobileMenu { max-height: calc(100dvh - 5rem); overflow-y: auto; }
+      #photoModalImage { width: auto; max-width: 100%; max-height: 82dvh; }
+      @media (max-width: 767px) {
+        header .max-w-7xl { min-height: 4.25rem; height: auto; padding-top: .55rem; padding-bottom: .55rem; }
+        header .group > div:last-child span:first-child { font-size: .92rem; }
+        main { padding-top: 5.25rem !important; }
+        #hero { min-height: auto; padding-top: 2.25rem; padding-bottom: 3.5rem; }
+        #hero .grid { gap: 2.25rem; }
+        #hero h1 { font-size: clamp(2.1rem, 9vw, 3.4rem); overflow-wrap: anywhere; }
+        #hero .text-lg { font-size: .95rem; }
+        #hero .max-w-md { max-width: 31rem; }
+        #hero .max-w-md > .relative { padding: 1.15rem; }
+        section { scroll-margin-top: 5rem; }
+        section.py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+        section .mb-16 { margin-bottom: 2rem; }
+        section h2 { font-size: clamp(1.7rem, 7vw, 2.5rem); line-height: 1.15; }
+        #about .grid, #skills .grid, #portfolio .grid, #gallery .grid { gap: 1rem; }
+        #about .grid > div, #skills .grid > div, #portfolio .project-card { padding: 1.2rem; }
+        #portfolio .flex.justify-center { justify-content: flex-start; }
+        .filter-btn { flex: 0 0 auto; white-space: nowrap; }
+        #portfolio .flex.justify-center { overflow-x: auto; scrollbar-width: none; }
+        #portfolio .flex.justify-center::-webkit-scrollbar { display: none; }
+        #gallery .gallery-item img { height: 16rem; }
+        #contact form { padding: 1.25rem; }
+        #contact .grid { gap: 1.5rem; }
+        footer .max-w-7xl { text-align: center; }
+        #nightControlPanel { display: none !important; }
+        #toast { left: 1rem; right: 1rem; bottom: 1rem; width: auto; max-width: none; }
+        #projectModal > div { padding: 1.35rem; max-height: 88dvh; overflow-y: auto; }
+      }
+      @media (max-width: 380px) {
+        header .max-w-7xl { padding-left: .75rem; padding-right: .75rem; }
+        header .group { gap: .5rem; }
+        header .group > div:first-child { width: 2.35rem; height: 2.35rem; }
+        #hero .flex.flex-wrap { gap: .5rem; }
+        #hero .flex.flex-wrap > div { max-width: 100%; overflow-wrap: anywhere; }
+      }
+      @media (hover: none) { .hover\:-translate-y-1:hover, .hover\:scale-105:hover { transform: none; } }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      }
+    </style>
+
 </head>
 <body class="text-slate-200 font-sans antialiased selection:bg-neon-cyan selection:text-cyber-950 transition-colors duration-500 min-h-screen flex flex-col justify-between overflow-x-hidden relative">
 
@@ -747,7 +798,7 @@
                         <div class="flex-1">
                             <h3 class="text-lg font-bold text-white">Audio Stream HD</h3>
                             <p class="text-sm text-slate-400 font-light">Pemutar audio latar suasana teknologi & sinematik.</p>
-                            <audio id="portfolioMusic" controls autoplay loop preload="auto" class="w-full mt-3">
+                            <audio id="portfolioMusic" controls loop preload="metadata" class="w-full mt-3">
                                 <source src="musik.mp3" type="audio/mpeg">
                                 Browser Anda tidak mendukung pemutar audio.
                             </audio>
@@ -955,982 +1006,147 @@
         </div>
     </div>
 
-    <!-- ADVANCED ULTRA-AESTHETIC LIVE CANVAS WALLPAPER SCRIPT -->
     <script>
-        const canvas = document.getElementById('techCanvas');
-        const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
-        let viewWidth = window.innerWidth;
-        let viewHeight = window.innerHeight;
-        let pixelRatio = Math.min(window.devicePixelRatio || 1, 2.5);
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const canvas = $('techCanvas');
+      const ctx = canvas?.getContext('2d');
+      let width = 0, height = 0, speed = 1, nodes = [], frame;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const pointer = { x: -1000, y: -1000 };
 
-        let speedMultiplier = 1;      // Kecepatan Neural Mesh mode malam
-        let skySpeedMultiplier = 1;   // Kecepatan awan mode siang
-        let skyWeatherMode = 'clear'; // Efek cuaca khusus mode siang
-        const mouse = {
-            x: null,
-            y: null,
-            radius: 200
-        };
-
-        const shockwaves = [];
-        let skyTime = 0;
-        const sun = { x: window.innerWidth * 0.82, y: window.innerHeight * 0.17, targetX: window.innerWidth * 0.82, targetY: window.innerHeight * 0.17 };
-        const skySparkles = Array.from({length: 72}, () => ({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            size: 0.8 + Math.random() * 2.4,
-            phase: Math.random() * Math.PI * 2,
-            speed: 0.01 + Math.random() * 0.026
+      function resizeCanvas() {
+        if (!canvas || !ctx) return;
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        width = window.innerWidth; height = window.innerHeight;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = Math.min(65, Math.max(24, Math.floor(width / 22)));
+        nodes = Array.from({ length: count }, () => ({
+          x: Math.random() * width, y: Math.random() * height,
+          vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
+          r: Math.random() * 1.5 + .7
         }));
-        const nightStars = Array.from({length: 310}, () => ({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            size: 0.4 + Math.random() * 1.95,
-            phase: Math.random() * Math.PI * 2,
-            speed: 0.006 + Math.random() * 0.026,
-            tint: ['220,235,255', '164,202,255', '211,184,255', '255,228,190'][Math.floor(Math.random() * 4)]
-        }));
-        const shootingStars = Array.from({length: 4}, () => ({
-            active: false,
-            x: 0, y: 0, vx: 0, vy: 0, life: 0, maxLife: 0,
-            nextAt: performance.now() + 1200 + Math.random() * 6500
-        }));
-        const stormClouds = Array.from({length: 16}, () => ({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight * 0.72,
-            size: 85 + Math.random() * 145,
-            speed: 0.08 + Math.random() * 0.24,
-            alpha: 0.42 + Math.random() * 0.24
-        }));
-        const tornado = {
-            x: window.innerWidth * 0.65,
-            y: window.innerHeight * 0.55,
-            targetX: window.innerWidth * 0.65,
-            targetY: window.innerHeight * 0.55
-        };
-        const tornadoDebris = Array.from({length: 190}, () => ({
-            angle: Math.random() * Math.PI * 2,
-            band: 0.15 + Math.random() * 0.85,
-            radius: 12 + Math.random() * 155,
-            speed: 0.018 + Math.random() * 0.048,
-            size: 0.8 + Math.random() * 3.4,
-            alpha: 0.18 + Math.random() * 0.5
-        }));
-        const clouds = Array.from({length: 13}, (_, i) => ({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight * 0.82,
-            size: 65 + Math.random() * 125,
-            speed: 0.14 + Math.random() * 0.36,
-            alpha: 0.27 + Math.random() * 0.27
-        }));
-        const rainDrops = Array.from({length: 210}, () => ({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            length: 10 + Math.random() * 19,
-            speed: 5 + Math.random() * 8,
-            drift: -1.2 - Math.random() * 2.4,
-            alpha: 0.24 + Math.random() * 0.42
-        }));
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-            sun.targetX = e.clientX;
-            sun.targetY = e.clientY;
-            tornado.targetX = e.clientX;
-            tornado.targetY = e.clientY;
+      }
+      function draw() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < nodes.length; i++) {
+          const a = nodes[i];
+          if (!reduceMotion) {
+            a.x += a.vx * speed; a.y += a.vy * speed;
+            if (a.x < 0 || a.x > width) a.vx *= -1;
+            if (a.y < 0 || a.y > height) a.vy *= -1;
+          }
+          const dxp = a.x - pointer.x, dyp = a.y - pointer.y;
+          if (dxp * dxp + dyp * dyp < 15000 && !reduceMotion) { a.x += dxp * .001; a.y += dyp * .001; }
+          ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(0,240,255,.8)'; ctx.shadowBlur = 8; ctx.shadowColor = '#00f0ff'; ctx.fill(); ctx.shadowBlur = 0;
+          for (let j = i + 1; j < nodes.length; j++) {
+            const b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, dist = Math.hypot(dx, dy);
+            if (dist < 125) {
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = `rgba(0,190,255,${(1 - dist / 125) * .22})`;
+              ctx.lineWidth = .7; ctx.stroke();
+            }
+          }
+        }
+        frame = requestAnimationFrame(draw);
+      }
+      window.setNodeSpeed = (value) => {
+        speed = Number(value) || 1;
+        document.querySelectorAll('#nightControlPanel [data-speed]').forEach(btn => {
+          btn.classList.toggle('is-live-selected', Number(btn.dataset.speed) === speed);
         });
+      };
+      window.triggerEnergySurge = () => {
+        nodes.forEach(n => { n.vx *= 2.8; n.vy *= 2.8; });
+        window.setTimeout(() => nodes.forEach(n => { n.vx /= 2.8; n.vy /= 2.8; }), 900);
+      };
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+      window.addEventListener('pointermove', e => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) cancelAnimationFrame(frame); else if (!reduceMotion) draw();
+      });
+      resizeCanvas(); if (!reduceMotion) draw(); else draw();
 
-        window.addEventListener('click', (e) => {
-            shockwaves.push({
-                x: e.clientX,
-                y: e.clientY,
-                radius: 10,
-                maxRadius: 280,
-                alpha: 1,
-                color: Math.random() > 0.5 ? '#00F0FF' : '#A855F7'
-            });
+      if (window.feather) feather.replace();
+      const menuBtn = $('mobileMenuBtn'), menu = $('mobileMenu');
+      menuBtn?.addEventListener('click', () => {
+        const opened = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', String(!opened));
+      });
+      document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => menu?.classList.add('hidden')));
+
+      const phrases = ['Photographer & Video Editor', 'CapCut & Color Grading Specialist', 'Canva & Visual Creator', 'Web Portfolio Developer'];
+      const typing = $('typingText'); let phrase = 0, char = 0, deleting = false;
+      function type() {
+        if (!typing) return;
+        const current = phrases[phrase];
+        char += deleting ? -1 : 1;
+        typing.textContent = current.slice(0, char);
+        let delay = deleting ? 45 : 85;
+        if (!deleting && char === current.length) { deleting = true; delay = 1500; }
+        else if (deleting && char === 0) { deleting = false; phrase = (phrase + 1) % phrases.length; delay = 300; }
+        window.setTimeout(type, delay);
+      }
+      type();
+
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('active','bg-gradient-to-r','from-neon-cyan','to-neon-blue','text-cyber-950','shadow-ultra-cyan');
+          b.classList.add('glass-ultra','text-slate-300');
         });
-
-        window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        function setNodeSpeed(speed) {
-            speedMultiplier = speed;
-            document.querySelectorAll('#nightControlPanel [data-speed]').forEach(button => {
-                const isActive = Number(button.dataset.speed) === Number(speed);
-                button.classList.toggle('font-bold', isActive);
-                button.classList.toggle('is-live-selected', isActive);
-                button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-            });
-        }
-
-
-        function resizeCanvas() {
-            viewWidth = window.innerWidth;
-            viewHeight = window.innerHeight;
-            pixelRatio = Math.min(window.devicePixelRatio || 1, 2.5);
-            canvas.width = Math.round(viewWidth * pixelRatio);
-            canvas.height = Math.round(viewHeight * pixelRatio);
-            canvas.style.width = viewWidth + 'px';
-            canvas.style.height = viewHeight + 'px';
-            // Reset transform after resizing, then render at true device-pixel density (up to 2.5x).
-            ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            skySparkles.forEach(p => { p.x = Math.random() * viewWidth; p.y = Math.random() * viewHeight; });
-            nightStars.forEach(p => { p.x = Math.random() * viewWidth; p.y = Math.random() * viewHeight; });
-            stormClouds.forEach(cloud => { cloud.x = Math.random() * viewWidth; cloud.y = Math.random() * viewHeight * 0.72; });
-            clouds.forEach(cloud => { cloud.x = Math.random() * viewWidth; cloud.y = Math.random() * viewHeight * 0.82; });
-            rainDrops.forEach(drop => { drop.x = Math.random() * viewWidth; drop.y = Math.random() * viewHeight; });
-            tornado.x = Math.min(viewWidth * 0.78, Math.max(viewWidth * 0.22, tornado.x));
-            tornado.y = Math.min(viewHeight * 0.70, Math.max(viewHeight * 0.35, tornado.y));
-            tornado.targetX = tornado.x;
-            tornado.targetY = tornado.y;
-            initPhysicsElements();
-        }
-        window.addEventListener('resize', resizeCanvas);
-
-        let nodes = [];
-        let polyhedrons = [];
-
-        function initPhysicsElements() {
-            nodes = [];
-            polyhedrons = [];
-
-            const density = Math.floor((viewWidth * viewHeight) / 10000);
-            const count = Math.min(Math.max(density, 60), 130);
-
-            const colors = ['#00F0FF', '#3B82F6', '#A855F7', '#EC4899', '#10B981'];
-
-            for (let i = 0; i < count; i++) {
-                nodes.push({
-                    x: Math.random() * viewWidth,
-                    y: Math.random() * viewHeight,
-                    vx: (Math.random() - 0.5) * 1.1,
-                    vy: (Math.random() - 0.5) * 1.1,
-                    radius: Math.random() * 2.5 + 1,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    pulse: Math.random() * Math.PI * 2
-                });
-            }
-
-            // Floating Cyber Polyhedrons / Crystals
-            for (let i = 0; i < 8; i++) {
-                polyhedrons.push({
-                    x: Math.random() * viewWidth,
-                    y: Math.random() * viewHeight,
-                    size: Math.random() * 25 + 15,
-                    rotation: Math.random() * Math.PI * 2,
-                    rotSpeed: (Math.random() - 0.5) * 0.02,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
-                    color: colors[i % colors.length]
-                });
-            }
-        }
-
-        function triggerEnergySurge() {
-            if (document.documentElement.classList.contains('light')) {
-                // Efek siang mengikuti cuaca aktif: surya untuk cerah, kilau badai untuk cuaca ekstrem.
-                const effectX = skyWeatherMode === 'tornado' ? tornado.x : (mouse.x == null ? sun.x : mouse.x);
-                const effectY = skyWeatherMode === 'tornado' ? tornado.y : (mouse.y == null ? sun.y : mouse.y);
-                if (skyWeatherMode === 'clear') window.sunPulseUntil = performance.now() + 1500;
-                else window.stormPulseUntil = performance.now() + 1200;
-                for (let i = 0; i < 4; i++) {
-                    shockwaves.push({
-                        x: effectX, y: effectY, radius: 8 + i * 12,
-                        maxRadius: Math.max(viewWidth, viewHeight) * (0.35 + i * 0.1),
-                        alpha: 0.9 - i * 0.13,
-                        color: skyWeatherMode === 'clear' ? '#ffb45f' : (skyWeatherMode === 'rain' ? '#cceeff' : '#d3e8f5')
-                    });
-                }
-                skySparkles.forEach(p => { p.phase += 1.5 + Math.random() * 2; });
-                return;
-            }
-
-            // Mode malam: efek Pulse Energy asli pada node dan gelombang neon.
-            nodes.forEach(node => {
-                node.vx *= 3.5;
-                node.vy *= 3.5;
-            });
-
-            shockwaves.push({
-                x: viewWidth / 2,
-                y: viewHeight / 2,
-                radius: 10,
-                maxRadius: Math.max(viewWidth, viewHeight) * 0.8,
-                alpha: 1,
-                color: '#00F0FF'
-            });
-
-            setTimeout(() => {
-                nodes.forEach(node => {
-                    node.vx /= 3.5;
-                    node.vy /= 3.5;
-                });
-            }, 1200);
-        }
-
-        function drawPolyhedron(poly) {
-            ctx.save();
-            ctx.translate(poly.x, poly.y);
-            ctx.rotate(poly.rotation);
-
-            ctx.beginPath();
-            const sides = 6;
-            for (let i = 0; i < sides; i++) {
-                const angle = (i * 2 * Math.PI) / sides;
-                const px = Math.cos(angle) * poly.size;
-                const py = Math.sin(angle) * poly.size;
-                if (i === 0) ctx.moveTo(px, py);
-                else ctx.lineTo(px, py);
-            }
-            ctx.closePath();
-
-            ctx.strokeStyle = poly.color;
-            ctx.lineWidth = 1;
-            ctx.globalAlpha = 0.25;
-            ctx.stroke();
-
-            // Inner cross star
-            ctx.beginPath();
-            ctx.moveTo(-poly.size, 0);
-            ctx.lineTo(poly.size, 0);
-            ctx.moveTo(0, -poly.size);
-            ctx.lineTo(0, poly.size);
-            ctx.strokeStyle = poly.color;
-            ctx.globalAlpha = 0.15;
-            ctx.stroke();
-
-            ctx.restore();
-        }
-
-        function animateLiveWallpaper() {
-            ctx.clearRect(0, 0, viewWidth, viewHeight);
-
-            // Siang: langit biru live dengan awan yang bergerak lembut
-            if (document.documentElement.classList.contains('light')) {
-                skyTime += 0.003;
-                // Semakin dekat kursor ke sisi kiri/kanan, suasana berubah ke golden hour/senja.
-                const cursorX = mouse.x == null ? viewWidth * 0.5 : mouse.x;
-                const edgeDistance = Math.min(cursorX, viewWidth - cursorX) / Math.max(1, viewWidth * 0.5);
-                const sunsetTarget = Math.max(0, Math.min(1, (0.78 - edgeDistance) / 0.78));
-                window.skySunsetBlend = (window.skySunsetBlend || 0) + (sunsetTarget - (window.skySunsetBlend || 0)) * 0.035;
-                const sunset = window.skySunsetBlend;
-                const mixHex = (a, b, t) => {
-                    const ca = a.match(/[A-Fa-f0-9]{2}/g).map(v => parseInt(v, 16));
-                    const cb = b.match(/[A-Fa-f0-9]{2}/g).map(v => parseInt(v, 16));
-                    return '#' + ca.map((v, i) => Math.round(v + (cb[i] - v) * t).toString(16).padStart(2, '0')).join('');
-                };
-                const sky = ctx.createLinearGradient(0, 0, 0, viewHeight);
-                sky.addColorStop(0, mixHex('#72c8ff', '#f29b91', sunset));
-                sky.addColorStop(0.48, mixHex('#b8e6ff', '#ffc49a', sunset));
-                sky.addColorStop(1, mixHex('#f0fbff', '#f8d9ce', sunset));
-                ctx.fillStyle = sky;
-                ctx.fillRect(0, 0, viewWidth, viewHeight);
-                // Cahaya senja lembut merambat dari sisi yang paling dekat dengan kursor.
-                if (sunset > 0.015) {
-                    const edgeX = cursorX < viewWidth / 2 ? 0 : viewWidth;
-                    const duskGlow = ctx.createRadialGradient(edgeX, viewHeight * .35, 0, edgeX, viewHeight * .35, viewWidth * .72);
-                    duskGlow.addColorStop(0, `rgba(255,151,112,${0.22 * sunset})`);
-                    duskGlow.addColorStop(.45, `rgba(255,190,139,${0.11 * sunset})`);
-                    duskGlow.addColorStop(1, 'rgba(255,205,160,0)');
-                    ctx.fillStyle = duskGlow;
-                    ctx.fillRect(0, 0, viewWidth, viewHeight);
-                }
-
-                // Matahari hanya tampil saat Langit Natural. Saat hujan atau puting beliung, matahari hilang sepenuhnya.
-                if (skyWeatherMode === 'clear') {
-                    sun.x += (sun.targetX - sun.x) * 0.035;
-                    sun.y += (sun.targetY - sun.y) * 0.035;
-                    const sunX = sun.x, sunY = sun.y;
-                    const sunRadius = Math.max(31, Math.min(46, viewWidth * .032));
-                    const sunPulse = performance.now() < (window.sunPulseUntil || 0) ? 1 : 0;
-                    const glow = ctx.createRadialGradient(sunX, sunY, sunRadius * .25, sunX, sunY, sunRadius * 7.2);
-                    glow.addColorStop(0, `rgba(255,${Math.round(244 - sunset * 80)},${Math.round(166 - sunset * 65)},${.62 + sunPulse * .24})`);
-                    glow.addColorStop(.28, `rgba(255,${Math.round(220 - sunset * 55)},${Math.round(112 - sunset * 40)},${.34 + sunPulse * .14})`);
-                    glow.addColorStop(1, 'rgba(255,249,205,0)');
-                    ctx.fillStyle = glow;
-                    ctx.fillRect(0, 0, viewWidth, viewHeight);
-
-                    // Sinar matahari berdenyut.
-                    ctx.save();
-                    ctx.translate(sunX, sunY);
-                    ctx.rotate(skyTime * .22);
-                    ctx.strokeStyle = `rgba(255,${Math.round(221 - sunset * 65)},${Math.round(112 - sunset * 40)},.7)`;
-                    ctx.lineWidth = 2.6;
-                    for (let ray = 0; ray < 16; ray++) {
-                        ctx.rotate(Math.PI / 8);
-                        ctx.beginPath();
-                        ctx.moveTo(sunRadius + 5, 0);
-                        ctx.lineTo(sunRadius + 20 + Math.sin(skyTime * 2.2 + ray) * 4, 0);
-                        ctx.stroke();
-                    }
-                    ctx.restore();
-                    const sunCore = ctx.createRadialGradient(sunX - sunRadius * .3, sunY - sunRadius * .35, 2, sunX, sunY, sunRadius);
-                    sunCore.addColorStop(0, '#fffde7');
-                    sunCore.addColorStop(.58, mixHex('#ffe99a', '#ffd0a0', sunset));
-                    sunCore.addColorStop(1, mixHex('#ffc65c', '#ff895f', sunset));
-                    ctx.beginPath();
-                    ctx.arc(sunX, sunY, sunRadius, 0, Math.PI * 2);
-                    ctx.fillStyle = sunCore;
-                    ctx.shadowColor = 'rgba(255,205,76,.8)';
-                    ctx.shadowBlur = 42 + Math.sin(skyTime * 3) * 10 + sunPulse * 28;
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-                }
-
-                // Kilau kecil seperti debu cahaya di udara
-                skySparkles.forEach(p => {
-                    p.phase += p.speed;
-                    const alpha = .22 + (Math.sin(p.phase) + 1) * .28;
-                    ctx.beginPath();
-                    ctx.arc(p.x + Math.sin(skyTime + p.phase) * 4, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255,255,255,${alpha})`;
-                    ctx.fill();
-                });
-
-                // Gelombang klik bernuansa langit
-                for (let i = shockwaves.length - 1; i >= 0; i--) {
-                    const sw = shockwaves[i];
-                    sw.radius += 2.4;
-                    sw.alpha -= .012;
-                    if (sw.alpha <= 0 || sw.radius >= sw.maxRadius) { shockwaves.splice(i, 1); continue; }
-                    ctx.beginPath();
-                    ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
-                    ctx.strokeStyle = `rgba(255,${Math.round(255 - sunset * 62)},${Math.round(255 - sunset * 112)},${sw.alpha * .65})`;
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                }
-
-                const visibleClouds = skyWeatherMode === 'clear' ? clouds : clouds.concat(stormClouds);
-                visibleClouds.forEach((cloud, index) => {
-                    cloud.x += cloud.speed * skySpeedMultiplier * (skyWeatherMode === 'clear' ? 1 : 1.35);
-                    if (cloud.x - cloud.size * 2 > viewWidth) {
-                        cloud.x = -cloud.size * 2;
-                        cloud.y = Math.random() * viewHeight * .72;
-                    }
-                    const x = cloud.x;
-                    const y = cloud.y + Math.sin(skyTime * (skyWeatherMode === 'clear' ? 2 : 1.25) + index) * 5;
-                    ctx.save();
-                    const stormMode = skyWeatherMode !== 'clear';
-                    const rainCloudBoost = skyWeatherMode === 'rain' ? 1.55 : (skyWeatherMode === 'tornado' ? 1.42 : 1);
-                    ctx.globalAlpha = Math.min(.94, cloud.alpha * rainCloudBoost);
-                    if (skyWeatherMode === 'rain') {
-                        ctx.fillStyle = index % 3 === 0 ? '#7e9aaa' : '#9db3c0';
-                    } else if (skyWeatherMode === 'tornado') {
-                        ctx.fillStyle = index % 3 === 0 ? '#8fa8b6' : '#c1d1da';
-                    } else {
-                        ctx.fillStyle = mixHex('#ffffff', '#ffe2d2', sunset);
-                    }
-                    ctx.shadowColor = stormMode ? 'rgba(54,82,103,.35)' : `rgba(255,${Math.round(255 - sunset * 50)},${Math.round(255 - sunset * 70)},.55)`;
-                    ctx.shadowBlur = stormMode ? 22 : 26;
-                    ctx.beginPath();
-                    ctx.ellipse(x, y, cloud.size * (stormMode ? 1.26 : 1.1), cloud.size * (stormMode ? .34 : .28), 0, 0, Math.PI * 2);
-                    ctx.ellipse(x - cloud.size * .35, y - cloud.size * .12, cloud.size * .48, cloud.size * .3, 0, 0, Math.PI * 2);
-                    ctx.ellipse(x + cloud.size * .22, y - cloud.size * .2, cloud.size * .58, cloud.size * .36, 0, 0, Math.PI * 2);
-                    if (stormMode) {
-                        ctx.ellipse(x + cloud.size * .58, y + cloud.size * .015, cloud.size * .62, cloud.size * .25, 0, 0, Math.PI * 2);
-                    }
-                    ctx.fill();
-                    ctx.restore();
-                });
-
-                // Efek hujan: tetesan diagonal dengan beberapa lapisan agar terlihat jelas.
-                if (skyWeatherMode === 'rain') {
-                    const rainVeil = ctx.createLinearGradient(0, 0, 0, viewHeight);
-                    rainVeil.addColorStop(0, 'rgba(69,105,130,.12)');
-                    rainVeil.addColorStop(1, 'rgba(48,92,121,.22)');
-                    ctx.fillStyle = rainVeil;
-                    ctx.fillRect(0, 0, viewWidth, viewHeight);
-                    rainDrops.forEach(drop => {
-                        drop.x += drop.drift * skySpeedMultiplier;
-                        drop.y += drop.speed * skySpeedMultiplier;
-                        if (drop.y > viewHeight + drop.length) {
-                            drop.y = -drop.length;
-                            drop.x = Math.random() * viewWidth;
-                        }
-                        if (drop.x < -20) drop.x = viewWidth + 20;
-                        ctx.beginPath();
-                        ctx.moveTo(drop.x, drop.y);
-                        ctx.lineTo(drop.x + drop.drift * 2.4, drop.y + drop.length);
-                        ctx.strokeStyle = `rgba(225,244,255,${drop.alpha})`;
-                        ctx.lineWidth = 1.2 + drop.alpha * .9;
-                        ctx.stroke();
-                    });
-                    // Garis hujan halus di latar depan.
-                    ctx.fillStyle = 'rgba(67,112,145,.06)';
-                    ctx.fillRect(0, 0, viewWidth, viewHeight);
-                }
-
-                // Puting beliung HD: kanopi lebar di atas, ujung lancip di bawah, mengikuti kursor.
-                if (skyWeatherMode === 'tornado') {
-                    tornado.x += (tornado.targetX - tornado.x) * 0.085;
-                    tornado.y += (tornado.targetY - tornado.y) * 0.085;
-                    const marginX = Math.min(250, viewWidth * .28);
-                    const cx = Math.max(marginX, Math.min(viewWidth - marginX, tornado.x));
-                    const centerY = Math.max(viewHeight * .34, Math.min(viewHeight * .64, tornado.y));
-                    const topY = Math.max(26, centerY - viewHeight * .34);
-                    const bottomY = Math.min(viewHeight - 24, centerY + viewHeight * .34);
-                    const tall = Math.max(160, bottomY - topY);
-                    const topWidth = Math.min(285, Math.max(145, viewWidth * .225));
-                    const tipWidth = Math.max(7, topWidth * .045);
-
-                    // Glow volumetrik di sekitar corong.
-                    ctx.save();
-                    ctx.globalCompositeOperation = 'screen';
-                    const atmosphere = ctx.createRadialGradient(cx, topY + tall * .43, tipWidth, cx, topY + tall * .43, topWidth * 2.15);
-                    atmosphere.addColorStop(0, 'rgba(218,239,250,.20)');
-                    atmosphere.addColorStop(.38, 'rgba(141,177,198,.16)');
-                    atmosphere.addColorStop(1, 'rgba(104,142,164,0)');
-                    ctx.fillStyle = atmosphere;
-                    ctx.fillRect(cx - topWidth * 2.2, topY - 30, topWidth * 4.4, tall + 65);
-
-                    // Bayangan luar membentuk siluet corong terbalik: lebar di awan, lancip menuju tanah.
-                    const bodyGradient = ctx.createLinearGradient(cx - topWidth, 0, cx + topWidth, 0);
-                    bodyGradient.addColorStop(0, 'rgba(91,121,142,.04)');
-                    bodyGradient.addColorStop(.12, 'rgba(105,139,159,.30)');
-                    bodyGradient.addColorStop(.27, 'rgba(159,190,205,.44)');
-                    bodyGradient.addColorStop(.47, 'rgba(234,246,252,.68)');
-                    bodyGradient.addColorStop(.58, 'rgba(194,218,230,.58)');
-                    bodyGradient.addColorStop(.77, 'rgba(104,139,160,.37)');
-                    bodyGradient.addColorStop(.92, 'rgba(99,129,149,.18)');
-                    bodyGradient.addColorStop(1, 'rgba(88,117,138,.02)');
-                    ctx.shadowColor = 'rgba(72,111,137,.42)';
-                    ctx.shadowBlur = 48;
-                    ctx.fillStyle = bodyGradient;
-                    ctx.beginPath();
-                    ctx.moveTo(cx - topWidth * .82, topY + 8);
-                    ctx.bezierCurveTo(cx - topWidth * .34, topY - 25, cx + topWidth * .33, topY - 23, cx + topWidth * .84, topY + 8);
-                    ctx.bezierCurveTo(cx + topWidth * .73, topY + tall * .20, cx + topWidth * .35, topY + tall * .67, cx + tipWidth, bottomY - 3);
-                    ctx.bezierCurveTo(cx + tipWidth * .76, bottomY + 5, cx - tipWidth * .76, bottomY + 5, cx - tipWidth, bottomY - 3);
-                    ctx.bezierCurveTo(cx - topWidth * .36, topY + tall * .68, cx - topWidth * .75, topY + tall * .21, cx - topWidth * .82, topY + 8);
-                    ctx.closePath();
-                    ctx.fill();
-                    ctx.shadowBlur = 0;
-
-                    // Pita pusaran padat; lebarnya menyusut progresif sampai ujung bawah.
-                    for (let band = 0; band < 38; band++) {
-                        const progress = band / 37;
-                        const y = topY + 12 + progress * (tall - 16);
-                        const localWidth = Math.max(4, topWidth * Math.pow(1 - progress, .92));
-                        const phase = skyTime * (3.7 + progress * 5.6) + band * .63;
-                        const sway = Math.sin(phase) * localWidth * .31;
-                        ctx.beginPath();
-                        ctx.ellipse(cx + sway, y, Math.max(4, localWidth * (.32 + .16 * Math.sin(phase * .63) ** 2)), 4.5 + (1 - progress) * 8, Math.sin(phase) * .18, 0, Math.PI * 2);
-                        ctx.strokeStyle = band % 2
-                            ? `rgba(236,247,252,${.24 + .38 * Math.sin(phase * .48) ** 2})`
-                            : `rgba(89,123,145,${.18 + .32 * Math.sin(phase * .53) ** 2})`;
-                        ctx.lineWidth = 2.1 + (1 - progress) * 4.4;
-                        ctx.shadowColor = band % 2 ? 'rgba(247,253,255,.55)' : 'rgba(69,105,128,.35)';
-                        ctx.shadowBlur = band % 2 ? 10 : 6;
-                        ctx.stroke();
-                    }
-                    ctx.shadowBlur = 0;
-
-                    // Helai angin panjang melingkar, dengan arah berlawanan untuk memberi ilusi rotasi.
-                    for (let streak = 0; streak < 34; streak++) {
-                        const progress = ((streak * 41 + skyTime * 106) % tall) / tall;
-                        const y = topY + progress * tall;
-                        const localWidth = Math.max(7, topWidth * Math.pow(1 - progress, .92));
-                        const side = streak % 2 ? -1 : 1;
-                        const phase = skyTime * 2.6 + streak * .79;
-                        const reach = localWidth * (1.05 + (streak % 4) * .22);
-                        ctx.beginPath();
-                        ctx.moveTo(cx + side * localWidth * (.54 + Math.sin(phase) * .12), y);
-                        ctx.bezierCurveTo(
-                            cx + side * (localWidth + reach * .44), y - 28,
-                            cx - side * (reach * .68), y + 28,
-                            cx - side * Math.max(tipWidth, localWidth * .92), y + 54
-                        );
-                        ctx.strokeStyle = `rgba(244,251,255,${.23 + (streak % 5) * .065})`;
-                        ctx.lineWidth = 1.8 + (streak % 4) * .95;
-                        ctx.shadowColor = 'rgba(224,244,255,.42)';
-                        ctx.shadowBlur = 7;
-                        ctx.stroke();
-                    }
-                    ctx.shadowBlur = 0;
-
-                    // Garis tepi halus menegaskan siluet corong yang lancip di bawah.
-                    for (const side of [-1, 1]) {
-                        ctx.beginPath();
-                        ctx.moveTo(cx + side * topWidth * .79, topY + 13);
-                        ctx.bezierCurveTo(cx + side * topWidth * .66, topY + tall * .27, cx + side * topWidth * .29, topY + tall * .75, cx + side * tipWidth, bottomY - 2);
-                        ctx.strokeStyle = side < 0 ? 'rgba(245,252,255,.48)' : 'rgba(78,111,132,.42)';
-                        ctx.lineWidth = 2.2;
-                        ctx.shadowColor = 'rgba(220,242,253,.55)';
-                        ctx.shadowBlur = 12;
-                        ctx.stroke();
-                    }
-                    ctx.shadowBlur = 0;
-
-                    // Debu dan tetesan kecil mengorbit pada radius yang mengecil menuju ujung bawah.
-                    tornadoDebris.forEach(p => {
-                        p.angle += p.speed * (0.7 + p.band);
-                        const progress = p.band;
-                        const py = topY + 12 + progress * (tall - 18);
-                        const localWidth = Math.max(5, topWidth * Math.pow(1 - progress, .92));
-                        const orbit = Math.min(localWidth * .9, p.radius * (1 - progress * .6) + 8);
-                        const px = cx + Math.cos(p.angle) * orbit;
-                        const particleSize = p.size * (0.75 + (1 - progress) * .65);
-                        ctx.beginPath();
-                        ctx.arc(px, py + Math.sin(p.angle * 1.7) * (4 + localWidth * .035), particleSize, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(240,249,255,${p.alpha})`;
-                        ctx.shadowColor = 'rgba(225,243,252,.75)';
-                        ctx.shadowBlur = 7;
-                        ctx.fill();
-                    });
-                    ctx.shadowBlur = 0;
-
-                    // Debu berpusar tepat pada ujung runcing bawah, bukan membentuk alas yang lebar.
-                    ctx.globalCompositeOperation = 'source-over';
-                    const dust = ctx.createRadialGradient(cx, bottomY - 2, 1, cx, bottomY - 2, topWidth * .76);
-                    dust.addColorStop(0, 'rgba(218,234,243,.26)');
-                    dust.addColorStop(.38, 'rgba(151,180,197,.18)');
-                    dust.addColorStop(1, 'rgba(151,180,197,0)');
-                    ctx.fillStyle = dust;
-                    ctx.beginPath();
-                    ctx.ellipse(cx, bottomY - 2, topWidth * .76, 16 + topWidth * .045, Math.sin(skyTime) * .08, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.restore();
-                }
-                requestAnimationFrame(animateLiveWallpaper);
-                return;
-            }
-
-            // MODE MALAM: langit gelap bersih, tanpa nebula/galaksi biru-ungu.
-            // Titik bintang dan bulan purnama menjadi fokus utama.
-            const nightTime = performance.now() * 0.00012;
-            ctx.fillStyle = '#02060d';
-            ctx.fillRect(0, 0, viewWidth, viewHeight);
-            // Gradasi gelap sangat halus agar langit tetap terasa dalam, bukan nebula.
-            const nightShade = ctx.createLinearGradient(0, 0, 0, viewHeight);
-            nightShade.addColorStop(0, 'rgba(13,25,39,0.34)');
-            nightShade.addColorStop(.55, 'rgba(3,9,17,0.08)');
-            nightShade.addColorStop(1, 'rgba(0,3,8,0.3)');
-            ctx.fillStyle = nightShade;
-            ctx.fillRect(0, 0, viewWidth, viewHeight);
-
-            // Bintang berwarna putih-perak dengan kelap-kelip dan cahaya yang lebih jelas.
-            nightStars.forEach(star => {
-                star.phase += star.speed;
-                const twinkle = .34 + (Math.sin(star.phase) + 1) * .32;
-                const radius = star.size * (0.88 + twinkle * .62);
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${star.tint},${twinkle})`;
-                ctx.shadowColor = `rgba(${star.tint},.88)`;
-                ctx.shadowBlur = star.size > 1.45 ? 15 : 6;
-                ctx.fill();
-                ctx.shadowBlur = 0;
-                if (star.size > 1.45) {
-                    ctx.strokeStyle = `rgba(${star.tint},${twinkle * .72})`;
-                    ctx.lineWidth = .9;
-                    ctx.beginPath();
-                    ctx.moveTo(star.x - star.size * 2.7, star.y);
-                    ctx.lineTo(star.x + star.size * 2.7, star.y);
-                    ctx.moveTo(star.x, star.y - star.size * 2.7);
-                    ctx.lineTo(star.x, star.y + star.size * 2.7);
-                    ctx.stroke();
-                }
-            });
-
-            // Meteor pendek melintas sesekali, dengan ekor bergradasi dan kilau lembut.
-            const meteorNow = performance.now();
-            shootingStars.forEach(meteor => {
-                if (!meteor.active && meteorNow >= meteor.nextAt) {
-                    meteor.active = true;
-                    meteor.x = Math.random() * viewWidth * .82 + viewWidth * .08;
-                    meteor.y = Math.random() * viewHeight * .32;
-                    meteor.vx = 7 + Math.random() * 7;
-                    meteor.vy = 2.6 + Math.random() * 4.2;
-                    meteor.life = 0;
-                    meteor.maxLife = 18 + Math.floor(Math.random() * 16);
-                }
-                if (!meteor.active) return;
-                const fade = Math.min(1, meteor.life / 3, (meteor.maxLife - meteor.life) / 7);
-                const tail = ctx.createLinearGradient(meteor.x, meteor.y, meteor.x - meteor.vx * 9, meteor.y - meteor.vy * 9);
-                tail.addColorStop(0, `rgba(255,255,255,${Math.max(0, fade) * .95})`);
-                tail.addColorStop(.22, `rgba(168,205,255,${Math.max(0, fade) * .65})`);
-                tail.addColorStop(1, 'rgba(129,150,255,0)');
-                ctx.beginPath();
-                ctx.moveTo(meteor.x, meteor.y);
-                ctx.lineTo(meteor.x - meteor.vx * 9, meteor.y - meteor.vy * 9);
-                ctx.strokeStyle = tail;
-                ctx.lineWidth = 2.2;
-                ctx.shadowColor = 'rgba(180,211,255,.9)';
-                ctx.shadowBlur = 12;
-                ctx.stroke();
-                ctx.shadowBlur = 0;
-                meteor.x += meteor.vx;
-                meteor.y += meteor.vy;
-                meteor.life++;
-                if (meteor.life >= meteor.maxLife || meteor.x > viewWidth + 60 || meteor.y > viewHeight * .6) {
-                    meteor.active = false;
-                    meteor.nextAt = meteorNow + 4200 + Math.random() * 10500;
-                }
-            });
-
-            // Bulan purnama berwarna perak, glow berlapis dan kawah lembut.
-            const moonX = viewWidth * .82;
-            const moonY = viewHeight * .17 + Math.sin(performance.now() * .00018) * 2.5;
-            const moonR = Math.max(34, Math.min(59, viewWidth * .039));
-            const moonGlow = ctx.createRadialGradient(moonX, moonY, moonR * .35, moonX, moonY, moonR * 5.2);
-            moonGlow.addColorStop(0, 'rgba(235,244,255,.32)');
-            moonGlow.addColorStop(.18, 'rgba(204,225,255,.17)');
-            moonGlow.addColorStop(.48, 'rgba(177,207,244,.07)');
-            moonGlow.addColorStop(1, 'rgba(149,185,255,0)');
-            ctx.fillStyle = moonGlow;
-            ctx.fillRect(moonX - moonR * 5.2, moonY - moonR * 5.2, moonR * 10.4, moonR * 10.4);
-
-            // Halo garis tipis mengelilingi bulan.
-            ctx.beginPath();
-            ctx.arc(moonX, moonY, moonR * 1.35, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(220,236,255,.22)';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-
-            // Cakram penuh, bukan bulan sabit.
-            const moonFill = ctx.createRadialGradient(moonX - moonR * .36, moonY - moonR * .42, moonR * .08, moonX, moonY, moonR * 1.1);
-            moonFill.addColorStop(0, '#ffffff');
-            moonFill.addColorStop(.48, '#edf4ff');
-            moonFill.addColorStop(.82, '#cbd9ed');
-            moonFill.addColorStop(1, '#9eafc8');
-            ctx.save();
-            ctx.shadowColor = 'rgba(214,231,255,.95)';
-            ctx.shadowBlur = 30;
-            ctx.beginPath();
-            ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2);
-            ctx.fillStyle = moonFill;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-
-            // Bintik kawah halus untuk memberi tekstur realistis pada purnama.
-            const moonCraters = [
-                { x: -.34, y: -.20, r: .13 }, { x: .22, y: -.40, r: .09 },
-                { x: .42, y: .12, r: .16 }, { x: -.13, y: .24, r: .10 },
-                { x: -.39, y: .42, r: .07 }, { x: .13, y: .48, r: .065 },
-                { x: -.02, y: -.02, r: .055 }
-            ];
-            moonCraters.forEach(c => {
-                const cx = moonX + c.x * moonR, cy = moonY + c.y * moonR, cr = c.r * moonR;
-                ctx.beginPath();
-                ctx.arc(cx, cy, cr, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(113,132,160,.12)';
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(cx - cr * .18, cy - cr * .2, cr * .72, Math.PI * 1.05, Math.PI * 1.9);
-                ctx.strokeStyle = 'rgba(255,255,255,.48)';
-                ctx.lineWidth = Math.max(.7, moonR * .018);
-                ctx.stroke();
-            });
-            ctx.restore();
-
-            // 1. Draw Mouse Shockwave Ripples
-            for (let i = shockwaves.length - 1; i >= 0; i--) {
-                const sw = shockwaves[i];
-                sw.radius += 8 * speedMultiplier;
-                sw.alpha -= 0.015;
-
-                if (sw.alpha <= 0 || sw.radius >= sw.maxRadius) {
-                    shockwaves.splice(i, 1);
-                    continue;
-                }
-
-                ctx.beginPath();
-                ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
-                ctx.strokeStyle = sw.color;
-                ctx.globalAlpha = sw.alpha;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.globalAlpha = 1;
-            }
-
-            // 2. Animate Floating Geometric Polyhedrons
-            polyhedrons.forEach(poly => {
-                poly.x += poly.vx * speedMultiplier;
-                poly.y += poly.vy * speedMultiplier;
-                poly.rotation += poly.rotSpeed * speedMultiplier;
-
-                if (poly.x < -50) poly.x = viewWidth + 50;
-                if (poly.x > viewWidth + 50) poly.x = -50;
-                if (poly.y < -50) poly.y = viewHeight + 50;
-                if (poly.y > viewHeight + 50) poly.y = -50;
-
-                drawPolyhedron(poly);
-            });
-
-            // 3. Animate Interactive Mesh Nodes
-            for (let i = 0; i < nodes.length; i++) {
-                let nodeA = nodes[i];
-
-                nodeA.x += nodeA.vx * speedMultiplier;
-                nodeA.y += nodeA.vy * speedMultiplier;
-
-                if (nodeA.x < 0 || nodeA.x > viewWidth) nodeA.vx *= -1;
-                if (nodeA.y < 0 || nodeA.y > viewHeight) nodeA.vy *= -1;
-
-                // Mouse Magnetic Attraction
-                if (mouse.x !== null && mouse.y !== null) {
-                    let dx = mouse.x - nodeA.x;
-                    let dy = mouse.y - nodeA.y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < mouse.radius) {
-                        let force = (mouse.radius - dist) / mouse.radius;
-                        nodeA.x -= (dx / dist) * force * 3.5;
-                        nodeA.y -= (dy / dist) * force * 3.5;
-
-                        // Glowing Mouse Line Connection
-                        ctx.beginPath();
-                        ctx.moveTo(nodeA.x, nodeA.y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.45 * force})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
-
-                // Node Pulse Radius Glow
-                nodeA.pulse += 0.03;
-                let currentRadius = nodeA.radius + Math.sin(nodeA.pulse) * 0.8;
-
-                ctx.beginPath();
-                ctx.arc(nodeA.x, nodeA.y, Math.max(currentRadius, 0.5), 0, Math.PI * 2);
-                ctx.fillStyle = nodeA.color;
-                ctx.shadowBlur = 12;
-                ctx.shadowColor = nodeA.color;
-                ctx.fill();
-                ctx.shadowBlur = 0;
-
-                // Inter-node Beams
-                for (let j = i + 1; j < nodes.length; j++) {
-                    let nodeB = nodes[j];
-                    let dx = nodeA.x - nodeB.x;
-                    let dy = nodeA.y - nodeB.y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 135) {
-                        let opacity = (1 - dist / 135) * 0.35;
-                        ctx.beginPath();
-                        ctx.moveTo(nodeA.x, nodeA.y);
-                        ctx.lineTo(nodeB.x, nodeB.y);
-                        ctx.strokeStyle = `rgba(0, 240, 255, ${opacity})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            requestAnimationFrame(animateLiveWallpaper);
-        }
-
-        resizeCanvas();
-        setNodeSpeed(1);
-        setSkyWeather('clear');
-        animateLiveWallpaper();
-    </script>
-
-    <!-- UI Interactions & Typing Effect Script -->
-    <script>
-        feather.replace();
-
-        const cursorGlow = document.getElementById('cursorGlow');
-        window.addEventListener('mousemove', (e) => {
-            cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-        });
-
-        const phrases = ["Photographer & Video Editor", "CapCut & Color Grading Specialist", "Canva & Visual Creator", "Web Portfolio Developer"];
-        let phraseIdx = 0;
-        let charIdx = 0;
-        let isDeleting = false;
-        const typingSpeed = 90;
-        const typingElem = document.getElementById('typingText');
-
-        function typeLoop() {
-            const currentPhrase = phrases[phraseIdx];
-
-            if (isDeleting) {
-                typingElem.textContent = currentPhrase.substring(0, charIdx - 1);
-                charIdx--;
-            } else {
-                typingElem.textContent = currentPhrase.substring(0, charIdx + 1);
-                charIdx++;
-            }
-
-            if (!isDeleting && charIdx === currentPhrase.length) {
-                setTimeout(() => isDeleting = true, 1800);
-            } else if (isDeleting && charIdx === 0) {
-                isDeleting = false;
-                phraseIdx = (phraseIdx + 1) % phrases.length;
-            }
-
-            const speed = isDeleting ? typingSpeed / 2 : typingSpeed;
-            setTimeout(typeLoop, speed);
-        }
-
-        document.addEventListener('DOMContentLoaded', typeLoop);
-
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => {
-                    b.classList.remove('active', 'bg-gradient-to-r', 'from-neon-cyan', 'to-neon-blue', 'text-cyber-950', 'shadow-ultra-cyan');
-                    b.classList.add('glass-ultra', 'text-slate-300');
-                });
-
-                btn.classList.add('active', 'bg-gradient-to-r', 'from-neon-cyan', 'to-neon-blue', 'text-cyber-950', 'shadow-ultra-cyan');
-                btn.classList.remove('glass-ultra', 'text-slate-300');
-
-                const filter = btn.getAttribute('data-filter');
-
-                projectCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        function openModal(title, desc, tech) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalDesc').textContent = desc;
-            document.getElementById('modalTech').textContent = tech;
-            document.getElementById('projectModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('projectModal').classList.add('hidden');
-        }
-
-        function copyToClipboard(text, customMessage) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text);
-            } else {
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-            }
-            showToast("Tersalin!", customMessage);
-        }
-
-        function showToast(title, message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastTitle').textContent = title;
-            document.getElementById('toastMessage').textContent = message;
-
-            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-                toast.classList.remove('translate-y-0', 'opacity-100');
-            }, 3500);
-        }
-
-        function openPhoto(src) {
-            const modal = document.getElementById('photoModal');
-            const image = document.getElementById('photoModalImage');
-            image.src = src;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closePhoto() {
-            const modal = document.getElementById('photoModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.getElementById('photoModalImage').src = '';
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') closePhoto();
-        });
-
-        const portfolioMusic = document.getElementById('portfolioMusic');
-        let musicPlaying = false;
-
-        async function triggerAutoplay() {
-            try {
-                await portfolioMusic.play();
-                musicPlaying = true;
-            } catch (err) {
-                musicPlaying = false;
-            }
-        }
-
-        window.addEventListener("DOMContentLoaded", () => {
-            triggerAutoplay();
-        });
-
-        function startAudioOnInteraction() {
-            if (!musicPlaying) {
-                triggerAutoplay();
-            }
-            document.removeEventListener("click", startAudioOnInteraction);
-            document.removeEventListener("touchstart", startAudioOnInteraction);
-        }
-
-        document.addEventListener("click", startAudioOnInteraction);
-        document.addEventListener("touchstart", startAudioOnInteraction);
-
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-
-            showToast("Mengirim...", "Mohon tunggu sebentar.");
-
-            try {
-                const response = await fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: json
-                });
-                
-                const result = await response.json();
-                if (response.status === 200) {
-                    showToast("Pesan Terkirim!", "Terima kasih, pesan Anda berhasil dikirim ke Khalid.");
-                    contactForm.reset();
-                } else {
-                    showToast("Gagal!", result.message || "Terjadi kesalahan saat mengirim pesan.");
-                }
-            } catch (error) {
-                showToast("Error!", "Periksa koneksi internet Anda.");
-            }
-        });
+        btn.classList.add('active','bg-gradient-to-r','from-neon-cyan','to-neon-blue','text-cyber-950','shadow-ultra-cyan');
+        btn.classList.remove('glass-ultra','text-slate-300');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.project-card').forEach(card => card.hidden = !(filter === 'all' || card.dataset.category === filter));
+      }));
+
+      window.openModal = (title, desc, tech) => {
+        $('modalTitle').textContent = title; $('modalDesc').textContent = desc; $('modalTech').textContent = tech;
+        $('projectModal').classList.remove('hidden'); document.body.classList.add('modal-open');
+      };
+      window.closeModal = () => { $('projectModal')?.classList.add('hidden'); document.body.classList.remove('modal-open'); };
+      window.openPhoto = src => { $('photoModalImage').src = src; $('photoModal').classList.remove('hidden'); $('photoModal').classList.add('flex'); document.body.classList.add('modal-open'); };
+      window.closePhoto = () => { $('photoModal')?.classList.add('hidden'); $('photoModal')?.classList.remove('flex'); $('photoModalImage').src = ''; document.body.classList.remove('modal-open'); };
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePhoto(); closeModal(); } });
+      $('projectModal')?.addEventListener('click', e => { if (e.target === $('projectModal')) closeModal(); });
+
+      window.showToast = (title, message) => {
+        const toast = $('toast'); if (!toast) return;
+        $('toastTitle').textContent = title; $('toastMessage').textContent = message;
+        toast.classList.remove('translate-y-20','opacity-0','pointer-events-none');
+        toast.classList.add('translate-y-0','opacity-100');
+        clearTimeout(window.toastTimer);
+        window.toastTimer = setTimeout(() => { toast.classList.add('translate-y-20','opacity-0','pointer-events-none'); toast.classList.remove('translate-y-0','opacity-100'); }, 3000);
+      };
+      window.copyToClipboard = async (value, message) => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(value);
+          else { const input = document.createElement('textarea'); input.value = value; document.body.appendChild(input); input.select(); document.execCommand('copy'); input.remove(); }
+          showToast('Tersalin!', message || 'Teks berhasil disalin.');
+        } catch { showToast('Gagal menyalin', 'Silakan salin teks secara manual.'); }
+      };
+
+      // Audio tidak dipaksa autoplay; pengguna dapat menekan tombol play sendiri.
+      const form = $('contactForm');
+      form?.addEventListener('submit', async e => {
+        e.preventDefault();
+        const key = form.querySelector('[name="access_key"]')?.value;
+        if (!key || key === 'YOUR_ACCESS_KEY_HERE') { showToast('Form belum aktif', 'Isi access key Web3Forms terlebih dahulu atau hubungi melalui WhatsApp.'); return; }
+        showToast('Mengirim...', 'Mohon tunggu sebentar.');
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+          const result = await response.json();
+          if (response.ok && result.success) { showToast('Pesan terkirim!', 'Terima kasih sudah menghubungi.'); form.reset(); }
+          else showToast('Gagal mengirim', result.message || 'Silakan coba lagi.');
+        } catch { showToast('Koneksi bermasalah', 'Periksa koneksi internet Anda.'); }
+      });
+    })();
     </script>
 </body>
 </html>
